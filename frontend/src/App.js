@@ -1,7 +1,10 @@
 import React from 'react'
 import SignUp from './pages/SignUp'
 import LogIn from './pages/LogIn'
-import Profile from './pages/Profile'
+import PollList from './pages/PollList'
+import ItemList from './pages/ItemList'
+import MyPage from './pages/MyPage'
+import AddPoll from './pages/AddPoll'
 import { Provider } from "react-redux"
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { user } from './reducers/user'
@@ -41,9 +44,12 @@ export const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path='/login' exact ><LogIn /></Route>
           <Route path='/' exact ><SignUp /></Route>
-          <Route path='/secret' exact ><Profile /></Route>
+          <Route path='/login' exact ><LogIn /></Route>
+          <Route path='/home' exact ><PollList /></Route>
+          <Route path='/polls' exact ><ItemList /></Route>
+          <Route path='/mypage' exact ><MyPage /></Route>
+          <Route path='/addpoll' exact ><AddPoll /></Route>
         </Switch>
       </BrowserRouter>
     </Provider>

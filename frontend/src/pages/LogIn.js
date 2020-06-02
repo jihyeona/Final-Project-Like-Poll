@@ -17,7 +17,7 @@ export const LogIn = () => {
   // If user is logged in, show profile
   useEffect(() => {
     if (accessToken) {
-      history.push('/secret')
+      history.push('/mypage')
       console.log('push successful')
     }
   })

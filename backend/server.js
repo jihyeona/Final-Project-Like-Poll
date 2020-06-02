@@ -2,10 +2,36 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import crypto from 'crypto'
 import bcrypt from 'bcrypt-nodejs'
+import dotenv from 'dotenv'
+import cloudinaryframework from 'cloudinary'
+import multer from 'multer'
+import cloudinaryStorage from 'multer-storage-cloudinary'
+import Product from './models/Product'
+import User from './models/User'
 
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/authAPI"
+const cloudinary = cloudinaryframework.v2
+
+dotenv.config()
+
+cloudinary.config({
+  cloud_name: 'dystmqbrf',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'products',
+    allowedFormats: ['jpg', 'png', 'jpeg'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  },
+})
+
+const parser = multer({ storage })
+
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/pollAPI'
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.set('useCreateIndex', true)
 mongoose.Promise = Promise
@@ -20,25 +46,6 @@ const app = express()
 // Add middlewares to enable cors and json body parsing
 app.use(cors())
 app.use(bodyParser.json())
-
-const User = mongoose.model('User', {
-  name: {
-    type: String,
-    unique: true
-  },
-  email: {
-    type: String,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  accessToken: {
-    type: String,
-    default: () => crypto.randomBytes(128).toString('hex')
-  }
-})
 
 const authenticateUser = async (req, res, next) => {
   try {
@@ -73,6 +80,12 @@ app.post('/users', async (req, res) => {
   }
 })
 
+app.post('/users/:id', async (req, res) => {
+  const user = await User.findOneAndUpdate({ _id: req.params.id }, { profileImage: req.body.image }, { new: true })
+  res.json({ imageURL: user.profileImage }) // WHAT DOES imageURL do here? connect it with ProfileImage component, cloudnary
+})
+
+
 app.get('/users/:id/secret', authenticateUser)
 app.get('/users/:id/secret', (req, res) => {
   const secretMessage = `This is profile page for ${req.user.name}.`
@@ -92,6 +105,17 @@ app.post('/sessions', async (req, res) => {
     res.status(404).json({ notFound: true })
   }
 })
+
+
+app.post('/products', parser.single('image'), async (req, res) => {
+  try {
+    const product = await new Product({ name: req.body.name, description: req.body.description, imageUrl: req.file.path, imageId: req.file.filename }).save()
+    res.json(product)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)

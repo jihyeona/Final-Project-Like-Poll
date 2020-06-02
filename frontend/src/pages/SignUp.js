@@ -18,7 +18,7 @@ export const SignUp = () => {
 
   useEffect(() => {
     if (accessToken) {
-      history.push('/secret')
+      history.push('/mypage')
       console.log('push successful')
     }
   })

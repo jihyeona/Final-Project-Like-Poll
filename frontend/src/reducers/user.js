@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { useRef } from 'react'
 
 const initialState = {
   login: {
@@ -7,6 +8,7 @@ const initialState = {
     errorMessage: null,
     secretMessage: null,
     userName: null,
+    profileImage: null,
   },
 }
 
@@ -35,12 +37,16 @@ export const user = createSlice({
       console.log(`User name: ${userName}`);
       state.login.userName = userName;
     },
+    setProfileImage: (state, action) => {
+      const { profileImage } = action.payload
+      state.login.profileImage = profileImage
+    },
   },
 })
 
 //Thunks
 export const signup = (name, email, password) => {
-  const SIGNUP_URL = 'https://authentication-jj.herokuapp.com/users'
+  const SIGNUP_URL = 'http://localhost:8080/users'
   return (dispatch) => {
     console.log('Trying to sign up ...')
     fetch(SIGNUP_URL, {
@@ -68,7 +74,7 @@ export const signup = (name, email, password) => {
 }
 
 export const login = (name, password) => {
-  const LOGIN_URL = 'https://authentication-jj.herokuapp.com/sessions'
+  const LOGIN_URL = 'http://localhost:8080/sessions'
   return (dispatch) => {
     fetch(LOGIN_URL, {
       method: 'POST',
@@ -105,29 +111,57 @@ export const logout = () => {
   }
 }
 
+export const UpdateProfilePic = (image) => {
 
-// export const getSecretMessage = () => {
-//   const USERS_URL = 'https://authentication-jj.herokuapp.com/users'
-//   return (dispatch, getState) => {
-//     const accessToken = getState().user.login.accessToken
-//     const userId = getState().user.login.userId
-//     fetch(`${USERS_URL}/${userId}/secret`, {
-//       method: 'GET',
-//       // Include the accessToken to get the protected endpoint
-//       headers: { Authorization: accessToken },
-//     })
-//       .then((res) => {
-//         if (res.ok) {
-//           return res.json()
-//         }
-//         throw 'Could not get information. Make sure you are logged in and try again.'
-//       })
-//       // SUCCESS: Do something with the information we got back
-//       .then((json) => {
-//         dispatch(user.actions.setSecretMessage({ secretMessage: JSON.stringify(json) }))
-//       })
-//       .catch((err) => {
-//         dispatch(user.actions.setErrorMessage({ errorMessage: err }))
-//       })
-//   }
-// }
+  const PROFILE_URL = `http://localhost:8080/users`
+  const fileInput = useRef()
+  return (dispatch, getState) => {
+    const userId = getState().user.login.userId
+    console.log('Trying to update the profile image ...')
+    const formData = new FormData()
+    formData.append('image', fileInput.current.files[0])
+
+    fetch(`${PROFILE_URL}/${userId}`, { method: 'PUT', body: formData })
+      .then(console.log('posted new profile image file to API...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not update the profile image. Please try again.'
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(user.actions.setProfileImage({ profileImage: json.profileImage }))
+        dispatch(user.actions.setErrorMessage({ errorMessage: null }))
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
+export const getSecretMessage = () => {
+  const USERS_URL = 'http://localhost:8080/users'
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
+    const userId = getState().user.login.userId
+    fetch(`${USERS_URL}/${userId}/secret`, {
+      method: 'GET',
+      // Include the accessToken to get the protected endpoint
+      headers: { Authorization: accessToken },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not get information. Make sure you are logged in and try again.'
+      })
+      // SUCCESS: Do something with the information we got back
+      .then((json) => {
+        dispatch(user.actions.setSecretMessage({ secretMessage: JSON.stringify(json) }))
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
