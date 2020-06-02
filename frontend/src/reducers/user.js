@@ -111,7 +111,7 @@ export const logout = () => {
   }
 }
 
-export const UpdateProfilePic = (image) => {
+export const UpdateProfilePic = (profileImage) => {
 
   const PROFILE_URL = `http://localhost:8080/users`
   const fileInput = useRef()
@@ -121,7 +121,7 @@ export const UpdateProfilePic = (image) => {
     const formData = new FormData()
     formData.append('image', fileInput.current.files[0])
 
-    fetch(`${PROFILE_URL}/${userId}`, { method: 'PUT', body: formData })
+    fetch(`${PROFILE_URL}/${userId}/profileimg`, { method: 'POST', body: formData })
       .then(console.log('posted new profile image file to API...'))
       .then((res) => {
         if (res.ok) {

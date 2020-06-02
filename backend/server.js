@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 import cloudinaryframework from 'cloudinary'
 import multer from 'multer'
 import cloudinaryStorage from 'multer-storage-cloudinary'
-import Product from './models/Product'
+import Item from './models/Item'
 import User from './models/User'
 
 const cloudinary = cloudinaryframework.v2
@@ -80,18 +80,6 @@ app.post('/users', async (req, res) => {
   }
 })
 
-app.post('/users/:id', async (req, res) => {
-  const user = await User.findOneAndUpdate({ _id: req.params.id }, { profileImage: req.body.image }, { new: true })
-  res.json({ imageURL: user.profileImage }) // WHAT DOES imageURL do here? connect it with ProfileImage component, cloudnary
-})
-
-
-app.get('/users/:id/secret', authenticateUser)
-app.get('/users/:id/secret', (req, res) => {
-  const secretMessage = `This is profile page for ${req.user.name}.`
-  res.status(201).json({ secretMessage });
-})
-
 app.post('/sessions', async (req, res) => {
   try {
     const { name, password } = req.body
@@ -106,14 +94,28 @@ app.post('/sessions', async (req, res) => {
   }
 })
 
-
-app.post('/products', parser.single('image'), async (req, res) => {
+app.post('/users/:id/profileimg', parser.single('image'), async (req, res) => {
   try {
-    const product = await new Product({ name: req.body.name, description: req.body.description, imageUrl: req.file.path, imageId: req.file.filename }).save()
-    res.json(product)
+    const user = await User.findOneAndUpdate({ userId: req.body.userId, profileImage: req.file.path, new: true })
+    res.json(user)
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
+})
+
+app.post('/items', parser.single('image'), async (req, res) => {
+  try {
+    const item = await new Item({ name: req.body.name, description: req.body.description, imageUrl: req.file.path, imageId: req.file.filename }).save()
+    res.json(item)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+
+app.get('/users/:id/secret', authenticateUser)
+app.get('/users/:id/secret', (req, res) => {
+  const secretMessage = `This is profile page for ${req.user.name}.`
+  res.status(201).json({ secretMessage });
 })
 
 // Start the server

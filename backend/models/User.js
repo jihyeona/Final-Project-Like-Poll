@@ -14,14 +14,15 @@ const User = mongoose.model('User', {
     type: String,
     required: true
   },
-  profileImage: {
-    type: String,
-    default: ''
-  },
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
-  }
+  },
+  userId: {
+    type: String,
+    default: ''
+  },
+  profileImage: String
 })
 
 export default User
