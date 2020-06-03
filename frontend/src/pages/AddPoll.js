@@ -1,20 +1,19 @@
 import React, { useState, useRef } from 'react'
 
-const API_URL = 'http://localhost:8080/items'
+const POLL_URL = 'http://localhost:8080/polls'
 
 export const AddPoll = () => {
   const fileInput = useRef()
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
+  const [title, setTitle] = useState('')
+  const [color, setColor] = useState('')
 
-  const handleFormSubmit = (e) => {
+  const handlePollSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('image', fileInput.current.files[0])
-    formData.append('name', name)
-    formData.append('description', description)
-
-    fetch(API_URL, { method: 'POST', body: formData })
+    fetch(POLL_URL, {
+      method: 'POST',
+      body: JSON.stringify({ title, color }),
+      headers: { 'Content-Type': 'application/json' },
+    })
       .then((res) => res.json())
       .then((json) => {
         console.log(json)
@@ -22,24 +21,18 @@ export const AddPoll = () => {
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handlePollSubmit}>
       <label>
-        Image
-        <input type="file" ref={fileInput} />
+        Title
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       </label>
-
       <label>
-        Name
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-
-      <label>
-        Description
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+        Choose color
+        <input type="text" value={color} onChange={(e) => setColor(e.target.value)} />
       </label>
 
       <button type="submit">
-        Submit
+        Create a poll
       </button>
     </form>
   )

@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { useRef } from 'react'
 
 const initialState = {
   login: {
     accessToken: null,
-    userId: 0,
     errorMessage: null,
     secretMessage: null,
     userName: null,
@@ -92,6 +90,7 @@ export const login = (name, password) => {
         console.log(json)
         // Save the login info 
         dispatch(user.actions.setLoginResponse({ accessToken: json.accessToken, userId: json.userId }))
+        dispatch(user.actions.setProfileImage({ profileImage: json.profileImage }))
         dispatch(user.actions.setUserName({ userName: json.name }))
         dispatch(user.actions.setErrorMessage({ errorMessage: null }))
       })
@@ -108,20 +107,22 @@ export const logout = () => {
     dispatch(user.actions.setLoginResponse({ accessToken: null, userId: 0 }))
     dispatch(user.actions.setSecretMessage({ secretMessage: null }))
     dispatch(user.actions.setUserName({ userName: null }))
+    dispatch(user.actions.setProfileImage({ profileImage: null }))
   }
 }
 
 export const UpdateProfilePic = (profileImage) => {
 
   const PROFILE_URL = `http://localhost:8080/users`
-  const fileInput = useRef()
+
   return (dispatch, getState) => {
     const userId = getState().user.login.userId
+    const accessToken = getState().user.login.accessToken
     console.log('Trying to update the profile image ...')
     const formData = new FormData()
-    formData.append('image', fileInput.current.files[0])
+    formData.append('image', profileImage)
 
-    fetch(`${PROFILE_URL}/${userId}/profileimg`, { method: 'POST', body: formData })
+    fetch(`${PROFILE_URL}/${userId}`, { method: 'PUT', body: formData, headers: { Authorization: accessToken } })
       .then(console.log('posted new profile image file to API...'))
       .then((res) => {
         if (res.ok) {

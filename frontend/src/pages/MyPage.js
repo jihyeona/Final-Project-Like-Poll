@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import LikeList from '../components/LikeList'
 import ProfileImage from '../components/ProfileImage'
+import NavbarLight from '../components/NavBar'
 
 export const MyPage = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export const MyPage = () => {
 
   return (
     <ProfileInfo>
+      <NavbarLight />
       <Headline title='profile' />
       <ProfileDiv>
         <ProfileMessage>Welcome {userName}!</ProfileMessage>

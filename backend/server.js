@@ -9,6 +9,7 @@ import multer from 'multer'
 import cloudinaryStorage from 'multer-storage-cloudinary'
 import Item from './models/Item'
 import User from './models/User'
+import Poll from './models/Poll'
 
 const cloudinary = cloudinaryframework.v2
 
@@ -85,7 +86,7 @@ app.post('/sessions', async (req, res) => {
     const { name, password } = req.body
     const user = await User.findOne({ name })
     if (user && bcrypt.compareSync(password, user.password)) {
-      res.status(201).json({ name: user.name, userId: user._id, accessToken: user.accessToken, message: 'You are logged in' })
+      res.status(201).json({ name: user.name, userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage, message: 'You are logged in' })
     } else {
       res.status(404).json({ notFound: true })
     }
@@ -93,20 +94,33 @@ app.post('/sessions', async (req, res) => {
     res.status(404).json({ notFound: true })
   }
 })
-
-app.post('/users/:id/profileimg', parser.single('image'), async (req, res) => {
+// this is the endpoint to update profile image
+app.put('/users/:id', authenticateUser)
+app.put('/users/:id', parser.single('image'), async (req, res) => {
   try {
-    const user = await User.findOneAndUpdate({ userId: req.body.userId, profileImage: req.file.path, new: true })
+    const user = await User.findOneAndUpdate({ _id: req.user._id }, { profileImage: req.file.path }, { new: true })
     res.json(user)
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
 })
-
+// this is the endpoint to add new items for a poll
 app.post('/items', parser.single('image'), async (req, res) => {
   try {
-    const item = await new Item({ name: req.body.name, description: req.body.description, imageUrl: req.file.path, imageId: req.file.filename }).save()
-    res.json(item)
+    const item = new Item({ name: req.body.name, description: req.body.description, imageUrl: req.file.path, imageId: req.file.filename })
+    const saved = await item.save()
+    res.status(201).json({ name: saved.name, description: saved.description, imageUrl: saved.imageUrl, itemId: saved._id })
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+// this is the endpoint to add new polls 
+app.post('/polls', async (req, res) => {
+  try {
+    const { title, color } = req.body
+    const poll = new Poll({ title, color })
+    const saved = await poll.save()
+    res.status(201).json({ title: saved.title, color: saved.color, pollId: saved._id })
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }

@@ -18,10 +18,6 @@ const User = mongoose.model('User', {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
   },
-  userId: {
-    type: String,
-    default: ''
-  },
   profileImage: String
 })
 

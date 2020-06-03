@@ -8,7 +8,7 @@ import { UpdateProfilePic } from 'reducers/user'
 
 export const ProfileImage = () => {
   const dispatch = useDispatch()
-  const [profileImage, setProfileImage] = useState('')
+  // const [profileImage, setProfileImage] = useState('')
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const image = useSelector((state) => state.user.login.profileImage)
   const fileInput = useRef()
@@ -16,7 +16,7 @@ export const ProfileImage = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     //dispatch thunk for updating the profile image
-    dispatch(UpdateProfilePic(profileImage))
+    dispatch(UpdateProfilePic(fileInput.current.files[0]))
   }
 
   return (
