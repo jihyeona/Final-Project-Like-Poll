@@ -75,7 +75,7 @@ app.post('/users', async (req, res) => {
     const { name, email, password } = req.body
     const user = new User({ name, email, password: bcrypt.hashSync(password) })
     const saved = await user.save()
-    res.status(201).json({ name: saved.name, userId: saved._id, accessToken: saved.accessToken })
+    res.status(201).json({ name: saved.name, userId: saved._id, accessToken: saved.accessToken, email: saved.email })
   } catch (err) {
     res.status(400).json({ message: 'Could not create user', errors: err.errors })
   }
@@ -86,7 +86,7 @@ app.post('/sessions', async (req, res) => {
     const { name, password } = req.body
     const user = await User.findOne({ name })
     if (user && bcrypt.compareSync(password, user.password)) {
-      res.status(201).json({ name: user.name, userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage, message: 'You are logged in' })
+      res.status(201).json({ name: user.name, userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage, email: user.email, message: 'You are logged in' })
     } else {
       res.status(404).json({ notFound: true })
     }

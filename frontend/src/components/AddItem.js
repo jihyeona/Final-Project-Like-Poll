@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Form } from '../lib/form'
 
 const ITEM_URL = 'http://localhost:8080/items'
 
@@ -22,7 +23,7 @@ export const AddItem = () => {
   }
 
   return (
-    <form onSubmit={handleItemSubmit}>
+    <Form onSubmit={handleItemSubmit}>
       <label>
         Image
         <input type="file" ref={fileInput} />
@@ -41,7 +42,7 @@ export const AddItem = () => {
       <button type="submit">
         Add item
       </button>
-    </form>
+    </Form>
   )
 }
 

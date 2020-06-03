@@ -9,6 +9,11 @@ export const ProfileMessage = styled.p`
   text-align: center;
   font-size: 1.2em;
 `
+export const ProfileText = styled.p`
+  color: #4f4f4f;
+  font-size: 0.825rem;
+  margin-top: 2.5em;
+`
 export const Form = styled.form`
   width: 60%;
   margin: 1em auto;

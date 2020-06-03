@@ -20,8 +20,7 @@ export const ProfilePic = styled.img`
 export const PicText = styled.button`
   position: absolute;
   display: none;
-  top: 40%;
-  left: 15%;
+  top: 50%;
   z-index: 5;
   color: white;
   background: none;

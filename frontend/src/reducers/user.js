@@ -7,6 +7,7 @@ const initialState = {
     secretMessage: null,
     userName: null,
     profileImage: null,
+    email: null,
   },
 }
 
@@ -15,10 +16,11 @@ export const user = createSlice({
   initialState: initialState,
   reducers: {
     setLoginResponse: (state, action) => {
-      const { accessToken, userId } = action.payload
+      const { accessToken, userId, email } = action.payload
       console.log(`Access Token: ${accessToken}, User Id: ${userId}`)
       state.login.accessToken = accessToken
       state.login.userId = userId
+      state.login.email = email
     },
     setSecretMessage: (state, action) => {
       const { secretMessage } = action.payload;
@@ -61,7 +63,7 @@ export const signup = (name, email, password) => {
       })
       .then((json) => {
         console.log(json)
-        dispatch(user.actions.setLoginResponse({ accessToken: json.accessToken, userId: json.userId }))
+        dispatch(user.actions.setLoginResponse({ accessToken: json.accessToken, userId: json.userId, email: json.email }))
         dispatch(user.actions.setUserName({ userName: json.name }))
         dispatch(user.actions.setErrorMessage({ errorMessage: null }))
       })
@@ -89,7 +91,7 @@ export const login = (name, password) => {
       .then((json) => {
         console.log(json)
         // Save the login info 
-        dispatch(user.actions.setLoginResponse({ accessToken: json.accessToken, userId: json.userId }))
+        dispatch(user.actions.setLoginResponse({ accessToken: json.accessToken, userId: json.userId, email: json.email }))
         dispatch(user.actions.setProfileImage({ profileImage: json.profileImage }))
         dispatch(user.actions.setUserName({ userName: json.name }))
         dispatch(user.actions.setErrorMessage({ errorMessage: null }))
@@ -104,7 +106,7 @@ export const login = (name, password) => {
 export const logout = () => {
   return (dispatch) => {
     console.log('trying to log out ...')
-    dispatch(user.actions.setLoginResponse({ accessToken: null, userId: 0 }))
+    dispatch(user.actions.setLoginResponse({ accessToken: null, userId: 0, email: null }))
     dispatch(user.actions.setSecretMessage({ secretMessage: null }))
     dispatch(user.actions.setUserName({ userName: null }))
     dispatch(user.actions.setProfileImage({ profileImage: null }))
