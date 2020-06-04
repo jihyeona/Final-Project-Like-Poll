@@ -13,6 +13,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 const saveToLocalStorage = (state) => {
   try {
     const serializedState = JSON.stringify(state)
+    console.log('saving to local storage...')
     localStorage.setItem('state', serializedState)
   } catch (error) {
     console.log(error)
@@ -22,6 +23,7 @@ const saveToLocalStorage = (state) => {
 const loadFromLocalStorage = () => {
   try {
     const serializedState = localStorage.getItem('state')
+    console.log('loading from local storage...')
     if (serializedState === null) return undefined
     return JSON.parse(serializedState)
   } catch (error) {

@@ -48,6 +48,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
+
 const authenticateUser = async (req, res, next) => {
   try {
     const user = await User.findOne({
@@ -117,10 +118,10 @@ app.post('/items', parser.single('image'), async (req, res) => {
 // this is the endpoint to add new polls 
 app.post('/polls', async (req, res) => {
   try {
-    const { title, color } = req.body
-    const poll = new Poll({ title, color })
+    const { title, color, items } = req.body
+    const poll = new Poll({ title, color, items })
     const saved = await poll.save()
-    res.status(201).json({ title: saved.title, color: saved.color, pollId: saved._id })
+    res.status(201).json({ title: saved.title, color: saved.color, pollId: saved._id, items: saved.items })
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }

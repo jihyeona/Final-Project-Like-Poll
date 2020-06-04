@@ -9,6 +9,18 @@ const Poll = mongoose.model('Poll', {
   color: {
     type: String,
     required: true
+  },
+  items: {
+    name: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    imageUrl: String,
+    imageId: String
   }
 })
 
