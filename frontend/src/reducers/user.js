@@ -143,6 +143,64 @@ export const UpdateProfilePic = (profileImage) => {
   }
 }
 
+export const addpoll = (title, fileInput) => {
+  const POLL_URL = 'http://localhost:8080/polls'
+  const formData = new FormData()
+  formData.append('pollimage', fileInput.current.files[0])
+  formData.append('title', title)
+  return (dispatch) => {
+    console.log('Trying to create a poll ...')
+    fetch(POLL_URL, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(console.log('posted poll info to API...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not creat a poll. Try a different title.'
+      })
+      .then((json) => {
+        console.log(json)
+        // do something with the created poll info. probably add it to the state of poll?
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
+export const additem = (name, description, fileInput) => {
+  const ITEM_URL = 'http://localhost:8080/polls/:pollId'
+  const formData = new FormData()
+  formData.append('itemimage', fileInput.current.files[0])
+  formData.append('name', name)
+  formData.append('description', description)
+  return (dispatch) => {
+    // console.log(`Trying to add an item to the poll id ${pollId}...`)
+    fetch(ITEM_URL, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(console.log('posted item info to API...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not add the item. Try again.'
+      })
+      .then((json) => {
+        console.log(json)
+        // do something with the created item.
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
+
 export const getSecretMessage = () => {
   const USERS_URL = 'http://localhost:8080/users'
   return (dispatch, getState) => {

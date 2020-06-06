@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Item from './Item'
 
 const Poll = mongoose.model('Poll', {
   title: {
@@ -6,22 +7,13 @@ const Poll = mongoose.model('Poll', {
     required: true,
     unique: true
   },
-  color: {
-    type: String,
-    required: true
+  imageUrl: String,
+  imageId: String,
+  createdAt: {
+    type: Date,
+    default: () => new Date()
   },
-  items: {
-    name: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    imageUrl: String,
-    imageId: String
-  }
+  items: [Item]
 })
 
 export default Poll

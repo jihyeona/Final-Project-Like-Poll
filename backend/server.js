@@ -76,7 +76,12 @@ app.post('/users', async (req, res) => {
     const { name, email, password } = req.body
     const user = new User({ name, email, password: bcrypt.hashSync(password) })
     const saved = await user.save()
-    res.status(201).json({ name: saved.name, userId: saved._id, accessToken: saved.accessToken, email: saved.email })
+    res.status(201).json({
+      name: saved.name,
+      userId: saved._id,
+      accessToken: saved.accessToken,
+      email: saved.email
+    })
   } catch (err) {
     res.status(400).json({ message: 'Could not create user', errors: err.errors })
   }
@@ -87,7 +92,14 @@ app.post('/sessions', async (req, res) => {
     const { name, password } = req.body
     const user = await User.findOne({ name })
     if (user && bcrypt.compareSync(password, user.password)) {
-      res.status(201).json({ name: user.name, userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage, email: user.email, message: 'You are logged in' })
+      res.status(201).json({
+        name: user.name,
+        userId: user._id,
+        accessToken: user.accessToken,
+        profileImage: user.profileImage,
+        email: user.email,
+        message: 'You are logged in'
+      })
     } else {
       res.status(404).json({ notFound: true })
     }
@@ -105,28 +117,91 @@ app.put('/users/:id', parser.single('image'), async (req, res) => {
     res.status(400).json({ errors: err.errors })
   }
 })
-// this is the endpoint to add new items for a poll
-app.post('/items', parser.single('image'), async (req, res) => {
+
+// this is the endpoint to fetch the info of existing polls
+app.get('/polls', async (req, res) => {
+  const ongoingPolls = await Poll.find().sort({ createdAt: 'desc' }).limit(20).exec()
+  if (ongoingPolls) {
+    res.status(201).json(ongoingPolls)
+  } else {
+    res.status(401).json({ message: 'Could not find ongoing polls' })
+  }
+})
+// this is the endpoint to add new polls 
+app.post('/polls', parser.single('pollimage'), async (req, res) => {
   try {
-    const item = new Item({ name: req.body.name, description: req.body.description, imageUrl: req.file.path, imageId: req.file.filename })
-    const saved = await item.save()
-    res.status(201).json({ name: saved.name, description: saved.description, imageUrl: saved.imageUrl, itemId: saved._id })
+    const poll = new Poll({
+      title: req.body.title,
+      imageUrl: req.file.path,
+      imageId: req.file.filename,
+      items: [{
+        name: '',
+        description: '',
+        imageUrl: '',
+        imageId: ''
+      }]
+    })
+    const saved = await poll.save()
+    // res.status(201).json(saved)
+    res.status(201).json({
+      title: saved.title,
+      imageUrl: saved.imageUrl,
+      imageId: saved.imageId,
+      pollId: saved._id,
+      items: [{
+        name: saved.items[0].name,
+        description: saved.items[0].description,
+        itemId: saved.items[0]._id,
+        imageUrl: saved.items[0].imageUrl,
+        imageId: saved.items[0].imageId
+      }]
+    })
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
 })
-// this is the endpoint to add new polls 
-app.post('/polls', async (req, res) => {
+// this is the endpoint to add new items under a poll 
+app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   try {
-    const { title, color, items } = req.body
-    const poll = new Poll({ title, color, items })
-    const saved = await poll.save()
-    res.status(201).json({ title: saved.title, color: saved.color, pollId: saved._id, items: saved.items })
+    const { pollId } = req.params
+    const poll = await Poll.findOneAndUpdate(
+      { _id: pollId },
+      {
+        $push: {
+          items: {
+            name: req.body.name,
+            description: req.body.description,
+            imageUrl: req.file.path,
+            imageId: req.file.filename
+          }
+        }
+      },
+      { new: true, upsert: true })
+    res.status(201).json(poll)
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
 })
 
+// this is the endpoint to fetch the info of an existing poll
+app.get('/polls/:pollId', (req, res) => {
+
+})
+// this is the endpoint to fetch the info of an item(or items?) under an existing poll
+app.get('/polls/:pollId/items/:itemId', (req, res) => {
+  try {
+    const { pollId } = req.params
+    const items = []
+    // code to get items by pollId
+    res.status(201).json(items)
+  } catch (err) {
+    res.status(404).json({ errors: err.errors })
+  }
+
+})
+
+
+// 
 app.get('/users/:id/secret', authenticateUser)
 app.get('/users/:id/secret', (req, res) => {
   const secretMessage = `This is profile page for ${req.user.name}.`

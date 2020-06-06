@@ -1,25 +1,19 @@
 import React, { useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
 import { Form } from '../lib/form'
-
-const ITEM_URL = 'http://localhost:8080/items'
+import { additem } from 'reducers/user'
 
 export const AddItem = () => {
+  const dispatch = useDispatch()
+
   const fileInput = useRef()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
   const handleItemSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('image', fileInput.current.files[0])
-    formData.append('name', name)
-    formData.append('description', description)
-
-    fetch(ITEM_URL, { method: 'POST', body: formData })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json)
-      })
+    //dispatch thunk
+    dispatch(additem(name, description, fileInput))
   }
 
   return (
