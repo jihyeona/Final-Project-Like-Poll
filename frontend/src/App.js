@@ -6,9 +6,12 @@ import ItemList from './pages/ItemList'
 import MyPage from './pages/MyPage'
 import AddPoll from './pages/AddPoll'
 import { Provider } from "react-redux"
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { user } from './reducers/user'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { combineReducers } from '@reduxjs/toolkit'
+import { createStore } from 'redux'
+import thunk from 'redux-thunk'
+import { applyMiddleware, compose } from '@reduxjs/toolkit'
 
 const saveToLocalStorage = (state) => {
   try {
@@ -32,11 +35,13 @@ const loadFromLocalStorage = () => {
   }
 }
 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 const persistedState = loadFromLocalStorage()
 
 const reducer = combineReducers({ user: user.reducer })
 
-const store = configureStore({ reducer, persistedState })
+const store = createStore(reducer, persistedState, composeEnhancer(applyMiddleware(thunk)))
 
 store.subscribe(() => saveToLocalStorage(store.getState()))
 
