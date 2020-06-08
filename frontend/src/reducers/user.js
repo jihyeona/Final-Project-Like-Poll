@@ -172,14 +172,14 @@ export const addpoll = (title, fileInput) => {
 }
 
 export const additem = (name, description, fileInput, pollId) => {
-  console.log(pollId)
-  const ITEM_URL = `http://localhost:8080/polls/${pollId}`
+  console.log(pollId.pollId)
+  const pollParam = pollId.pollId
+  const ITEM_URL = `http://localhost:8080/polls/${pollParam}`
   const formData = new FormData()
   formData.append('itemimage', fileInput.current.files[0])
   formData.append('name', name)
   formData.append('description', description)
   return (dispatch) => {
-    // console.log(`Trying to add an item to the poll id ${pollId}...`)
     fetch(ITEM_URL, {
       method: 'POST',
       body: formData,

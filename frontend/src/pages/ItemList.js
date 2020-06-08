@@ -17,7 +17,7 @@ export const ItemList = () => {
       .then(res => res.json())
       .then(json => setPollItems(json.items))
       .then(console.log(pollItems))
-  }, [])
+  }, [AddItem, pollId])
 
   return (
     <ProfileInfo>

@@ -9,7 +9,6 @@ export const AddItem = (pollId) => {
   const fileInput = useRef()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  // const [pollId, setPollId] = useState('')
 
   const handleItemSubmit = (e) => {
     e.preventDefault()
