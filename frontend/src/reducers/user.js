@@ -171,8 +171,9 @@ export const addpoll = (title, fileInput) => {
   }
 }
 
-export const additem = (name, description, fileInput) => {
-  const ITEM_URL = 'http://localhost:8080/polls/:pollId'
+export const additem = (name, description, fileInput, pollId) => {
+  console.log(pollId)
+  const ITEM_URL = `http://localhost:8080/polls/${pollId}`
   const formData = new FormData()
   formData.append('itemimage', fileInput.current.files[0])
   formData.append('name', name)

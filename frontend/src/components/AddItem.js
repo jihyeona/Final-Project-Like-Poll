@@ -3,17 +3,18 @@ import { useDispatch } from 'react-redux'
 import { Form } from '../lib/form'
 import { additem } from 'reducers/user'
 
-export const AddItem = () => {
+export const AddItem = (pollId) => {
   const dispatch = useDispatch()
 
   const fileInput = useRef()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
+  // const [pollId, setPollId] = useState('')
 
   const handleItemSubmit = (e) => {
     e.preventDefault()
     //dispatch thunk
-    dispatch(additem(name, description, fileInput))
+    dispatch(additem(name, description, fileInput, pollId))
   }
 
   return (

@@ -54,7 +54,7 @@ export const App = () => {
           <Route path='/' exact ><SignUp /></Route>
           <Route path='/login' exact ><LogIn /></Route>
           <Route path='/home' exact ><PollList /></Route>
-          <Route path='/polls' exact ><ItemList /></Route>
+          <Route path='/polls/:pollId' exact ><ItemList /></Route>
           <Route path='/mypage' exact ><MyPage /></Route>
           <Route path='/addpoll' exact ><AddPoll /></Route>
         </Switch>
