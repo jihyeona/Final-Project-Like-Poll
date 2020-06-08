@@ -18,7 +18,11 @@ const User = mongoose.model('User', {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
   },
-  profileImage: String
+  profileImage: String,
+  createdAt: {
+    type: Date,
+    default: () => new Date()
+  },
 })
 
 export default User

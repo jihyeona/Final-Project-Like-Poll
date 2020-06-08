@@ -3,4 +3,3 @@
 // you can click on the like button and then it will light up
 // like button has counter 
 // stretch goal: user A also likes this. (like in Facebook post)
-// this list should fetch the data from the endpoint app.get('/items')

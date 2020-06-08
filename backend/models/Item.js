@@ -1,20 +1,22 @@
 import mongoose from 'mongoose'
+import Like from './Like'
 
 const Item = mongoose.Schema({
   name: {
     type: String,
-    // required: true
+    required: true
   },
   description: {
     type: String,
-    // required: true
+    required: true
   },
   imageUrl: String,
   imageId: String,
   createdAt: {
     type: Date,
     default: () => new Date()
-  }
+  },
+  likes: [Like]
 })
 
 export default Item

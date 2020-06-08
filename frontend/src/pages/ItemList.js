@@ -14,7 +14,9 @@ export const ItemList = () => {
         We can reuse the structure from the movie project. So In the ItemList we will map through the ItemCard. 
         MoviesList = ItemList
         MovieThumb = ItemCard
-        add a button called Add an Item which then reveals the AddItem component */}
+        add a button called Add an Item which then reveals the AddItem component 
+        this list should fetch the data from the endpoint app.get('/polls/:pollId')?
+        */}
         <AddItem />
       </ProfileDiv>
     </ProfileInfo>

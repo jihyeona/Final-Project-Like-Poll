@@ -71,6 +71,16 @@ app.get('/', (req, res) => {
   res.send('Hello world')
 })
 
+// this is the endpoint to fetch the info of existing users
+app.get('/users', async (req, res) => {
+  const exsitingUsers = await User.find().sort({ createdAt: 'asc' })
+  if (exsitingUsers) {
+    res.status(201).json(exsitingUsers)
+  } else {
+    res.status(401).json({ message: 'Could not find existing users' })
+  }
+})
+// this is the endpoint to sign up new users
 app.post('/users', async (req, res) => {
   try {
     const { name, email, password } = req.body
@@ -134,32 +144,32 @@ app.post('/polls', parser.single('pollimage'), async (req, res) => {
       title: req.body.title,
       imageUrl: req.file.path,
       imageId: req.file.filename,
-      items: [{
-        name: '',
-        description: '',
-        imageUrl: '',
-        imageId: ''
-      }]
+      items: []
     })
     const saved = await poll.save()
-    // res.status(201).json(saved)
     res.status(201).json({
       title: saved.title,
       imageUrl: saved.imageUrl,
       imageId: saved.imageId,
       pollId: saved._id,
-      items: [{
-        name: saved.items[0].name,
-        description: saved.items[0].description,
-        itemId: saved.items[0]._id,
-        imageUrl: saved.items[0].imageUrl,
-        imageId: saved.items[0].imageId
-      }]
+      items: []
     })
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
 })
+
+// this is the endpoint to fetch the info of an existing poll
+app.get('/polls/:pollId', async (req, res) => {
+  const { pollId } = req.params
+  const poll = await Poll.findById(pollId)
+  if (poll) {
+    res.status(201).json(poll)
+  } else {
+    res.status(401).json({ message: `Could not find a poll by id ${pollId}` })
+  }
+})
+
 // this is the endpoint to add new items under a poll 
 app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   try {
@@ -172,7 +182,8 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
             name: req.body.name,
             description: req.body.description,
             imageUrl: req.file.path,
-            imageId: req.file.filename
+            imageId: req.file.filename,
+            itemId: req.body._id
           }
         }
       },
@@ -183,25 +194,39 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   }
 })
 
-// this is the endpoint to fetch the info of an existing poll
-app.get('/polls/:pollId', (req, res) => {
-
-})
-// this is the endpoint to fetch the info of an item(or items?) under an existing poll
-app.get('/polls/:pollId/items/:itemId', (req, res) => {
+// this is the endpoint to fetch the info of an item under an existing poll. Do I need it or shall I use the json of a poll from app.get('polls/:pollId')?
+app.get('/items/:itemId', async (req, res) => {
   try {
-    const { pollId } = req.params
-    const items = []
-    // code to get items by pollId
-    res.status(201).json(items)
+    const { itemId } = req.params
+    const item = await Item.findById(itemId)
+    res.status(201).json(item)
   } catch (err) {
-    res.status(404).json({ errors: err.errors })
+    res.status(401).json({ message: `Could not find an item by id ${itemId}` })
   }
+})
 
+// this is the endpoint to push a like under an item.
+app.post('/items/:itemId', async (req, res) => {
+  try {
+    const { itemId } = req.params
+    const item = await Item.findOneAndUpdate(
+      { _id: itemId },
+      {
+        $push: {
+          likes: {
+            userId: req.body.userId
+          }
+        }
+      },
+      { new: true, upsert: true })
+    res.status(201).json(item)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
 })
 
 
-// 
+
 app.get('/users/:id/secret', authenticateUser)
 app.get('/users/:id/secret', (req, res) => {
   const secretMessage = `This is profile page for ${req.user.name}.`
