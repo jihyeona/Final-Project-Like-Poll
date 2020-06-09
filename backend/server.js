@@ -194,7 +194,9 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
     res.status(400).json({ errors: err.errors })
   }
 })
-// this is the endpoint to push a like under an item.
+// this is the endpoint to push a like under an item. 
+// Problem: this solution addes like object only to the first item in items array, and not to the item with the right item id.
+// This problem is on line 207, we don't know how to refer to the index number. 
 app.post('/items/:itemId', async (req, res) => {
   try {
     const { itemId } = req.params
@@ -207,12 +209,14 @@ app.post('/items/:itemId', async (req, res) => {
           }
         }
       },
+      // { arrayFilters: [{ 'itemId': itemId }] },
       { new: true, upsert: true })
     res.status(201).json(poll)
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
 })
+
 
 // this is the endpoint to fetch the info of an item under an existing poll. Do I need it or shall I use the json of a poll from app.get('polls/:pollId')?
 // app.get('/items/:itemId', async (req, res) => {

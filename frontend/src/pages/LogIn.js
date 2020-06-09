@@ -9,15 +9,15 @@ import { useHistory, Link } from 'react-router-dom'
 export const LogIn = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const accessToken = useSelector((store) => store.user.login.accessToken);
-  const errorMessage = useSelector((store) => store.user.login.errorMessage);
+  const accessToken = useSelector((store) => store.user.login.accessToken)
+  const errorMessage = useSelector((store) => store.user.login.errorMessage)
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
 
   // If user is logged in, show profile
   useEffect(() => {
     if (accessToken) {
-      history.push('/mypage')
+      history.push('/home')
       console.log('push successful')
     }
   })

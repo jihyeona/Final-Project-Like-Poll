@@ -8,6 +8,7 @@ const initialState = {
     userName: null,
     profileImage: null,
     email: null,
+    userId: null,
   },
 }
 
@@ -124,7 +125,11 @@ export const UpdateProfilePic = (profileImage) => {
     const formData = new FormData()
     formData.append('image', profileImage)
 
-    fetch(`${PROFILE_URL}/${userId}`, { method: 'PUT', body: formData, headers: { Authorization: accessToken } })
+    fetch(`${PROFILE_URL}/${userId}`, {
+      method: 'PUT',
+      body: formData,
+      headers: { Authorization: accessToken }
+    })
       .then(console.log('posted new profile image file to API...'))
       .then((res) => {
         if (res.ok) {
@@ -201,6 +206,31 @@ export const additem = (name, description, fileInput, pollId) => {
   }
 }
 
+export const upvote = (userId, itemId) => {
+  console.log(userId, itemId)
+  const ITEM_URL = `http://localhost:8080/items/${itemId}`
+  return (dispatch) => {
+    fetch(ITEM_URL, {
+      method: 'POST',
+      body: JSON.stringify({ userId }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(console.log('posted upvote with userId to API...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not upvote. Try again.'
+      })
+      .then((json) => {
+        console.log(json)
+        // do something with the created item.
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
 
 export const getSecretMessage = () => {
   const USERS_URL = 'http://localhost:8080/users'

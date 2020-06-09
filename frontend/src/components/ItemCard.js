@@ -1,17 +1,25 @@
 // a card that shows the option that you can like.
 // name, background image, description, like button 
-// fetch the information about item from http://localhost:8080/polls/${pollId}
-// the result is the json file about a poll, so we need to return something like;
-// json.items[].name
-// json.items[].description
-// json.items[].imageUrl
-// and so on. we need to check the syntax, not sure about how to call the array and index 
+
 // you can click on the like button and then it will light up
 // like button has counter 
 // stretch goal: user A also likes this. (like in Facebook post)
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { upvote } from '../reducers/user'
 
-export const ItemCard = ({ name, description, imageUrl }) => {
+export const ItemCard = ({ name, description, imageUrl, _id }) => {
+
+  const dispatch = useDispatch()
+  const userId = useSelector((store) => store.user.login.userId)
+  const itemId = _id
+  const handleUpvote = (event) => {
+    event.preventDefault()
+    //dispatch thunk
+    dispatch(upvote(userId, itemId))
+
+  }
+
   return (
     <div>
       <img
@@ -21,6 +29,7 @@ export const ItemCard = ({ name, description, imageUrl }) => {
       <div>
         <h4>{name}</h4>
         <p>{description}</p>
+        <button onClick={(event) => handleUpvote(event)}>upvote</button>
       </div>
     </div>
   )

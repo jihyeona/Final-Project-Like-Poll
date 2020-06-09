@@ -10,12 +10,14 @@ export const ItemList = () => {
   const { pollId } = useParams()
   const ITEM_URL = `http://localhost:8080/polls/${pollId}`
   const [pollItems, setPollItems] = useState([])
+  const [pollTitle, setPollTitle] = useState('')
 
   useEffect(() => {
     fetch(ITEM_URL, { method: 'GET' })
       .then(console.log('we are in itemlist'))
       .then(res => res.json())
       .then(json => setPollItems(json.items))
+      // .then(json => setPollTitle(json.title))
       .then(console.log(pollItems))
   }, [AddItem, pollId])
 
@@ -23,7 +25,7 @@ export const ItemList = () => {
     <ProfileInfo>
       <NavbarLight />
       <ProfileDiv>
-        <h4>Here, return the ItemCard components.</h4>
+        {/* <h1>{pollTitle}</h1> */}
         <section>
           {
             pollItems.map(item => (
