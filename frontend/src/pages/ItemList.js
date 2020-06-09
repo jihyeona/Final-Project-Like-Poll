@@ -25,6 +25,8 @@ export const ItemList = () => {
     <ProfileInfo>
       <NavbarLight />
       <ProfileDiv>
+        <h4>VOTE HERE! VOTE NOW!</h4>
+        <p>Upvote the options that you like.</p>
         {/* <h1>{pollTitle}</h1> */}
         <section>
           {
