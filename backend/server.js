@@ -183,7 +183,27 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
             description: req.body.description,
             imageUrl: req.file.path,
             imageId: req.file.filename,
-            itemId: req.body._id
+            itemId: req.body._id,
+            likes: []
+          }
+        }
+      },
+      { new: true, upsert: true })
+    res.status(201).json(poll)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+// this is the endpoint to push a like under an item.
+app.post('/items/:itemId', async (req, res) => {
+  try {
+    const { itemId } = req.params
+    const poll = await Poll.findOneAndUpdate(
+      { 'items._id': itemId },
+      {
+        $push: {
+          'items.0.likes': {
+            'userId': req.body.userId
           }
         }
       },
@@ -195,35 +215,17 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
 })
 
 // this is the endpoint to fetch the info of an item under an existing poll. Do I need it or shall I use the json of a poll from app.get('polls/:pollId')?
-app.get('/items/:itemId', async (req, res) => {
-  try {
-    const { itemId } = req.params
-    const item = await Item.findById(itemId)
-    res.status(201).json(item)
-  } catch (err) {
-    res.status(401).json({ message: `Could not find an item by id ${itemId}` })
-  }
-})
+// app.get('/items/:itemId', async (req, res) => {
+//   const { itemId } = req.params
+//   const item = await Item.findById(itemId)
+//   if (item) {
+//     res.status(201).json(item)
+//   } else {
+//     res.status(401).json({ message: `Could not find an item by id ${itemId}` })
+//   }
+// })
 
-// this is the endpoint to push a like under an item.
-app.post('/items/:itemId', async (req, res) => {
-  try {
-    const { itemId } = req.params
-    const item = await Item.findOneAndUpdate(
-      { _id: itemId },
-      {
-        $push: {
-          likes: {
-            userId: req.body.userId
-          }
-        }
-      },
-      { new: true, upsert: true })
-    res.status(201).json(item)
-  } catch (err) {
-    res.status(400).json({ errors: err.errors })
-  }
-})
+
 
 
 
