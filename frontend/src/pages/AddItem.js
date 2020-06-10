@@ -17,26 +17,29 @@ export const AddItem = (pollId) => {
   }
 
   return (
-    <Form onSubmit={handleItemSubmit}>
-      <label>
-        Image
+    <>
+      {/* <h1>{pollId}</h1> */}
+      <Form onSubmit={handleItemSubmit}>
+        <label>
+          Image
         <input type="file" ref={fileInput} />
-      </label>
+        </label>
 
-      <label>
-        Name
+        <label>
+          Name
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
+        </label>
 
-      <label>
-        Description
+        <label>
+          Description
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-      </label>
+        </label>
 
-      <button type="submit">
-        Add item
+        <button type="submit">
+          Add item
       </button>
-    </Form>
+      </Form>
+    </>
   )
 }
 

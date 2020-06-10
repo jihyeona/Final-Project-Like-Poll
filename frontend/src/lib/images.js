@@ -16,6 +16,9 @@ export const ProfilePic = styled.img`
     filter: brightness(20%);
   }
 `
+export const ProfileImg = styled.img`
+  border-radius: 6px;
+`
 
 export const PicText = styled.button`
   position: absolute;
