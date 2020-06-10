@@ -5,6 +5,7 @@ import PollList from './pages/PollList'
 import ItemList from './pages/ItemList'
 import MyPage from './pages/MyPage'
 import AddPoll from './pages/AddPoll'
+import AddItem from './pages/AddItem'
 import { Provider } from "react-redux"
 import { user } from './reducers/user'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -57,6 +58,7 @@ export const App = () => {
           <Route path='/polls/:pollId' exact ><ItemList /></Route>
           <Route path='/mypage' exact ><MyPage /></Route>
           <Route path='/addpoll' exact ><AddPoll /></Route>
+          <Route path='/additem' exact ><AddItem /></Route>
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -1,10 +1,11 @@
 import React from 'react'
-import AddItem from '../components/AddItem'
+import AddItem from './AddItem'
 import { ItemCard } from '../components/ItemCard'
 import NavbarLight from '../components/NavBar'
 import { ProfileDiv, ProfileInfo, Form } from '../lib/form'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Fab } from 'components/Fab'
 
 export const ItemList = () => {
   const { pollId } = useParams()
@@ -35,7 +36,7 @@ export const ItemList = () => {
             ))
           }
         </section>
-        <AddItem pollId={pollId} />
+        <Fab pollId={pollId} />
       </ProfileDiv>
     </ProfileInfo>
   )

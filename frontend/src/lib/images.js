@@ -27,6 +27,7 @@ export const Thumbnail = styled.img`
     filter: brightness(20%);
   }
 `
+<<<<<<< HEAD
 export const ThemeImage = styled.img`
   width: 100%;
   height: 10rem;
@@ -34,6 +35,10 @@ export const ThemeImage = styled.img`
   ${ImgWrapper}:hover & {
     filter: brightness(15%);
   }
+=======
+export const ProfileImg = styled.img`
+  border-radius: 6px;
+>>>>>>> added fab button, changed the directory of AddItem
 `
 
 export const PicText = styled.button`

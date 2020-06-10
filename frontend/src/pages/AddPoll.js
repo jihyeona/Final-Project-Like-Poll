@@ -16,6 +16,7 @@ export const AddPoll = () => {
 
     //dispatch thunk
     dispatch(addpoll(title, fileInput))
+    setTitle('')
   }
 
   return (
