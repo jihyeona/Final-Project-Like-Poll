@@ -8,7 +8,7 @@ import { ThemeContainer } from 'lib/container'
 
 export const ThemeCard = ({ title, imageUrl, _id }) => {
   return (
-    <Link to={`/polls/${_id}`} style={{textDecoration: 'none', color: 'white'}}>
+    <Link to={`/polls/${_id}`} style={{textDecoration: 'none', color: 'black'}}>
         <ThemeContainer>
         <ThemeImage
           src={imageUrl}
