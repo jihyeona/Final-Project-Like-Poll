@@ -7,6 +7,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { upvote } from '../reducers/user'
+import { Thumbnail } from 'lib/images'
 
 export const ItemCard = ({ name, description, imageUrl, _id }) => {
 
@@ -22,7 +23,7 @@ export const ItemCard = ({ name, description, imageUrl, _id }) => {
 
   return (
     <div>
-      <img
+      <Thumbnail
         src={imageUrl}
         alt={name}
       />

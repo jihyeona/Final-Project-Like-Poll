@@ -9,8 +9,28 @@ export const ImgWrapper = styled.div`
 `
 
 export const ProfilePic = styled.img`
-  width: 100%;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
+  margin-top: 20px;
+  padding: 10px;
+  ${ImgWrapper}:hover & {
+    filter: brightness(20%);
+  }
+`
+export const Thumbnail = styled.img`
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  margin-top: 20px;
+  ${ImgWrapper}:hover & {
+    filter: brightness(20%);
+  }
+`
+export const ThemeImage = styled.img`
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
   margin-top: 20px;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
