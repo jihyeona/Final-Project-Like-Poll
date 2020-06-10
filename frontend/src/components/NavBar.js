@@ -16,7 +16,7 @@ export const NavbarLight = () => {
     <Navbar expandSm light>
       <Nav start>
         <Link to='/home'>
-          <NavbarLink light brand>ROLL POLL.</NavbarLink>
+          <NavbarLink light brand>HEART PICKS.</NavbarLink>
         </Link>
         <Nav end>
           <Button

@@ -1,8 +1,3 @@
-// a card that shows the option that you can like.
-// name, background image, description, like button 
-
-// you can click on the like button and then it will light up
-// like button has counter 
 // stretch goal: user A also likes this. (like in Facebook post)
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,11 +7,12 @@ import { ButtonHeart } from 'lib/button'
 import { Row } from 'lib/container'
 import { FiHeart } from 'react-icons/fi';
 
-export const ItemCard = ({ name, description, imageUrl, _id }) => {
+export const ItemCard = ({ name, description, imageUrl, _id, likes }) => {
 
   const dispatch = useDispatch()
   const userId = useSelector((store) => store.user.login.userId)
   const itemId = _id
+  const manyLikes = likes.length
   const handleUpvote = (event) => {
     event.preventDefault()
     //dispatch thunk
@@ -32,8 +28,9 @@ export const ItemCard = ({ name, description, imageUrl, _id }) => {
       />
       <Row>
         <FiHeart onClick={(event) => handleUpvote(event)}></FiHeart>
+        <h4>{manyLikes} likes</h4>
         <h4>{name}</h4>
-        <p>{description}</p>      
+        <p>{description}</p>
       </Row>
     </div>
   )

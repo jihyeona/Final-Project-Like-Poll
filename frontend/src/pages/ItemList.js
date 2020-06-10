@@ -29,7 +29,7 @@ export const ItemList = () => {
         <h4>VOTE HERE! VOTE NOW!</h4>
         <p>Upvote the items that you like.</p>
         {/* <h1>{pollTitle}</h1> */}
-        {pollItems == [] && <p>You can add items for the poll.</p>}
+        {/* {pollItems == [] && <p>You can add items for the poll.</p>} */}
         <section>
           {
             pollItems.map(item => (

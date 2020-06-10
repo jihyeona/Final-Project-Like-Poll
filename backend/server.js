@@ -10,6 +10,7 @@ import cloudinaryStorage from 'multer-storage-cloudinary'
 import Item from './models/Item'
 import User from './models/User'
 import Poll from './models/Poll'
+import Like from './models/Like'
 
 const cloudinary = cloudinaryframework.v2
 
@@ -138,6 +139,7 @@ app.get('/polls', async (req, res) => {
   }
 })
 // this is the endpoint to add new polls 
+// app.post('/polls', authenticateUser)
 app.post('/polls', parser.single('pollimage'), async (req, res) => {
   try {
     const poll = new Poll({
@@ -171,6 +173,7 @@ app.get('/polls/:pollId', async (req, res) => {
 })
 
 // this is the endpoint to add new items under a poll 
+// app.post('/polls/:pollId', authenticateUser)
 app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   try {
     const { pollId } = req.params
@@ -195,8 +198,7 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   }
 })
 // this is the endpoint to push a like under an item. 
-// Problem: this solution addes like object only to the first item in items array, and not to the item with the right item id.
-// This problem is on line 207, we don't know how to refer to the index number. 
+// app.post('/items/:itemId', authenticateUser)
 app.post('/items/:itemId', async (req, res) => {
   try {
     const { itemId } = req.params
@@ -204,12 +206,11 @@ app.post('/items/:itemId', async (req, res) => {
       { 'items._id': itemId },
       {
         $push: {
-          'items.0.likes': {
+          'items.$.likes': {
             'userId': req.body.userId
           }
         }
       },
-      // { arrayFilters: [{ 'itemId': itemId }] },
       { new: true, upsert: true })
     res.status(201).json(poll)
   } catch (err) {
@@ -218,17 +219,19 @@ app.post('/items/:itemId', async (req, res) => {
 })
 
 
-// this is the endpoint to fetch the info of an item under an existing poll. Do I need it or shall I use the json of a poll from app.get('polls/:pollId')?
-// app.get('/items/:itemId', async (req, res) => {
-//   const { itemId } = req.params
-//   const item = await Item.findById(itemId)
-//   if (item) {
-//     res.status(201).json(item)
-//   } else {
-//     res.status(401).json({ message: `Could not find an item by id ${itemId}` })
-//   }
-// })
-
+// this is the endpoint to delete the like with a specific userId.
+// on line 227, it doesn't recognize Like schema. but if i use Poll instead, it deletes the whole Poll item with subitems.
+app.delete('/likes/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params
+    const like = await Poll.findOneAndDelete(
+      { 'items.likes.userId': userId }
+    )
+    res.status(201).json(like)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
 
 
 

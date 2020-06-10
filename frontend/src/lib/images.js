@@ -50,7 +50,7 @@ background: none;
 border: none;
 font - size: 17px;
 cursor: pointer;
-${ ImgWrapper}: hover & {
+${ImgWrapper}:hover & {
   display: block;
 }
 `
