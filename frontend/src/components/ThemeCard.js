@@ -4,19 +4,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ThemeImage } from '../lib/images'
+import { ThemeContainer } from 'lib/container'
 
 export const ThemeCard = ({ title, imageUrl, _id }) => {
   return (
-    <Link to={`/polls/${_id}`}>
-      <div>
+    <Link to={`/polls/${_id}`} style={{textDecoration: 'none', color: 'white'}}>
+        <ThemeContainer>
         <ThemeImage
           src={imageUrl}
           alt={title}
         />
-        <div>
-          <h1>{title}</h1>
-        </div>
-      </div>
+        <h1>{title}</h1>
+        </ThemeContainer>
     </Link>
   )
 }

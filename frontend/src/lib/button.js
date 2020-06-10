@@ -46,18 +46,3 @@ export const Button = ({ title }) => {
   )
 }
 
-// This is the floating button from Bea
-const FabButton = styled.div`
-  background-color: #FF69C6;
-  border-radius: 50%;
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  margin: 10px;
-  height: 50px;
-  width: 50px;
-  padding: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: center;
-`

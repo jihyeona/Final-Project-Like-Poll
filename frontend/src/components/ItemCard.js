@@ -8,6 +8,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { upvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
+import { ButtonHeart } from 'lib/button'
+import { Row } from 'lib/container'
+import { FiHeart } from 'react-icons/fi';
 
 export const ItemCard = ({ name, description, imageUrl, _id }) => {
 
@@ -27,11 +30,11 @@ export const ItemCard = ({ name, description, imageUrl, _id }) => {
         src={imageUrl}
         alt={name}
       />
-      <div>
+      <Row>
+        <FiHeart onClick={(event) => handleUpvote(event)}></FiHeart>
         <h4>{name}</h4>
-        <p>{description}</p>
-        <button onClick={(event) => handleUpvote(event)}>upvote</button>
-      </div>
+        <p>{description}</p>      
+      </Row>
     </div>
   )
 }

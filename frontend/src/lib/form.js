@@ -33,7 +33,6 @@ export const Form = styled.form`
   --borderRadius: 0.125rem;
   --highlight: #306090;
   background: white;
-  box-shadow: 0 1rem 1rem -0.75rem var(--border);
   display: flex;
   flex-direction: column;
   border-radius: 6px 6px;

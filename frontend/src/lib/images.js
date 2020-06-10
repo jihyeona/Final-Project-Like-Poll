@@ -19,8 +19,8 @@ export const ProfilePic = styled.img`
   }
 `
 export const Thumbnail = styled.img`
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   object-fit: cover;
   margin-top: 20px;
   ${ImgWrapper}:hover & {
@@ -31,9 +31,8 @@ export const ThemeImage = styled.img`
   width: 100%;
   height: 10rem;
   object-fit: cover;
-  margin-top: 20px;
   ${ImgWrapper}:hover & {
-    filter: brightness(20%);
+    filter: brightness(15%);
   }
 `
 
