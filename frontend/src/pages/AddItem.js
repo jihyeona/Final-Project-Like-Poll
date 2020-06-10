@@ -14,17 +14,14 @@ export const AddItem = (pollId) => {
     e.preventDefault()
     //dispatch thunk
     dispatch(additem(name, description, fileInput, pollId))
+    setName('')
+    setDescription('')
   }
 
   return (
     <>
       {/* <h1>{pollId}</h1> */}
       <Form onSubmit={handleItemSubmit}>
-        <label>
-          Image
-        <input type="file" ref={fileInput} />
-        </label>
-
         <label>
           Name
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -33,6 +30,11 @@ export const AddItem = (pollId) => {
         <label>
           Description
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+        </label>
+
+        <label>
+          Image
+        <input type="file" ref={fileInput} />
         </label>
 
         <button type="submit">

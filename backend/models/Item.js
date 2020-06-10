@@ -17,10 +17,12 @@ const Item = mongoose.Schema({
     default: () => new Date()
   },
   tags: {
-    type: String,
+    type: [String],
     index: true
   },
   likes: [Like]
 })
+
+Item.index({ 'tags': 1 }, { unique: true })
 
 export default Item

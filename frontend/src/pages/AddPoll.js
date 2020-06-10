@@ -1,22 +1,23 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory, Link } from 'react-router-dom'
 import NavbarLight from '../components/NavBar'
 import { ProfileDiv, ProfileInfo, Form } from '../lib/form'
 import { addpoll } from '../reducers/user'
 
 export const AddPoll = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const fileInput = useRef()
   const [title, setTitle] = useState('')
 
 
   const handlePollSubmit = (e) => {
     e.preventDefault()
-
-
     //dispatch thunk
     dispatch(addpoll(title, fileInput))
     setTitle('')
+    history.push('/home')
   }
 
   return (

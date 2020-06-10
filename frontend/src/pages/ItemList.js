@@ -27,8 +27,9 @@ export const ItemList = () => {
       <NavbarLight />
       <ProfileDiv>
         <h4>VOTE HERE! VOTE NOW!</h4>
-        <p>Upvote the options that you like.</p>
+        <p>Upvote the items that you like.</p>
         {/* <h1>{pollTitle}</h1> */}
+        {pollItems == [] && <p>You can add items for the poll.</p>}
         <section>
           {
             pollItems.map(item => (

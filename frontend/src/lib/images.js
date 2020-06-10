@@ -40,7 +40,6 @@ export const ThemeImage = styled.img`
   }
 `
 
-
 export const PicText = styled.button`
 position: absolute;
 display: none;
