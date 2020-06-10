@@ -2,7 +2,7 @@ import React from 'react'
 import AddItem from './AddItem'
 import { ItemCard } from '../components/ItemCard'
 import NavbarLight from '../components/NavBar'
-import { ThemesDiv, ThemeInfo } from '../lib/form'
+import { ProfileDiv, ProfileInfo } from '../lib/form'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Fab } from 'components/Fab'
@@ -23,9 +23,9 @@ export const ItemList = () => {
   }, [AddItem, pollId])
 
   return (
-    <ThemeInfo>
+    <ProfileInfo>
       <NavbarLight />
-      <ThemesDiv>
+      <ProfileDiv>
         <h4>VOTE HERE! VOTE NOW!</h4>
         <p>Upvote the items that you like.</p>
         {/* <h1>{pollTitle}</h1> */}
@@ -38,8 +38,8 @@ export const ItemList = () => {
           }
         </section>
         <Fab pollId={pollId} />
-      </ThemesDiv>
-    </ThemeInfo>
+      </ProfileDiv>
+    </ProfileInfo>
   )
 }
 

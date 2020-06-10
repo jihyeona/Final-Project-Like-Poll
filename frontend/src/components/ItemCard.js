@@ -5,7 +5,7 @@ import { upvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
 import { HeartButton } from 'lib/button'
 import { Row } from 'lib/container'
-//import { FiHeart } from 'react-icons/fi';
+import { FiHeart } from 'react-icons/fi';
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes }) => {
 
