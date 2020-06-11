@@ -9,11 +9,10 @@ export const ImgWrapper = styled.div`
 `
 
 export const ProfilePic = styled.img`
-  width: 10rem;
-  height: 10rem;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   margin-top: 20px;
-  padding: 10px;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }

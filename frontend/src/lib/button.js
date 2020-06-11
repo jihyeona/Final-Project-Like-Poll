@@ -20,7 +20,7 @@ export const Plus = styled.img`
   align-self: center;
 `
 
-const ButtonInput = styled.button`
+export const ButtonInput = styled.button`
   margin-top: 0;
   color: #4f4f4f;
   text-align: center;

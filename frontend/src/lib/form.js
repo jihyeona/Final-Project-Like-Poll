@@ -114,3 +114,7 @@ export const ThemesDiv = styled.div`
   align-items: stretch;
   width: 100%;
 `
+export const ProfileImgForm = styled.form`
+  display: flex;
+  padding: 2rem; 
+`

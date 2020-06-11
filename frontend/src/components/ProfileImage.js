@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ImgWrapper, ProfilePic, PicText } from '../lib/images'
 import { UpdateProfilePic } from 'reducers/user'
-
+import { ProfileImgForm } from '../lib/form'
 
 
 export const ProfileImage = () => {
@@ -27,7 +27,7 @@ export const ProfileImage = () => {
         {image && <ProfilePic src={image} alt="profile picture"></ProfilePic>}
       </ImgWrapper>
       {showUpdateForm &&
-        <form onSubmit={handleFormSubmit}>
+        <ProfileImgForm onSubmit={handleFormSubmit}>
           <label>
             Profile Image
           <input type="file" ref={fileInput} />
@@ -35,7 +35,7 @@ export const ProfileImage = () => {
           <button type="submit">
             Change Profile Image
         </button>
-        </form>
+        </ProfileImgForm>
       }
     </>
   )
