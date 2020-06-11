@@ -32,3 +32,9 @@ flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
 `
+
+export const ItemContainer = styled.div`
+width: 100%;
+border: solid #E0E0E0;
+border-radius: 3px;
+`

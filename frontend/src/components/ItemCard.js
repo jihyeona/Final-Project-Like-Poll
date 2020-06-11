@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { upvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
 import { HeartButton } from 'lib/button'
-import { Row } from 'lib/container'
+import { Row, ItemContainer } from 'lib/container'
 import { FiHeart } from 'react-icons/fi';
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes }) => {
@@ -21,7 +21,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes }) => {
   }
 
   return (
-    <div>
+    <ItemContainer>
       <Thumbnail
         src={imageUrl}
         alt={name}
@@ -32,7 +32,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes }) => {
         <h4>{name}</h4>
         <p>{description}</p>
       </Row>
-    </div>
+    </ItemContainer>
   )
 }
 export default ItemCard  
