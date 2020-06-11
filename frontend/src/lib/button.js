@@ -30,6 +30,7 @@ const ButtonInput = styled.button`
   height: 2.5em;
   margin-top: 1em;
   border-radius: 300px;
+  border:none;
   &:hover {
     background: palevioletred;
     color: white;
@@ -46,6 +47,7 @@ export const InputButton = styled.input`
   height: 2.5em;
   margin-top: 1em;
   border-radius: 300px;
+  border: none;
   &:hover {
     background: palevioletred;
     color: white;
@@ -60,4 +62,18 @@ export const Button = ({ title }) => {
     </ButtonInput>
   )
 }
+
+export const HeartButton = styled.button`
+  font-size: 1.5rem;
+  z-index: 100;
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  cursor: pointer;
+  text-decoration: none;
+  background: red;
+  border: none;
+  :hover {
+    background-color: red;
+  }
+`
 

@@ -5,6 +5,7 @@ import { Headline } from '../lib/headline'
 import { Button } from '../lib/button'
 import { Form, InfoDiv, Input, Register, ProfileMessage } from '../lib/form'
 import { useHistory, Link } from 'react-router-dom'
+import { BackgroundImage } from 'lib/container'
 
 export const LogIn = () => {
   const dispatch = useDispatch()
@@ -60,6 +61,7 @@ export const LogIn = () => {
           </InfoDiv>
         </Form>
       </div>
+      
     )
   } else {
     return (null)

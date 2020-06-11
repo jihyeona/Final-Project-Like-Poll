@@ -3,9 +3,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { upvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
-import { ButtonHeart } from 'lib/button'
+import { HeartButton } from 'lib/button'
 import { Row } from 'lib/container'
-import { FiHeart } from 'react-icons/fi';
+//import { FiHeart } from 'react-icons/fi';
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes }) => {
 

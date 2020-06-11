@@ -1,6 +1,6 @@
 import React from 'react'
 import NavbarLight from '../components/NavBar'
-import { ProfileDiv, ProfileInfo } from '../lib/form'
+import { ThemesDiv, ThemeInfo } from '../lib/form'
 import { ThemeCard } from '../components/ThemeCard'
 import { useState, useEffect } from 'react'
 
@@ -18,10 +18,9 @@ export const PollList = () => {
 
 
   return (
-    <ProfileInfo>
+    <ThemeInfo>
       <NavbarLight />
-      <ProfileDiv>
-        <h4>Ongoing Polls</h4>
+      <ThemesDiv>
         {/* return list of component that is called ThemeCard  */}
         <section>
           {
@@ -30,8 +29,8 @@ export const PollList = () => {
             ))
           }
         </section>
-      </ProfileDiv>
-    </ProfileInfo>
+      </ThemesDiv>
+    </ThemeInfo>
   )
 }
 

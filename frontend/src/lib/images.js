@@ -34,10 +34,9 @@ export const Thumbnail = styled.img`
 export const ThemeImage = styled.img`
   width: 100%;
   height: 10rem;
+  display: block;
   object-fit: cover;
-  ${ImgWrapper}:hover & {
-    filter: brightness(15%);
-  }
+  position: relative;
 `
 
 export const PicText = styled.button`
