@@ -232,6 +232,27 @@ export const upvote = (userId, itemId) => {
   }
 }
 
+export const downvote = (pollId, itemId, userId) => {
+  const LIKE_URL = `http://localhost:8080/${pollId}/${itemId}/likes/${userId}`
+  return (dispatch) => {
+    fetch(LIKE_URL, {
+      method: 'DELETE',
+    })
+      .then(console.log('unliking the item...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } throw 'Could not execute downvote. Try again.'
+      })
+      .then((json) => {
+        console.log(json)
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
 export const getSecretMessage = () => {
   const USERS_URL = 'http://localhost:8080/users'
   return (dispatch, getState) => {

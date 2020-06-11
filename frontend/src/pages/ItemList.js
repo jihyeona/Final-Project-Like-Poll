@@ -22,7 +22,7 @@ export const ItemList = () => {
         setPollTitle(json.title)
       })
       .then(console.log(pollItems))
-  }, [AddItem, pollId])
+  }, [])
 
   return (
     <ProfileInfo>
@@ -35,7 +35,7 @@ export const ItemList = () => {
         <section>
           {
             pollItems.map(item => (
-              <ItemCard {...item} />
+              <ItemCard {...item} pollId={pollId} />
             ))
           }
         </section>

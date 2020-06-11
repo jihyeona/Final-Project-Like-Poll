@@ -198,6 +198,8 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   }
 })
 // this is the endpoint to push a like under an item. 
+// if there is no items.$.likes with the same userId, then push the like.
+// If there is already a items.$.likes with the same userId, delete the like.
 // app.post('/items/:itemId', authenticateUser)
 app.post('/items/:itemId', async (req, res) => {
   try {
@@ -220,15 +222,16 @@ app.post('/items/:itemId', async (req, res) => {
 
 
 // this is the endpoint to delete the like with a specific userId.
-// on line 227, it doesn't recognize Like schema. but if i use Poll instead, it deletes the whole Poll item with subitems.
-app.delete('/likes/:userId', async (req, res) => {
+app.delete('/:pollId/:itemId/likes/:userId', async (req, res) => {
   try {
-    const { userId } = req.params
+    const { pollId, userId, itemId } = req.params
     const like = await Poll.findOneAndUpdate(
-      { 'items.likes.userId': userId }, // here we only need to find the right poll. maybe define pollId as params
+      { '_id': pollId, 'items._id': itemId, },
       {
-        '$pull': {
-          'items.$.likes': { userId: userId, itemId: itemId }
+        $pull: {
+          'items.$.likes': {
+            'userId': userId
+          }
         }
       },
       { new: true }
