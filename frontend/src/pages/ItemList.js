@@ -17,8 +17,10 @@ export const ItemList = () => {
     fetch(ITEM_URL, { method: 'GET' })
       .then(console.log('we are in itemlist'))
       .then(res => res.json())
-      .then(json => setPollItems(json.items))
-      // .then(json => setPollTitle(json.title))
+      .then(json => {
+        setPollItems(json.items)
+        setPollTitle(json.title)
+      })
       .then(console.log(pollItems))
   }, [AddItem, pollId])
 
@@ -28,8 +30,8 @@ export const ItemList = () => {
       <ProfileDiv>
         <h4>VOTE HERE! VOTE NOW!</h4>
         <p>Upvote the items that you like.</p>
-        {/* <h1>{pollTitle}</h1> */}
-        {/* {pollItems == [] && <p>You can add items for the poll.</p>} */}
+        <h1>{pollTitle}</h1>
+        {pollItems.length === 0 && <p>You can add items for the poll.</p>}
         <section>
           {
             pollItems.map(item => (
