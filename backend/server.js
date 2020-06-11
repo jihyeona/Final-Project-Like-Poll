@@ -224,8 +224,14 @@ app.post('/items/:itemId', async (req, res) => {
 app.delete('/likes/:userId', async (req, res) => {
   try {
     const { userId } = req.params
-    const like = await Poll.findOneAndDelete(
-      { 'items.likes.userId': userId }
+    const like = await Poll.findOneAndUpdate(
+      { 'items.likes.userId': userId }, // here we only need to find the right poll. maybe define pollId as params
+      {
+        '$pull': {
+          'items.$.likes': { userId: userId, itemId: itemId }
+        }
+      },
+      { new: true }
     )
     res.status(201).json(like)
   } catch (err) {
