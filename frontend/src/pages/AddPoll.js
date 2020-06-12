@@ -4,6 +4,8 @@ import { useHistory, Link } from 'react-router-dom'
 import NavbarLight from '../components/NavBar'
 import { ProfileDiv, ProfileInfo, Form } from '../lib/form'
 import { addpoll } from '../reducers/user'
+import { ListContainer } from '../lib/container'
+import { AddPollLottie } from '../components/AddPollLottie'
 
 export const AddPoll = () => {
   const dispatch = useDispatch()
@@ -21,9 +23,11 @@ export const AddPoll = () => {
   }
 
   return (
-    <ProfileInfo>
+    <ListContainer>
       <NavbarLight />
       <ProfileDiv>
+        <AddPollLottie />
+        <h4>Create a poll with a title and background image.</h4>
         <Form onSubmit={handlePollSubmit}>
           <label>
             Title
@@ -39,7 +43,7 @@ export const AddPoll = () => {
       </button>
         </Form>
       </ProfileDiv>
-    </ProfileInfo>
+    </ListContainer>
   )
 }
 

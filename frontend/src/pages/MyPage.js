@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import LikeList from '../components/LikeList'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
+import { ListContainer } from '../lib/container'
 
 export const MyPage = () => {
   const dispatch = useDispatch()
@@ -20,7 +21,7 @@ export const MyPage = () => {
 
 
   return (
-    <ProfileInfo>
+    <ListContainer>
       <NavbarLight />
       {/* <Headline title='profile' /> */}
       <ProfileDiv>
@@ -52,7 +53,7 @@ export const MyPage = () => {
         {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
         {/* <Link to='/login'><InputButton type='submit' onClick={() => dispatch(logout())} value='Log Out' /></Link> */}
       </ProfileDiv>
-    </ProfileInfo>
+    </ListContainer>
   )
 }
 

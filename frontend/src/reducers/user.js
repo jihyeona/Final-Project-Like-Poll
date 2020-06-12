@@ -9,6 +9,7 @@ const initialState = {
     profileImage: null,
     email: null,
     userId: null,
+    ongoingPolls: [],
   },
 }
 
@@ -23,10 +24,10 @@ export const user = createSlice({
       state.login.userId = userId
       state.login.email = email
     },
-    setSecretMessage: (state, action) => {
-      const { secretMessage } = action.payload;
-      console.log(`Secret Message: ${secretMessage}`);
-      state.login.secretMessage = secretMessage;
+    setOngoingPolls: (state, action) => {
+      const { ongoingPolls } = action.payload;
+      console.log(`Ongoing polls: ${ongoingPolls}`);
+      state.login.ongoingPolls = ongoingPolls;
     },
     setErrorMessage: (state, action) => {
       const { errorMessage } = action.payload;
@@ -41,6 +42,11 @@ export const user = createSlice({
     setProfileImage: (state, action) => {
       const { profileImage } = action.payload
       state.login.profileImage = profileImage
+    },
+    setSecretMessage: (state, action) => {
+      const { secretMessage } = action.payload;
+      console.log(`Secret Message: ${secretMessage}`);
+      state.login.secretMessage = secretMessage;
     },
   },
 })
@@ -148,16 +154,45 @@ export const UpdateProfilePic = (profileImage) => {
   }
 }
 
+export const getpolls = () => {
+  const POLL_URL = 'http://localhost:8080/polls'
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
+    console.log('Trying to fetch the polls ...')
+    fetch(POLL_URL, {
+      method: 'GET',
+      // body: formData,
+      headers: { Authorization: accessToken }
+    })
+      .then(console.log('fetching the existing polls...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not fetch the existing polls.'
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(user.actions.setOngoingPolls({ ongoingPolls: json }))
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
 export const addpoll = (title, fileInput) => {
   const POLL_URL = 'http://localhost:8080/polls'
   const formData = new FormData()
   formData.append('pollimage', fileInput.current.files[0])
   formData.append('title', title)
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
     console.log('Trying to create a poll ...')
     fetch(POLL_URL, {
       method: 'POST',
       body: formData,
+      headers: { Authorization: accessToken }
     })
       .then(console.log('posted poll info to API...'))
       .then((res) => {
@@ -184,10 +219,12 @@ export const additem = (name, description, fileInput, pollId) => {
   formData.append('itemimage', fileInput.current.files[0])
   formData.append('name', name)
   formData.append('description', description)
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
     fetch(ITEM_URL, {
       method: 'POST',
       body: formData,
+      headers: { Authorization: accessToken }
     })
       .then(console.log('posted item info to API...'))
       .then((res) => {
@@ -209,11 +246,12 @@ export const additem = (name, description, fileInput, pollId) => {
 export const upvote = (userId, itemId) => {
   console.log(userId, itemId)
   const ITEM_URL = `http://localhost:8080/items/${itemId}`
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
     fetch(ITEM_URL, {
       method: 'POST',
       body: JSON.stringify({ userId }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { Authorization: accessToken, 'Content-Type': 'application/json' }
     })
       .then(console.log('posted upvote with userId to API...'))
       .then((res) => {
@@ -234,9 +272,11 @@ export const upvote = (userId, itemId) => {
 
 export const downvote = (pollId, itemId, userId) => {
   const LIKE_URL = `http://localhost:8080/${pollId}/${itemId}/likes/${userId}`
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
     fetch(LIKE_URL, {
       method: 'DELETE',
+      headers: { Authorization: accessToken }
     })
       .then(console.log('unliking the item...'))
       .then((res) => {
@@ -246,6 +286,7 @@ export const downvote = (pollId, itemId, userId) => {
       })
       .then((json) => {
         console.log(json)
+        // replace the old poll with the new poll so that it updates the backend with the new info(that the user has unliked the item.)
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err }))

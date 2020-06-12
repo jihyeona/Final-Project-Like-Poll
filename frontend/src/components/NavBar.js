@@ -35,7 +35,7 @@ export const NavbarLight = () => {
           <NavbarLink light active>Ongoing Polls</NavbarLink>
         </Link>
         <Link to='/addpoll'>
-          <NavbarLink light active>Add a Poll</NavbarLink>
+          <NavbarLink light active>Create a Poll</NavbarLink>
         </Link>
         <Link to='/mypage'>
           <NavbarLink light active>My Page</NavbarLink>

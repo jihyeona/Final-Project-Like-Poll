@@ -139,7 +139,7 @@ app.get('/polls', async (req, res) => {
   }
 })
 // this is the endpoint to add new polls 
-// app.post('/polls', authenticateUser)
+app.post('/polls', authenticateUser)
 app.post('/polls', parser.single('pollimage'), async (req, res) => {
   try {
     const poll = new Poll({

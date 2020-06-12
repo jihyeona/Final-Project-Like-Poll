@@ -36,6 +36,9 @@ export const ThemeImage = styled.img`
   display: block;
   object-fit: cover;
   position: relative;
+  @media (min-width: 575px) { 
+    width: 60%; 
+  }
 `
 
 export const PicText = styled.button`

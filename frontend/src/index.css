@@ -13,3 +13,6 @@ code {
     monospace;
 }
 
+@media (min-width: 575px) { 
+  nav { margin-bottom: 3em; } 
+}

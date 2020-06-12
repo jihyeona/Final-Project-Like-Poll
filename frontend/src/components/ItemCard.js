@@ -7,21 +7,24 @@ import { HeartButton } from 'lib/button'
 import { Row, ItemContainer } from 'lib/container'
 import { FiHeart } from 'react-icons/fi';
 
-export const ItemCard = ({ name, description, imageUrl, _id, likes }, pollId) => {
+export const ItemCard = ({ name, description, imageUrl, _id, likes, pollId }) => {
 
   const dispatch = useDispatch()
   const userId = useSelector((store) => store.user.login.userId)
   const itemId = _id
   const manyLikes = likes.length
-  const [upvoted, setUpvoted] = useState(false)
-  const newPollId = pollId.pollId
-  console.log(newPollId)
+  console.log(likes)
+  // check if the userId exists in the likes array, and make is as a boolean value, use it on useState
+  const upvoted = likes.some(like => like.userId === userId)
+  console.log(upvoted)
+  const [isUpvoted, setIsUpvoted] = useState(upvoted)
+  console.log(pollId)
 
   const handleUpvote = (event) => {
     event.preventDefault()
     //toggle the state of setUpvoted 
     //problem: if the user has already liked the item, the initial state of upvoted should be true. how do we solve this?
-    setUpvoted(!useState)
+
     //if upvoted is true, delete the like.(dispatch the downvote thunk.)
     if (upvoted) {
       dispatch(downvote(pollId, itemId, userId))
@@ -30,6 +33,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes }, pollId) =>
     else if (!upvoted) {
       dispatch(upvote(userId, itemId))
     }
+    setIsUpvoted(!isUpvoted)
   }
 
   return (
@@ -39,7 +43,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes }, pollId) =>
         alt={name}
       />
       <Row>
-        <FiHeart onClick={(event) => handleUpvote(event)}></FiHeart>
+        <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
         <h4>{manyLikes} likes</h4>
         <h4>{name}</h4>
         <p>{description}</p>

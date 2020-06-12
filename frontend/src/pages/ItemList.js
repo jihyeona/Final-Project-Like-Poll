@@ -6,6 +6,9 @@ import { ProfileDiv, ProfileInfo } from '../lib/form'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Fab } from 'components/Fab'
+import { AddItemLottie } from 'components/AddItemLottie'
+import { VoteLottie } from 'components/VoteLottie'
+import { ListContainer } from '../lib/container'
 
 export const ItemList = () => {
   const { pollId } = useParams()
@@ -23,15 +26,17 @@ export const ItemList = () => {
       })
       .then(console.log(pollItems))
   }, [])
+  // instead of fetching the poll here, 
+  // save all the polls that you fetch in the redux
+  // and then use useSelector on line 15 to get the poll. 
 
   return (
-    <ProfileInfo>
+    <ListContainer>
       <NavbarLight />
       <ProfileDiv>
-        <h4>VOTE HERE! VOTE NOW!</h4>
-        <p>Upvote the items that you like.</p>
         <h1>{pollTitle}</h1>
-        {pollItems.length === 0 && <p>You can add items for the poll.</p>}
+        {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the items that you 💗</h2></>}
+        {pollItems.length === 0 && <><AddItemLottie /><p>add item with the pink add button on the right bottom.</p></>}
         <section>
           {
             pollItems.map(item => (
@@ -41,7 +46,7 @@ export const ItemList = () => {
         </section>
         <Fab pollId={pollId} />
       </ProfileDiv>
-    </ProfileInfo>
+    </ListContainer>
   )
 }
 

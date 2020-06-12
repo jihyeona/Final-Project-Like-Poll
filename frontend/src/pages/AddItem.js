@@ -2,11 +2,14 @@ import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { Form } from '../lib/form'
 import { additem } from 'reducers/user'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+import { AddPollLottie } from '../components/AddPollLottie'
+import NavbarLight from '../components/NavBar'
+import { ListContainer } from '../lib/container'
 
 export const AddItem = () => {
   const dispatch = useDispatch()
-
+  const history = useHistory()
   const fileInput = useRef()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -18,11 +21,15 @@ export const AddItem = () => {
     dispatch(additem(name, description, fileInput, pollId))
     setName('')
     setDescription('')
+    history.push(`/polls/${pollId}`)
   }
 
   return (
-    <>
+    <ListContainer>
+      <NavbarLight />
       {/* <h1>{pollId}</h1> */}
+      <AddPollLottie />
+      <h4>Add an item with name, description and image.</h4>
       <Form onSubmit={handleItemSubmit}>
         <label>
           Name
@@ -43,7 +50,7 @@ export const AddItem = () => {
           Add item
       </button>
       </Form>
-    </>
+    </ListContainer>
   )
 }
 
