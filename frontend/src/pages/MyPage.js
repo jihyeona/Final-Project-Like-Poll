@@ -3,7 +3,7 @@ import { Button } from '../lib/button'
 import { ProfileMessage, ProfileText, ProfileDiv, ProfileInfo, Form, Input } from '../lib/form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import LikeList from '../components/LikeList'
+import { LikeList } from '../components/LikeList'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import { ListContainer } from '../lib/container'
@@ -47,8 +47,7 @@ export const MyPage = () => {
 
         </Form>
         {/* return the username, email, and as a stretch goal we can have a function to change password */}
-        <h4>Here, return the thumnails of the items the user has liked.</h4>
-        {/* <LikeList /> */}
+        <LikeList />
         {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
         {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
         {/* <Link to='/login'><InputButton type='submit' onClick={() => dispatch(logout())} value='Log Out' /></Link> */}
