@@ -44,10 +44,10 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, pollId }) =>
       />
       <Row>
         <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
-        <h4>{manyLikes} likes</h4>
         <h4>{name}</h4>
         <p>{description}</p>
       </Row>
+        <h4>{manyLikes} likes</h4>
     </ItemContainer>
   )
 }
