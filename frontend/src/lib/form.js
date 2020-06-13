@@ -17,7 +17,7 @@ export const ProfileText = styled.p`
 export const Form = styled.form`
   width: 60%;
   margin: 1em auto;
-  --background: white;
+  --background: #fafafa;
   --border: rgba(0, 0, 0, 0.125);
   --borderDark: rgba(0, 0, 0, 0.25);
   --borderDarker: rgba(0, 0, 0, 0.5);
