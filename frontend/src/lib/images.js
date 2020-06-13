@@ -22,12 +22,15 @@ border - radius: 6px;
 `
 
 export const Thumbnail = styled.img`
-  width: 15rem;
-  height: 15rem;
+  width: 100%;
+  max-height: 250px;
   object-fit: cover;
-  margin-top: 20px;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
+  }
+  @media (min-width: 575px) { 
+    width: 266px;
+    height: 266px; 
   }
 `
 export const ThemeImage = styled.img`

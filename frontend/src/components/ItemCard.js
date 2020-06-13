@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { upvote, downvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
-import { HeartButton } from 'lib/button'
-import { Row, ItemContainer } from 'lib/container'
+import { ItemText, ItemContainer } from 'lib/container'
 import { FiHeart } from 'react-icons/fi';
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes, pollId }) => {
@@ -42,12 +41,12 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, pollId }) =>
         src={imageUrl}
         alt={name}
       />
-      <Row>
+      <ItemText>
         <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
         <h4>{name}</h4>
         <p>{description}</p>
-      </Row>
         <h4>{manyLikes} likes</h4>
+      </ItemText>
     </ItemContainer>
   )
 }
