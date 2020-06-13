@@ -54,6 +54,10 @@ export const InputButton = styled.input`
   } 
 `
 
+export const FiHeart  = styled.svg`
+fill: blue;
+`
+
 
 export const Button = ({ title }) => {
   return (
@@ -63,17 +67,4 @@ export const Button = ({ title }) => {
   )
 }
 
-export const HeartButton = styled.button`
-  font-size: 1.5rem;
-  z-index: 100;
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
-  cursor: pointer;
-  text-decoration: none;
-  background: red;
-  border: none;
-  :hover {
-    background-color: red;
-  }
-`
 

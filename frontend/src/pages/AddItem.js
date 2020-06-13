@@ -37,7 +37,7 @@ export const AddItem = () => {
 
         <label>
           Description
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} maxlength="50" />
         </label>
 
         <label>

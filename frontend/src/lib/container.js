@@ -70,12 +70,14 @@ export const ItemText = styled.div`
 margin: 10px;
 overflow-wrap: break-word;
 @media (min-width: 575px) { 
-  width: 30%; 
+  width: 90%; 
 } 
 `
 export const ListContainer = styled.div`
   width: 100%;
   --background: white;
+  margin: 1em auto;
+  --background: #fafafa;
   --border: rgba(0, 0, 0, 0.125);
   --borderDark: rgba(0, 0, 0, 0.25);
   --borderDarker: rgba(0, 0, 0, 0.5);

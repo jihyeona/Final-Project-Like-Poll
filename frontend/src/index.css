@@ -24,3 +24,9 @@ code {
 /* @media (min-width: 575px) { 
   nav { margin-bottom: 3em; } 
 } */
+
+
+svg:hover {
+  width: 10%; 
+  height: auto;
+}
