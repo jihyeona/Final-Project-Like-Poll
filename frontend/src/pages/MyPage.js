@@ -3,10 +3,10 @@ import { Button } from '../lib/button'
 import { ProfileMessage, ProfileText, ProfileDiv, ProfileInfo, Form, Input } from '../lib/form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { LikeList } from '../components/LikeList'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import { ListContainer } from '../lib/container'
+import LikeList from '../components/LikeList'
 
 export const MyPage = () => {
   const dispatch = useDispatch()
@@ -44,10 +44,12 @@ export const MyPage = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
           <Button type='submit' title='Change password' />
-
+          
         </Form>
         {/* return the username, email, and as a stretch goal we can have a function to change password */}
-        <LikeList />
+        <Form>
+          <LikeList />
+        </Form>
         {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
         {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
         {/* <Link to='/login'><InputButton type='submit' onClick={() => dispatch(logout())} value='Log Out' /></Link> */}
