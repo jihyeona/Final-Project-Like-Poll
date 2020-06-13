@@ -17,13 +17,9 @@ export const ProfilePic = styled.img`
     filter: brightness(20%);
   }
 `
-export const ProfileImg = styled.img`
-border - radius: 6px;
-`
-
 export const Thumbnail = styled.img`
   width: 100%;
-  max-height: 250px;
+  max-height: 350px;
   object-fit: cover;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
@@ -47,12 +43,13 @@ export const ThemeImage = styled.img`
 export const PicText = styled.button`
 position: absolute;
 display: none;
-top: 50 %;
-z - index: 5;
+top: 50%;
+z-index: 5;
 color: white;
 background: none;
 border: none;
-font - size: 17px;
+padding: 10px;
+font-size: 20px;
 cursor: pointer;
 ${ImgWrapper}:hover & {
   display: block;

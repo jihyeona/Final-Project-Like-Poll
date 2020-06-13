@@ -1,9 +1,8 @@
-// where you can see and change your profile image
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ImgWrapper, ProfilePic, PicText } from '../lib/images'
 import { UpdateProfilePic } from 'reducers/user'
-import { ProfileImgForm } from '../lib/form'
+import { HiddenButton } from '../lib/button'
 
 
 export const ProfileImage = () => {
@@ -27,15 +26,14 @@ export const ProfileImage = () => {
         {image && <ProfilePic src={image} alt="profile picture"></ProfilePic>}
       </ImgWrapper>
       {showUpdateForm &&
-        <ProfileImgForm onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit}>
           <label>
-            Profile Image
           <input type="file" ref={fileInput} />
           </label>
           <button type="submit">
             Change Profile Image
-        </button>
-        </ProfileImgForm>
+          </button>
+        </form>
       }
     </>
   )

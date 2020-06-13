@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
-import { ListContainer, ItemRow } from '../lib/container'
+import { ListContainer, ItemRow, Row } from '../lib/container'
 
 export const ItemList = () => {
   const { pollId } = useParams()
@@ -34,10 +34,12 @@ export const ItemList = () => {
     <ListContainer>
       <NavbarLight />
       <ItemDiv>
+      <Row>
         <h1>{pollTitle}</h1>
         {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the things that you 💗</h2></>}
         {pollItems.length === 0 && <><AddItemLottie /><p>Add item with the pink button on the right bottom.</p></>}
-        <ItemRow>
+      </Row>
+      <ItemRow>
           {
             pollItems.map(item => (
               <ItemCard {...item} pollId={pollId} />
