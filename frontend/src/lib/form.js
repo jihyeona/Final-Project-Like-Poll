@@ -104,7 +104,6 @@ export const ProfileDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
 `
 export const ThemesDiv = styled.div`
   display: flex;

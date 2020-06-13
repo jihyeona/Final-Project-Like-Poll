@@ -1,15 +1,20 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export const Row = styled.div`
+export const ItemRow = styled.div`
+@media (min-width: 575px) { 
   display: flex;
   direction: row;
-  justify-content: space-around;
-  align-items: baseline;
+  justify-content: flex-start;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  margin: 25px;
+}
 `
 export const Column = styled.div`
   display: flex;
   direction: column;
+  justify-align: center;
 `
 export const ThemeContainer = styled.div`
 width: 100%;
@@ -45,12 +50,28 @@ flex: 1;
   left: 10%;
 }
 `
-
+export const ItemDiv = styled.div`
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
 export const ItemContainer = styled.div`
 width: 100%;
 border: 1px solid rgba(var(--b6a,219,219,219),1);
 border-radius: 3px;
 margin-bottom: 60px;
+@media (min-width: 575px) { 
+  width: 266px;
+}
+`
+
+export const ItemText = styled.div`
+margin: 10px;
+overflow-wrap: break-word;
+@media (min-width: 575px) { 
+  width: 30%; 
+} 
 `
 export const ListContainer = styled.div`
   width: 100%;
