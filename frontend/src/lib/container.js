@@ -11,10 +11,20 @@ export const ItemRow = styled.div`
   margin: 25px;
 }
 `
+export const Row = styled.div`
+direction: row;
+display: grid;
+flex-flow: wrap;
+justify-items: center;
+`
 export const Column = styled.div`
   display: flex;
   direction: column;
   justify-align: center;
+`
+export const OverlayDiv = styled.div`
+height: 270px;
+witdh: 270px;
 `
 export const ThemeContainer = styled.div`
 width: 100%;

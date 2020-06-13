@@ -53,12 +53,6 @@ export const InputButton = styled.input`
     color: white;
   } 
 `
-
-export const FiHeart  = styled.svg`
-fill: blue;
-`
-
-
 export const Button = ({ title }) => {
   return (
     <ButtonInput>

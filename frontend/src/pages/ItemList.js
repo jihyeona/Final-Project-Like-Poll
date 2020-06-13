@@ -22,10 +22,12 @@ export const ItemList = () => {
     <ListContainer>
       <NavbarLight />
       <ItemDiv>
+      <Row>
         <h1>{pollTitle}</h1>
         {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the things that you 💗</h2></>}
         {pollItems.length === 0 && <><AddItemLottie /><p>Add item with the pink button on the right bottom.</p></>}
-        <ItemRow>
+      </Row>
+      <ItemRow>
           {
             pollItems.map(item => (
               <ItemCard {...item} pollId={pollId} />
