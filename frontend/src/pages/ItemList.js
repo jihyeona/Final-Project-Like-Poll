@@ -9,6 +9,7 @@ import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
 import { ListContainer } from '../lib/container'
+import { ThemeTitle } from '../lib/headline'
 
 export const ItemList = () => {
   const { pollId } = useParams()
@@ -34,7 +35,7 @@ export const ItemList = () => {
     <ListContainer>
       <NavbarLight />
       <ProfileDiv>
-        <h1>{pollTitle}</h1>
+        <ThemeTitle>{pollTitle}</ThemeTitle>
         {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the items that you 💗</h2></>}
         {pollItems.length === 0 && <><AddItemLottie /><p>add item with the pink add button on the right bottom.</p></>}
         <section>

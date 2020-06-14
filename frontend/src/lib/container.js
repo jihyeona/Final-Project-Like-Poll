@@ -24,14 +24,13 @@ export const ThemeTitle = styled.h1`
 display: flex;
 text-align: center;
 justify-self: center;
-font-size: 30px;
-font-style: bold;
 text-decoration: none;
 top: 15%;
 left: 7%;
 position: absolute;
 color: #fffff;
 flex: 1;
+overflow-wrap: break-word;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

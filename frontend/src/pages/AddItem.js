@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { Form } from '../lib/form'
+import { ProfileDiv, Input, Form } from '../lib/form'
+import { ListContainer, Column } from '../lib/container'
+import { Button } from '../lib/button'
 import { additem } from 'reducers/user'
 import { useParams, useHistory } from 'react-router-dom'
 import { AddPollLottie } from '../components/AddPollLottie'
 import NavbarLight from '../components/NavBar'
-import { ListContainer } from '../lib/container'
 
 export const AddItem = () => {
   const dispatch = useDispatch()
@@ -29,26 +30,21 @@ export const AddItem = () => {
       <NavbarLight />
       {/* <h1>{pollId}</h1> */}
       <AddPollLottie />
-      <h4>Add an item with name, description and image.</h4>
       <Form onSubmit={handleItemSubmit}>
-        <label>
-          Name
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
+      <h4>Add an item with name, description and image.</h4>
+        <Input type="text" value={name} onChange={(e) => setName(e.target.value)} 
+        placeholder='Name'/>
+        <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
+        placeholder='Description' />
 
         <label>
-          Description
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-        </label>
-
-        <label>
-          Image
+          Choose image
         <input type="file" ref={fileInput} />
         </label>
 
-        <button type="submit">
+        <Button type="submit">
           Add item
-      </button>
+      </Button>
       </Form>
     </ListContainer>
   )
