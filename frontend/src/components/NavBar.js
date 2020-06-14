@@ -13,7 +13,7 @@ export const NavbarLight = () => {
   const dispatch = useDispatch()
 
   return (
-    <Navbar expandSm light>
+    <Navbar expandLg light id='mainnavbar'>
       <Nav start>
         <Link to='/home'>
           <NavbarLink light brand>HEART PICKS.</NavbarLink>
@@ -30,7 +30,7 @@ export const NavbarLight = () => {
           </Button>
         </Nav>
       </Nav>
-      <Nav start collapse expandSm hidden={hidden}>
+      <Nav start collapse expandSm hidden={hidden} id='subnavbar'>
         <Link to='/home'>
           <NavbarLink light active>Ongoing Polls</NavbarLink>
         </Link>
@@ -40,11 +40,9 @@ export const NavbarLight = () => {
         <Link to='/mypage'>
           <NavbarLink light active>My Page</NavbarLink>
         </Link>
-
         <Link to='/login'>
-          <InputButton light active type='submit' onClick={() => dispatch(logout())} value='Log Out' />
+          <NavbarLink light active onClick={() => dispatch(logout())}>Log Out</NavbarLink>
         </Link>
-        {/* <NavbarLink light disabled href="#">Disabled</NavbarLink> */}
       </Nav>
     </Navbar>
   );

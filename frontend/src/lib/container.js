@@ -24,20 +24,25 @@ export const ThemeTitle = styled.h1`
 display: flex;
 text-align: center;
 justify-self: center;
-font-size: 30px;
-font-style: bold;
+text-transform: uppercase;
+font-size: 1.4em;
+font-weight: 400;
 text-decoration: none;
-top: 15%;
+top: 25%;
 left: 7%;
 position: absolute;
-color: #fffff;
+color: #fafafa;
 flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 @media (min-width: 575px) { 
-  width: 80%; display: flex; 
+  width: 80%; 
+  display: flex; 
   justify-content: center; 
+  font-size: 2em;
+  top: 20%;
+  left: 10%;
 }
 `
 
@@ -49,7 +54,6 @@ margin-bottom: 60px;
 `
 export const ListContainer = styled.div`
   width: 100%;
-  margin: 1em auto;
   --background: white;
   --border: rgba(0, 0, 0, 0.125);
   --borderDark: rgba(0, 0, 0, 0.25);
@@ -65,7 +69,7 @@ export const ListContainer = styled.div`
   --shadeNormal: 0.5;
   --borderRadius: 0.125rem;
   --highlight: #306090;
-  background: white;
+  background: #fafafa;
   box-shadow: 0 1rem 1rem -0.75rem var(--border);
   display: flex;
   flex-direction: column;

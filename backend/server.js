@@ -130,6 +130,7 @@ app.put('/users/:id', parser.single('image'), async (req, res) => {
 })
 
 // this is the endpoint to fetch the info of existing polls
+app.get('/polls', authenticateUser)
 app.get('/polls', async (req, res) => {
   const ongoingPolls = await Poll.find().sort({ createdAt: 'desc' }).limit(20).exec()
   if (ongoingPolls) {
@@ -173,7 +174,7 @@ app.get('/polls/:pollId', async (req, res) => {
 })
 
 // this is the endpoint to add new items under a poll 
-// app.post('/polls/:pollId', authenticateUser)
+app.post('/polls/:pollId', authenticateUser)
 app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
   try {
     const { pollId } = req.params
@@ -200,7 +201,7 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
 // this is the endpoint to push a like under an item. 
 // if there is no items.$.likes with the same userId, then push the like.
 // If there is already a items.$.likes with the same userId, delete the like.
-// app.post('/items/:itemId', authenticateUser)
+app.post('/items/:itemId', authenticateUser)
 app.post('/items/:itemId', async (req, res) => {
   try {
     const { itemId } = req.params
@@ -220,8 +221,55 @@ app.post('/items/:itemId', async (req, res) => {
   }
 })
 
+// this is the endpoint to get all the items that user has liked. 
+// now it's returning the whole poll objects that includes an item that the user has liked.
+app.get('/likes/:userId', authenticateUser)
+app.get('/likes/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params
+    const likedPolls = await Poll.find({ 'items.likes.userId': userId })
+    if (likedPolls) {
+      res.status(201).json(likedPolls)
+    } else {
+      res.status(404).json({ notFound: true })
+    }
+    // const likedPolls = await Poll.aggregate([
+    //   {
+    //     $match: { 'items.likes.userId': userId }
+    //   },
+    //   {
+    //     $filter: {
+    //       input: '$items',
+    //       as: 'item',
+    //       cond: { $eq: ['$$item.likes.$.userId', userId] }
+    //     }
+    //   }
+    // ])
+    // const likedPolls = await Poll.aggregate([
+    //   {
+    //     $project: {
+    //       items: {
+    //         $filter: {
+    //           input: '$items',
+    //           as: 'item',
+    //           cond: { $eq: ['$$item.likes.userId', userId] }
+    //         }
+    //       }
+    //     }
+    //   }
+    // ])
+    if (likedPolls) {
+      res.status(201).json(likedPolls)
+    } else {
+      res.status(404).json({ notFound: true })
+    }
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
 
 // this is the endpoint to delete the like with a specific userId.
+app.delete('/:pollId/:itemId/likes/:userId', authenticateUser)
 app.delete('/:pollId/:itemId/likes/:userId', async (req, res) => {
   try {
     const { pollId, userId, itemId } = req.params
@@ -241,9 +289,6 @@ app.delete('/:pollId/:itemId/likes/:userId', async (req, res) => {
     res.status(400).json({ errors: err.errors })
   }
 })
-
-
-
 
 app.get('/users/:id/secret', authenticateUser)
 app.get('/users/:id/secret', (req, res) => {

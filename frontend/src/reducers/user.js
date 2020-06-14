@@ -9,7 +9,8 @@ const initialState = {
     profileImage: null,
     email: null,
     userId: null,
-    ongoingPolls: [],
+    ongoingPolls: null,
+    likedItems: null,
   },
 }
 
@@ -42,6 +43,10 @@ export const user = createSlice({
     setProfileImage: (state, action) => {
       const { profileImage } = action.payload
       state.login.profileImage = profileImage
+    },
+    setLikedItems: (state, action) => {
+      const { likedItems } = action.payload
+      state.login.likedItems = likedItems
     },
     setSecretMessage: (state, action) => {
       const { secretMessage } = action.payload;
@@ -161,7 +166,6 @@ export const getpolls = () => {
     console.log('Trying to fetch the polls ...')
     fetch(POLL_URL, {
       method: 'GET',
-      // body: formData,
       headers: { Authorization: accessToken }
     })
       .then(console.log('fetching the existing polls...'))
@@ -204,6 +208,7 @@ export const addpoll = (title, fileInput) => {
       .then((json) => {
         console.log(json)
         // do something with the created poll info. probably add it to the state of poll?
+        dispatch(getpolls())
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err }))
@@ -236,6 +241,7 @@ export const additem = (name, description, fileInput, pollId) => {
       .then((json) => {
         console.log(json)
         // do something with the created item.
+        dispatch(getpolls())
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err }))
@@ -263,6 +269,7 @@ export const upvote = (userId, itemId) => {
       .then((json) => {
         console.log(json)
         // do something with the created item.
+        dispatch(getpolls())
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err }))
@@ -287,6 +294,34 @@ export const downvote = (pollId, itemId, userId) => {
       .then((json) => {
         console.log(json)
         // replace the old poll with the new poll so that it updates the backend with the new info(that the user has unliked the item.)
+        dispatch(getpolls())
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
+export const getlikeditems = () => {
+  const LIKE_URL = 'http://localhost:8080/likes'
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
+    const userId = getState().user.login.userId
+    console.log('Trying to fetch the items you have liked ...')
+    fetch(`${LIKE_URL}/${userId}`, {
+      method: 'GET',
+      headers: { Authorization: accessToken }
+    })
+      .then(console.log('fetching the liked items...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Could not fetch the liked items.'
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(user.actions.setLikedItems({ likedItems: json }))
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err }))

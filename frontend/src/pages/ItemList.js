@@ -9,42 +9,30 @@ import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
 import { ListContainer } from '../lib/container'
+import { useSelector } from 'react-redux'
 
 export const ItemList = () => {
   const { pollId } = useParams()
-  const ITEM_URL = `http://localhost:8080/polls/${pollId}`
-  const [pollItems, setPollItems] = useState([])
-  const [pollTitle, setPollTitle] = useState('')
-
-  useEffect(() => {
-    fetch(ITEM_URL, { method: 'GET' })
-      .then(console.log('we are in itemlist'))
-      .then(res => res.json())
-      .then(json => {
-        setPollItems(json.items)
-        setPollTitle(json.title)
-      })
-      .then(console.log(pollItems))
-  }, [])
-  // instead of fetching the poll here, 
-  // save all the polls that you fetch in the redux
-  // and then use useSelector on line 15 to get the poll. 
+  const polls = useSelector((store) => store.user.login.ongoingPolls)
+  const poll = polls.filter(poll => poll._id === pollId)
+  const pollTitle = poll[0].title
+  const pollItems = poll[0].items
 
   return (
     <ListContainer>
       <NavbarLight />
       <ProfileDiv>
-        <h1>{pollTitle}</h1>
-        {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the items that you 💗</h2></>}
-        {pollItems.length === 0 && <><AddItemLottie /><p>add item with the pink add button on the right bottom.</p></>}
+        {poll && <h1>{pollTitle}</h1>}
+        {poll && pollItems.length !== 0 && <><VoteLottie /><h2>Pick the items that you 💗</h2></>}
+        {poll && pollItems.length === 0 && <><AddItemLottie /><p>add item with the pink add button on the right bottom.</p></>}
         <section>
-          {
+          {poll &&
             pollItems.map(item => (
               <ItemCard {...item} pollId={pollId} />
             ))
           }
         </section>
-        <Fab pollId={pollId} />
+        {poll && <Fab pollId={pollId} />}
       </ProfileDiv>
     </ListContainer>
   )
