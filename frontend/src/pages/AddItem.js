@@ -27,7 +27,6 @@ export const AddItem = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      {/* <h1>{pollId}</h1> */}
       <AddPollLottie />
       <h4>Add an item with name, description and image.</h4>
       <Form onSubmit={handleItemSubmit}>

@@ -198,9 +198,8 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
     res.status(400).json({ errors: err.errors })
   }
 })
+
 // this is the endpoint to push a like under an item. 
-// if there is no items.$.likes with the same userId, then push the like.
-// If there is already a items.$.likes with the same userId, delete the like.
 app.post('/items/:itemId', authenticateUser)
 app.post('/items/:itemId', async (req, res) => {
   try {

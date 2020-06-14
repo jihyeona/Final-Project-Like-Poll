@@ -23,7 +23,6 @@ export const MyPage = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      {/* <Headline title='profile' /> */}
       <ProfileDiv>
         <ProfileMessage>Welcome {userName}!</ProfileMessage>
         <ProfileImage />
@@ -46,11 +45,9 @@ export const MyPage = () => {
           <Button type='submit' title='Change password' />
 
         </Form>
-        {/* return the username, email, and as a stretch goal we can have a function to change password */}
         <LikeList />
         {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
         {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
-        {/* <Link to='/login'><InputButton type='submit' onClick={() => dispatch(logout())} value='Log Out' /></Link> */}
       </ProfileDiv>
     </ListContainer>
   )
