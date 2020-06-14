@@ -1,8 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
+export const ThemeTitle = styled.h1`
+font-family: "Roboto", sans-serif;
+color: #262626;
+text-transform: uppercase;
+`
 
-const Title = styled.h1`
+export const Title = styled.h1`
   background-color: cornflowerblue;
   padding: 2em 3em;
   margin-top: 0;

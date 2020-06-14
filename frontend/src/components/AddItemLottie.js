@@ -10,8 +10,8 @@ export const AddItemLottie = () => {
         options={{
           animationData: animation,
         }}
-        width='250px'
-        height='250px'
+        width='150px'
+        height='150px'
         autoPlay
       />
     </>

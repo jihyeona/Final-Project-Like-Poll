@@ -48,6 +48,7 @@ left: 7%;
 position: absolute;
 color: #fafafa;
 flex: 1;
+overflow-wrap: break-word;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

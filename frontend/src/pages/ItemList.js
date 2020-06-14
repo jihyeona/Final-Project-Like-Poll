@@ -21,13 +21,11 @@ export const ItemList = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      <ItemDiv>
-      <Row>
-        <h1>{pollTitle}</h1>
-        {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the things that you 💗</h2></>}
-        {pollItems.length === 0 && <><AddItemLottie /><p>Add item with the pink button on the right bottom.</p></>}
-      </Row>
-      <ItemRow>
+      <ProfileDiv>
+        <ThemeTitle>{pollTitle}</ThemeTitle>
+        {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the items that you 💗</h2></>}
+        {pollItems.length === 0 && <><AddItemLottie /><p>add item with the pink add button on the right bottom.</p></>}
+        <ItemRow>
           {
             pollItems.map(item => (
               <ItemCard {...item} pollId={pollId} />
@@ -35,7 +33,7 @@ export const ItemList = () => {
           }
         </ItemRow>
         <Fab pollId={pollId} />
-      </ItemDiv>
+      </ProfileDiv>
     </ListContainer>
   )
 }
