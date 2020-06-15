@@ -9,7 +9,8 @@ import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
 import { useSelector } from 'react-redux'
-import { ListContainer, ItemRow } from '../lib/container'
+import { ListContainer, ItemRow, ThemeTitle } from '../lib/container'
+import { ProfileDiv } from '../lib/form'
 
 export const ItemList = () => {
   const { pollId } = useParams()

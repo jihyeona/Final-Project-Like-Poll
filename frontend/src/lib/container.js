@@ -87,7 +87,6 @@ overflow-wrap: break-word;
 export const ListContainer = styled.div`
   width: 100%;
   --background: white;
-  margin: 1em auto;
   --background: #fafafa;
   --border: rgba(0, 0, 0, 0.125);
   --borderDark: rgba(0, 0, 0, 0.25);
