@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import NavbarLight from '../components/NavBar'
-import { ProfileDiv, Input, Form } from '../lib/form'
+import { ProfileDiv, Input, PollForm, SoftLabel } from '../lib/form'
 import { addpoll } from '../reducers/user'
 import { ListContainer, Column } from '../lib/container'
 import { Button } from '../lib/button'
@@ -26,23 +26,20 @@ export const AddPoll = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      <ProfileDiv>
         <AddPollLottie />
-         <Column>
-          <Form onSubmit={handlePollSubmit}>
-           <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} 
-           placeholder='Title' 
+          <PollForm onSubmit={handlePollSubmit}>
+          <label>Title*</label>
+            <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} 
+           placeholder='Title'
+           maxlength="20" 
            required />
-           <label>Choose image
-            <input type="file" ref={fileInput} 
+           <label>Image*</label>
+            <Input type="file" ref={fileInput} 
             required />
-           </label>
-          <Button type="submit">
+          <Button type="submit" title='Submit'>
             Create
           </Button>
-         </Form>
-        </Column>
-      </ProfileDiv>
+         </PollForm>
     </ListContainer>
   )
 }

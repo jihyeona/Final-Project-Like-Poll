@@ -43,6 +43,7 @@ export const SignUp = () => {
             <Input
               placeholder='name'
               required
+              maxlength="150"
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
@@ -50,6 +51,9 @@ export const SignUp = () => {
               type='email'
               placeholder='email'
               required
+              pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+              maxlength='100'
+              title='Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters'
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -57,11 +61,12 @@ export const SignUp = () => {
               type='password'
               placeholder='password'
               required
+              maxlength="100"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
             <Button type='submit' title='Sign up' />
-            <Register>Already a member?<Link to='/login'>Log in</Link></Register>
+            <Register>Already a member?<Link to='/login'><h4>Log in</h4></Link></Register>
           </InfoDiv>
         </Form>
       </div>
