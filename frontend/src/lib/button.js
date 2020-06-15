@@ -23,16 +23,18 @@ export const Plus = styled.img`
 export const ButtonInput = styled.button`
   margin-top: 0;
   color: #4f4f4f;
+  background: #adbce6;
   text-align: center;
   font-size: 1.2em;
   font-size: 0.825rem;
   text-align: center;
   height: 2.5em;
   margin-top: 1em;
-  border-radius: 300px;
+  border-radius: 250px;
   border:none;
+  cursor: pointer;
   &:hover {
-    background: palevioletred;
+    background: #adbce6;
     color: white;
   }
 `
@@ -49,7 +51,7 @@ export const InputButton = styled.input`
   border-radius: 300px;
   border: none;
   &:hover {
-    background: palevioletred;
+    background: #adbce6;
     color: white;
   } 
 `

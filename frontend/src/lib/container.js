@@ -49,9 +49,9 @@ position: absolute;
 color: #fafafa;
 flex: 1;
 overflow-wrap: break-word;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 @media (min-width: 575px) { 
   width: 80%; 
   display: flex; 
@@ -88,14 +88,13 @@ export const PollText = styled.h1`
 display: flex;
 text-align: center;
 justify-self: center;
+width: 80%;
 font-size: 1.3em;
 font-weight: 300;
 text-decoration: none;
 color: #232b2b;
 flex: 1;
 overflow-wrap: break-word;
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 @media (min-width: 575px) { 
   width: 80%; 
@@ -114,17 +113,34 @@ export const ItemDiv = styled.div`
 `
 export const ItemContainer = styled.div`
 width: 100%;
-border: 1px solid rgba(var(--b6a,219,219,219),1);
 border-radius: 3px;
 margin-bottom: 60px;
 @media (min-width: 575px) { 
   width: 266px;
+  border: 1px solid rgba(var(--b6a,219,219,219),1);
 }
 `
 
 export const ItemText = styled.div`
-margin: 10px;
+margin: 8px;
 overflow-wrap: break-word;
+display: flex;
+direction: row;
+align-items: baseline;
+justify-content: flex-start;
+flex-flow: wrap;
+@media (min-width: 575px) { 
+  width: 90%;
+} 
+`
+export const ItemDescription = styled.div`
+margin: 4px;
+overflow-wrap: break-word;
+display: flex;
+direction: row;
+align-items: baseline;
+justify-content: space-evenly;
+flex-flow: wrap;
 @media (min-width: 575px) { 
   width: 90%; 
 } 
@@ -150,6 +166,9 @@ export const ListContainer = styled.div`
   background: #fafafa;
   box-shadow: 0 1rem 1rem -0.75rem var(--border);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   border-radius: 6px 6px;
 `

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { user, login } from '../reducers/user'
-import { Headline } from '../lib/headline'
+import { Headline, AnimationTitle } from '../lib/headline'
 import { Button } from '../lib/button'
 import { Form, InfoDiv, Input, Register, ProfileMessage } from '../lib/form'
 import { useHistory, Link } from 'react-router-dom'
-import { BackgroundImage } from 'lib/container'
 
 export const LogIn = () => {
   const dispatch = useDispatch()
@@ -51,6 +50,7 @@ export const LogIn = () => {
             <Input
               type='password'
               placeholder='password'
+              maxlength="100"
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { upvote, downvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
-import { ItemText, ItemContainer } from 'lib/container'
+import { ItemText, ItemDescription, ItemContainer } from 'lib/container'
 import { FiHeart } from 'react-icons/fi';
 import { deleteitem } from 'reducers/user'
 
@@ -44,10 +44,12 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
         <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
         {loggedInUserId === itemCreatorId && <button onClick={(e) => handleDelete(e)}>delete the item</button>}
         <h4>{manyLikes} likes</h4>
-        <h4>{name}</h4>
-        <p>{description}</p>
-      </ItemText>
+        </ItemText>
+        <ItemDescription>
+          <h4>{name}</h4>
+          <p>{description}</p>
+      </ItemDescription>
     </ItemContainer>
   )
 }
-export default ItemCard  
+export default ItemCard   

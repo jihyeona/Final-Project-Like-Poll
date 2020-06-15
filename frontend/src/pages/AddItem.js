@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProfileDiv, Input, Form } from '../lib/form'
+import { useDispatch } from 'react-redux'
+import { ProfileDiv, Input, PollForm } from '../lib/form'
 import { ListContainer, Column } from '../lib/container'
 import { Button } from '../lib/button'
 import { additem } from 'reducers/user'
@@ -31,21 +33,22 @@ export const AddItem = () => {
     <ListContainer>
       <NavbarLight />
       <AddPollLottie />
-      <Form onSubmit={handleItemSubmit}>
+      <PollForm onSubmit={handleItemSubmit}>
         <PollText>Add your item.</PollText>
         <Input type="text" value={name} onChange={(e) => setName(e.target.value)}
           placeholder='Name' />
         <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
-          placeholder='Description' />
+          placeholder='Description'
+          maxlength="150" />
 
         <label>
           <input type="file" ref={fileInput} />
         </label>
 
-        <Button type="submit">
+        <Button type="submit" title='Submit'>
           Add item
       </Button>
-      </Form>
+      </PollForm>
     </ListContainer>
   )
 }
