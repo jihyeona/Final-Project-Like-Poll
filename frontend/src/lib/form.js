@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 export const Register = styled.p`
-  color: black;
+  color: #262626;
 `
 export const ProfileMessage = styled.p`
-  color: black;
+  color: #262626;
   text-align: center;
   font-size: 1.2em;
 `
