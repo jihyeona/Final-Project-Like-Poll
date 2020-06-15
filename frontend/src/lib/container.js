@@ -155,24 +155,24 @@ export const ListContainer = styled.div`
 `
 export const LikeContainer = styled.div`
   width: 100%;
-  --background: white;
-  --border: rgba(0, 0, 0, 0.125);
-  --borderDark: rgba(0, 0, 0, 0.25);
-  --borderDarker: rgba(0, 0, 0, 0.5);
-  --bgColorH: 0;
-  --bgColorS: 0%;
-  --bgColorL: 98%;
-  --fgColorH: 210;
-  --fgColorS: 50%;
-  --fgColorL: 38%;
-  --shadeDark: 0.3;
-  --shadeLight: 0.7;
-  --shadeNormal: 0.5;
-  --borderRadius: 0.125rem;
-  --highlight: #306090;
   background: #fafafa;
   box-shadow: 0 1rem 1rem -0.75rem var(--border);
   display: flex;
-  flex-direction: column;
+  flex-wrap: row wrap;
   border-radius: 6px 6px;
 `
+// --background: white;
+//   --border: rgba(0, 0, 0, 0.125);
+//   --borderDark: rgba(0, 0, 0, 0.25);
+//   --borderDarker: rgba(0, 0, 0, 0.5);
+//   --bgColorH: 0;
+//   --bgColorS: 0%;
+//   --bgColorL: 98%;
+//   --fgColorH: 210;
+//   --fgColorS: 50%;
+//   --fgColorL: 38%;
+//   --shadeDark: 0.3;
+//   --shadeLight: 0.7;
+//   --shadeNormal: 0.5;
+//   --borderRadius: 0.125rem;
+//   --highlight: #306090;

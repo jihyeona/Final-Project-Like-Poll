@@ -31,14 +31,6 @@ export const Thumbnail = styled.img`
   }
 `
 
-export const LikeThumbs = styled.img`
-  width: 15em;
-  height: 15em;
-  object-fit: cover;
-  &:hover {
-    filter: brightness(60%);
-  }
-`
 export const ThemeImage = styled.img`
   width: 100%;
   height: 10rem;
@@ -98,3 +90,45 @@ ${ImgWrapper}:hover & {
   left: 20%; 
 }
 `
+export const ThumbWrapper = styled.div`
+  position: relative;
+  width: 33.3%;
+  height: 8em;
+`
+
+export const LikeThumbs = styled.div`
+  background-image: url(${props => props.img});
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  &:hover {
+    filter: brightness(80%);
+  }
+`
+export const ThumbText = styled.p`
+position: absolute;
+display: none;
+top: 30%;
+padding-left: 1em;
+color: white;
+background: none;
+border: none;
+font-size: 1.5em;
+font-weight: 400;
+cursor: pointer;
+${LikeThumbs}:hover & {
+  display: block;
+}
+`
+
+
+// I'm saving this in case it's not possible to have divs in a row
+// export const LikeThumbs = styled.img`
+//   width: 10em;
+//   height: 10em;
+//   object-fit: cover;
+//   &:hover {
+//     filter: brightness(80%);
+//   }
+// `

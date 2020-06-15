@@ -99,11 +99,13 @@ export const ThemeInfo = styled.div`
 `
 
 export const ProfileDiv = styled.div`
-  margin: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (min-width: 668px) {
+    margin: 2em;
+  }
 `
 
 export const ThemesDiv = styled.div`

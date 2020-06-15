@@ -21,38 +21,40 @@ export const MyPage = () => {
 
 
   return (
-    <ListContainer>
-      <NavbarLight />
-      <ProfileDiv>
-        <ProfileMessage>Welcome {userName}!</ProfileMessage>
-        <ProfileImage />
-        <Form onSubmit={(event) => handleChangePassword(event)}>
-          <ProfileText>e-mail adress: {email}</ProfileText>
-          <Input
-            type='password'
-            placeholder='current password'
-            required
-            value={password}
-          // onChange={(event) => setOldPassword(event.target.value)}
-          />
-          <Input
-            type='password'
-            placeholder='new password'
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <Button type='submit' title='Change password' />
-        </Form>
-        <LikeContainer>
-          <LikeList />
-        </LikeContainer>
+    <>
+      <ListContainer>
+        <NavbarLight />
+        <ProfileDiv>
+          <ProfileMessage>Welcome {userName}!</ProfileMessage>
+          <ProfileImage />
+          <Form onSubmit={(event) => handleChangePassword(event)}>
+            <ProfileText>e-mail adress: {email}</ProfileText>
+            <Input
+              type='password'
+              placeholder='current password'
+              required
+              value={password}
+            // onChange={(event) => setOldPassword(event.target.value)}
+            />
+            <Input
+              type='password'
+              placeholder='new password'
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <Button type='submit' title='Change password' />
+          </Form>
+        </ProfileDiv>
+      </ListContainer>
+      <LikeContainer>
+        <LikeList />
+      </LikeContainer>
+      {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
+      {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
+    </>
 
 
-        {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
-        {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
-      </ProfileDiv>
-    </ListContainer>
   )
 }
 
