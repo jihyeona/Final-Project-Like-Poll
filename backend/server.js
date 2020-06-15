@@ -222,43 +222,34 @@ app.post('/items/:itemId', async (req, res) => {
 
 // this is the endpoint to get all the items that user has liked. 
 // now it's returning the whole poll objects that includes an item that the user has liked.
-app.get('/likes/:userId', authenticateUser)
+// app.get('/likes/:userId', authenticateUser)
 app.get('/likes/:userId', async (req, res) => {
   try {
     const { userId } = req.params
-    const likedPolls = await Poll.find({ 'items.likes.userId': userId })
-    if (likedPolls) {
-      res.status(201).json(likedPolls)
-    } else {
-      res.status(404).json({ notFound: true })
-    }
-    // const likedPolls = await Poll.aggregate([
-    //   {
-    //     $match: { 'items.likes.userId': userId }
-    //   },
-    //   {
-    //     $filter: {
-    //       input: '$items',
-    //       as: 'item',
-    //       cond: { $eq: ['$$item.likes.$.userId', userId] }
-    //     }
-    //   }
-    // ])
-    // const likedPolls = await Poll.aggregate([
-    //   {
-    //     $project: {
-    //       items: {
-    //         $filter: {
-    //           input: '$items',
-    //           as: 'item',
-    //           cond: { $eq: ['$$item.likes.userId', userId] }
-    //         }
-    //       }
-    //     }
-    //   }
-    // ])
-    if (likedPolls) {
-      res.status(201).json(likedPolls)
+    const likedItems = await Poll.aggregate([
+      {
+        $match: {
+          'items.likes.userId': userId
+        }
+      }, {
+        $project: {
+          'items.likes': 1,
+          'items.name': 1,
+          'items.description': 1,
+          'items.imageUrl': 1
+        }
+      }, {
+        $unwind: {
+          path: '$items'
+        }
+      }, {
+        $match: {
+          'items.likes.userId': userId
+        }
+      }
+    ])
+    if (likedItems) {
+      res.status(201).json(likedItems)
     } else {
       res.status(404).json({ notFound: true })
     }

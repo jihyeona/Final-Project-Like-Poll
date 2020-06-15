@@ -30,6 +30,15 @@ export const Thumbnail = styled.img`
     filter: brightness(20%);
   }
 `
+
+export const LikeThumbs = styled.img`
+  width: 15em;
+  height: 15em;
+  object-fit: cover;
+  &:hover {
+    filter: brightness(60%);
+  }
+`
 export const ThemeImage = styled.img`
   width: 100%;
   height: 10rem;

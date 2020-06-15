@@ -32,7 +32,7 @@ export const Form = styled.form`
   --shadeNormal: 0.5;
   --borderRadius: 0.125rem;
   --highlight: #306090;
-  background: white;
+  background: white;  
   display: flex;
   flex-direction: column;
   border-radius: 6px 6px;

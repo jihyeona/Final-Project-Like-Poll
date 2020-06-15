@@ -5,6 +5,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getlikeditems } from 'reducers/user'
+import { LikeThumbs } from 'lib/images'
+import { Form } from 'lib/form'
 
 export const LikeList = () => {
   const dispatch = useDispatch()
@@ -16,13 +18,14 @@ export const LikeList = () => {
   const likedItemsArr = useSelector((store) => store.user.login.likedItems)
   const userId = useSelector((store) => store.user.login.userId)
   console.log(likedItemsArr)
-  // make a new array of items objects that matches items.likes.userId === userId
-  // const likedItems = likedItemsArr.filter(arr => arr.items.likes.userId === userId)
-  // const likedItems = likedItemsArr.find({'items.likes.userId':userId})
-  // console.log(likedItems)
+  //map through the likedItemsArr to get the items.name, items.description, items.imageUrl 
+  //in the Thumbnail(or the LikeList styling component), show the name and description of the item when hovered
+  //maybe link it to the poll?
 
   return (
-    <h4>Here, return the thumnails of the items the user has liked.</h4>
+    <div>
+      {likedItemsArr && likedItemsArr.map(item => <LikeThumbs src={item.items.imageUrl} />)}
+    </div>
   )
 }
 

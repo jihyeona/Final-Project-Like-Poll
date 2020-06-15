@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { LikeList } from '../components/LikeList'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
-import { ListContainer } from '../lib/container'
+import { ListContainer, LikeContainer } from '../lib/container'
 
 export const MyPage = () => {
   const dispatch = useDispatch()
@@ -43,9 +43,12 @@ export const MyPage = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
           <Button type='submit' title='Change password' />
-
         </Form>
-        <LikeList />
+        <LikeContainer>
+          <LikeList />
+        </LikeContainer>
+
+
         {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
         {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
       </ProfileDiv>
