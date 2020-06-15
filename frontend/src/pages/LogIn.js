@@ -57,7 +57,7 @@ export const LogIn = () => {
             />
             {errorMessage && <ProfileMessage>{`${errorMessage}`}</ProfileMessage>}
             <Button type='submit' title='Log in' />
-            <Register>Not a member?<Link to="/">Sign up</Link></Register>
+            <Register>Not a member?<Link to="/"><h4>Sign up</h4></Link></Register>
           </InfoDiv>
         </Form>
       </div>
