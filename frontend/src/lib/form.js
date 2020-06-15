@@ -105,6 +105,7 @@ export const ProfileDiv = styled.div`
   justify-content: center;
   align-items: center;
 `
+
 export const ThemesDiv = styled.div`
   display: flex;
   background-color: none;

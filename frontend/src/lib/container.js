@@ -61,11 +61,56 @@ overflow-wrap: break-word;
   left: 10%;
 }
 `
+export const PollTitle = styled.h1`
+display: flex;
+text-align: center;
+justify-self: center;
+text-transform: uppercase;
+font-size: 1.4em;
+font-weight: 400;
+text-decoration: none;
+color: #232b2b;
+flex: 1;
+overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+@media (min-width: 575px) { 
+  width: 80%; 
+  display: flex; 
+  justify-content: center; 
+  font-size: 2em;
+  top: 20%;
+  left: 10%;
+}
+`
+export const PollText = styled.h1`
+display: flex;
+text-align: center;
+justify-self: center;
+font-size: 1.3em;
+font-weight: 300;
+text-decoration: none;
+color: #232b2b;
+flex: 1;
+overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+@media (min-width: 575px) { 
+  width: 80%; 
+  display: flex; 
+  justify-content: center; 
+  font-size: 2em;
+  top: 20%;
+  left: 10%;
+}
+`
 export const ItemDiv = styled.div`
-  margin: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `
 export const ItemContainer = styled.div`
 width: 100%;

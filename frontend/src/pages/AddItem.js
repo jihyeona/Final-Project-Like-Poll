@@ -7,6 +7,7 @@ import { additem } from 'reducers/user'
 import { useParams, useHistory } from 'react-router-dom'
 import { AddPollLottie } from '../components/AddPollLottie'
 import NavbarLight from '../components/NavBar'
+import { PollText } from '../lib/container'
 
 export const AddItem = () => {
   const dispatch = useDispatch()
@@ -30,15 +31,14 @@ export const AddItem = () => {
       <NavbarLight />
       <AddPollLottie />
       <Form onSubmit={handleItemSubmit}>
-      <h4>Add an item with name, description and image.</h4>
-        <Input type="text" value={name} onChange={(e) => setName(e.target.value)} 
-        placeholder='Name'/>
+        <PollText>Add your item.</PollText>
+        <Input type="text" value={name} onChange={(e) => setName(e.target.value)}
+          placeholder='Name' />
         <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
-        placeholder='Description' />
+          placeholder='Description' />
 
         <label>
-          Choose image
-        <input type="file" ref={fileInput} />
+          <input type="file" ref={fileInput} />
         </label>
 
         <Button type="submit">

@@ -9,8 +9,8 @@ import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
 import { useSelector } from 'react-redux'
-import { ListContainer, ItemRow, ThemeTitle } from '../lib/container'
-import { ProfileDiv } from '../lib/form'
+import { ListContainer, ItemRow, ThemeTitle, PollTitle, PollText } from '../lib/container'
+
 
 export const ItemList = () => {
   const { pollId } = useParams()
@@ -22,10 +22,10 @@ export const ItemList = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      <ProfileDiv>
-        <ThemeTitle>{pollTitle}</ThemeTitle>
-        {pollItems.length !== 0 && <><VoteLottie /><h2>Pick the items that you 💗</h2></>}
-        {pollItems.length === 0 && <><AddItemLottie /><p>add item with the pink add button on the right bottom.</p></>}
+      <ItemDiv>
+        <PollTitle>{pollTitle}</PollTitle>
+        {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you 💗</PollText></>}
+        {pollItems.length === 0 && <><AddItemLottie /><PollText>add item with the pink add button on the right bottom.</PollText></>}
         <ItemRow>
           {
             pollItems.map(item => (
@@ -34,7 +34,7 @@ export const ItemList = () => {
           }
         </ItemRow>
         <Fab pollId={pollId} />
-      </ProfileDiv>
+      </ItemDiv>
     </ListContainer>
   )
 }

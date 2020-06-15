@@ -10,8 +10,8 @@ export const VoteLottie = () => {
         options={{
           animationData: animation,
         }}
-        width='280px'
-        height='280px'
+        width='150px'
+        height='150px'
         autoPlay
       />
     </>
