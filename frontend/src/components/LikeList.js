@@ -5,9 +5,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getlikeditems } from 'reducers/user'
-import { LikeThumbs, ThumbText, ThumbWrapper } from 'lib/images'
+import { LikeThumbs, ThumbText, ThumbWrapper, SmallImage } from 'lib/images'
 import { Link } from 'react-router-dom'
-import { LikeThumbs, SmallImage } from 'lib/images'
+
 
 export const LikeList = ({ img }) => {
 
@@ -29,7 +29,7 @@ export const LikeList = ({ img }) => {
         likedItemsArr.map(item => (
           <Link to={`/polls/${item._id}`}>
             <SmallImage src={item.items.imageUrl} />
-              <ThumbText>{item.items.name}</ThumbText>
+            <ThumbText>{item.items.name}</ThumbText>
           </Link>
         ))
       }

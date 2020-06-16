@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ProfileDiv, Input, Form } from '../lib/form'
-import { useDispatch } from 'react-redux'
 import { ProfileDiv, Input, PollForm } from '../lib/form'
 import { ListContainer, Column } from '../lib/container'
 import { Button } from '../lib/button'
@@ -40,8 +38,8 @@ export const AddItem = () => {
           required />
         <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
           placeholder='Description'
-          maxlength="150" 
-          required/>
+          maxlength="150"
+          required />
 
         <label>
           <input type="file" ref={fileInput} />

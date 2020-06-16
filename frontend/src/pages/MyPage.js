@@ -52,10 +52,11 @@ export const MyPage = () => {
             <Button type='submit' title='Change password' />
           </Form>
         </ProfileDiv>
-      </ListContainer>
-      <SmallImgForm>
         <LikeList />
-      </SmallImgForm>
+      </ListContainer>
+      {/* <SmallImgForm>
+        
+      </SmallImgForm> */}
       {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
       {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
     </>

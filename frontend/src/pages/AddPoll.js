@@ -26,20 +26,21 @@ export const AddPoll = () => {
   return (
     <ListContainer>
       <NavbarLight />
-        <AddPollLottie />
-          <PollForm onSubmit={handlePollSubmit}>
-          <label>Title*</label>
-            <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} 
-           placeholder='Title'
-           maxlength="20" 
-           required />
-           <label>Image*</label>
-            <Input type="file" ref={fileInput} 
-            required />
-          <Button type="submit" title='Submit'>
-            Create
+      <AddPollLottie />
+      <PollForm onSubmit={handlePollSubmit}>
+        <label>Title*</label>
+        <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+          placeholder='Title'
+          maxlength="20"
+          required />
+        <label>
+          Image*
+          <input type="file" ref={fileInput} />
+        </label>
+        <Button type="submit" title='Submit'>
+          Create
           </Button>
-         </PollForm>
+      </PollForm>
     </ListContainer>
   )
 }

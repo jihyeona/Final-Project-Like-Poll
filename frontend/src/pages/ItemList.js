@@ -34,20 +34,20 @@ export const ItemList = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      <ItemDiv>
-        <PollTitle>{pollTitle}</PollTitle>
-        {loggedInUserId === pollCreatorId && <button onClick={(e) => handleDelete(e)}>delete the poll</button>}
-        {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you 💗</PollText></>}
-        {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the pink button on the right bottom.</PollText></>}
-        <ItemRow>
-          {
-            pollItems.map(item => (
-              <ItemCard {...item} pollId={pollId} />
-            ))
-          }
-        </ItemRow>
-        <Fab pollId={pollId} />
-      </ItemDiv>
+      {/* <ItemDiv> */}
+      <PollTitle>{pollTitle}</PollTitle>
+      {loggedInUserId === pollCreatorId && <button onClick={(e) => handleDelete(e)}>delete the poll</button>}
+      {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you 💗</PollText></>}
+      {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the pink button on the right bottom.</PollText></>}
+      <ItemRow>
+        {
+          pollItems.map(item => (
+            <ItemCard {...item} pollId={pollId} />
+          ))
+        }
+      </ItemRow>
+      <Fab pollId={pollId} />
+      {/* </ItemDiv> */}
     </ListContainer>
   )
 }
