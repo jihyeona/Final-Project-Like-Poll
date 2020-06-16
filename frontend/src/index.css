@@ -12,9 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 #mainnavbar {
-  background-color: white !important;
+  background-color: #fafafa !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10; 
 }
+
 #subnavbar {
   justify-content: space-evenly !important;
 }
