@@ -115,6 +115,33 @@ export const login = (name, password) => {
   }
 }
 
+export const changepassword = (oldPassword, newPassword) => {
+  const PASSWORD_URL = 'http://localhost:8080/password'
+  return (dispatch, getState) => {
+    const userId = getState().user.login.userId
+    const accessToken = getState().user.login.accessToken
+    fetch(`${PASSWORD_URL}/${userId}`, {
+      method: 'POST',
+      body: JSON.stringify({ oldPassword, newPassword }),
+      headers: { Authorization: accessToken, 'Content-Type': 'application/json' },
+    })
+      .then(console.log('Changing password...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw 'Unable to change password. Please check if current password is correct.'
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(user.actions.setErrorMessage({ errorMessage: null }))
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
 export const logout = () => {
   return (dispatch) => {
     console.log('trying to log out ...')
@@ -185,11 +212,12 @@ export const getpolls = () => {
   }
 }
 
-export const addpoll = (title, fileInput) => {
+export const addpoll = (title, fileInput, userId) => {
   const POLL_URL = 'http://localhost:8080/polls'
   const formData = new FormData()
   formData.append('pollimage', fileInput.current.files[0])
   formData.append('title', title)
+  formData.append('userId', userId)
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     console.log('Trying to create a poll ...')
@@ -216,7 +244,31 @@ export const addpoll = (title, fileInput) => {
   }
 }
 
-export const additem = (name, description, fileInput, pollId) => {
+export const deletepoll = (pollId, pollCreatorId) => {
+  const MYPOLL_URL = `http://localhost:8080/polls/${pollId}/${pollCreatorId}`
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
+    fetch(MYPOLL_URL, {
+      method: 'DELETE',
+      headers: { Authorization: accessToken }
+    })
+      .then(console.log('deleting the poll...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } throw 'Could not delete the poll. Try again.'
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(getpolls())
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
+export const additem = (name, description, fileInput, pollId, userId) => {
   console.log(pollId)
   const pollParam = pollId
   const ITEM_URL = `http://localhost:8080/polls/${pollParam}`
@@ -224,6 +276,7 @@ export const additem = (name, description, fileInput, pollId) => {
   formData.append('itemimage', fileInput.current.files[0])
   formData.append('name', name)
   formData.append('description', description)
+  formData.append('userId', userId)
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(ITEM_URL, {
@@ -249,14 +302,37 @@ export const additem = (name, description, fileInput, pollId) => {
   }
 }
 
-export const upvote = (userId, itemId) => {
-  console.log(userId, itemId)
+export const deleteitem = (itemId, itemCreatorId) => {
+  const MYITEM_URL = `http://localhost:8080/items/${itemId}/${itemCreatorId}`
+  return (dispatch, getState) => {
+    const accessToken = getState().user.login.accessToken
+    fetch(MYITEM_URL, {
+      method: 'DELETE',
+      headers: { Authorization: accessToken }
+    })
+      .then(console.log('deleting the item...'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } throw 'Could not delete the item. Try again.'
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(getpolls())
+      })
+      .catch((err) => {
+        dispatch(user.actions.setErrorMessage({ errorMessage: err }))
+      })
+  }
+}
+
+export const upvote = (loggedInUserId, itemId) => {
   const ITEM_URL = `http://localhost:8080/items/${itemId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(ITEM_URL, {
       method: 'POST',
-      body: JSON.stringify({ userId }),
+      body: JSON.stringify({ loggedInUserId }),
       headers: { Authorization: accessToken, 'Content-Type': 'application/json' }
     })
       .then(console.log('posted upvote with userId to API...'))
@@ -268,7 +344,6 @@ export const upvote = (userId, itemId) => {
       })
       .then((json) => {
         console.log(json)
-        // do something with the created item.
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -277,8 +352,8 @@ export const upvote = (userId, itemId) => {
   }
 }
 
-export const downvote = (pollId, itemId, userId) => {
-  const LIKE_URL = `http://localhost:8080/${pollId}/${itemId}/likes/${userId}`
+export const downvote = (pollId, itemId, loggedInUserId) => {
+  const LIKE_URL = `http://localhost:8080/${pollId}/${itemId}/likes/${loggedInUserId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(LIKE_URL, {

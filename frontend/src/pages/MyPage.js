@@ -7,16 +7,22 @@ import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import LikeList from '../components/LikeList'
 import { ListContainer, LikeContainer } from '../lib/container'
+import { changepassword } from 'reducers/user'
 
 export const MyPage = () => {
   const dispatch = useDispatch()
   // const secretMessage = useSelector((store) => store.user.login.secretMessage)
   const userName = useSelector((store) => store.user.login.userName)
   const email = useSelector((store) => store.user.login.email)
-  const [password, setPassword] = useState('')
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
 
-  const handleChangePassword = () => {
-
+  const handleChangePassword = (event) => {
+    event.preventDefault()
+    //dispatch the thunk to fist check if the password is correct, then update the password with findOneandUpdate
+    dispatch(changepassword(oldPassword, newPassword))
+    setOldPassword('')
+    setNewPassword('')
   }
 
 
@@ -33,15 +39,15 @@ export const MyPage = () => {
               type='password'
               placeholder='current password'
               required
-              value={password}
-            // onChange={(event) => setOldPassword(event.target.value)}
+              value={oldPassword}
+              onChange={(event) => setOldPassword(event.target.value)}
             />
             <Input
               type='password'
               placeholder='new password'
               required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              value={newPassword}
+              onChange={(event) => setNewPassword(event.target.value)}
             />
             <Button type='submit' title='Change password' />
           </Form>

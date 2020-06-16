@@ -16,6 +16,10 @@ const Item = mongoose.Schema({
     type: Date,
     default: () => new Date()
   },
+  userId: {
+    type: String,
+    required: true
+  },
   likes: [Like]
 })
 

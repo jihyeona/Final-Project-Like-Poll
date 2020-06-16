@@ -13,6 +13,10 @@ const Poll = mongoose.model('Poll', {
     type: Date,
     default: () => new Date()
   },
+  userId: {
+    type: String,
+    required: true
+  },
   items: [Item]
 })
 

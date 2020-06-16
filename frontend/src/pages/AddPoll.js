@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import NavbarLight from '../components/NavBar'
 import { ProfileDiv, Input, Form } from '../lib/form'
@@ -13,12 +13,12 @@ export const AddPoll = () => {
   const history = useHistory()
   const fileInput = useRef()
   const [title, setTitle] = useState('')
-
+  const userId = useSelector((store) => store.user.login.userId)
 
   const handlePollSubmit = (e) => {
     e.preventDefault()
     //dispatch thunk
-    dispatch(addpoll(title, fileInput))
+    dispatch(addpoll(title, fileInput, userId))
     setTitle('')
     history.push('/home')
   }
@@ -28,19 +28,19 @@ export const AddPoll = () => {
       <NavbarLight />
       <ProfileDiv>
         <AddPollLottie />
-         <Column>
+        <Column>
           <Form onSubmit={handlePollSubmit}>
-           <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} 
-           placeholder='Title' 
-           required />
-           <label>Choose image
-            <input type="file" ref={fileInput} 
-            required />
-           </label>
-          <Button type="submit">
-            Create
+            <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+              placeholder='Title'
+              required />
+            <label>Choose image
+            <input type="file" ref={fileInput}
+                required />
+            </label>
+            <Button type="submit">
+              Create
           </Button>
-         </Form>
+          </Form>
         </Column>
       </ProfileDiv>
     </ListContainer>

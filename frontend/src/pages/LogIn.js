@@ -61,7 +61,7 @@ export const LogIn = () => {
           </InfoDiv>
         </Form>
       </div>
-      
+
     )
   } else {
     return (null)

@@ -128,7 +128,6 @@ app.put('/users/:id', parser.single('image'), async (req, res) => {
     res.status(400).json({ errors: err.errors })
   }
 })
-
 // this is the endpoint to fetch the info of existing polls
 app.get('/polls', authenticateUser)
 app.get('/polls', async (req, res) => {
@@ -145,6 +144,7 @@ app.post('/polls', parser.single('pollimage'), async (req, res) => {
   try {
     const poll = new Poll({
       title: req.body.title,
+      userId: req.body.userId,
       imageUrl: req.file.path,
       imageId: req.file.filename,
       items: []
@@ -152,6 +152,7 @@ app.post('/polls', parser.single('pollimage'), async (req, res) => {
     const saved = await poll.save()
     res.status(201).json({
       title: saved.title,
+      userId: saved.userId,
       imageUrl: saved.imageUrl,
       imageId: saved.imageId,
       pollId: saved._id,
@@ -188,12 +189,26 @@ app.post('/polls/:pollId', parser.single('itemimage'), async (req, res) => {
             imageUrl: req.file.path,
             imageId: req.file.filename,
             itemId: req.body._id,
+            userId: req.body.userId,
             likes: []
           }
         }
       },
       { new: true, upsert: true })
     res.status(201).json(poll)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+// this is the endpoint to delete a poll with a pollId and userId.
+app.delete('/polls/:pollId/:pollCreatorId', authenticateUser)
+app.delete('/polls/:pollId/:pollCreatorId', async (req, res) => {
+  try {
+    const { pollId, pollCreatorId } = req.params
+    const deletedPoll = await Poll.findOneAndDelete(
+      { '_id': pollId, 'userId': pollCreatorId, }
+    )
+    res.status(201).json(deletedPoll)
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }
@@ -209,7 +224,7 @@ app.post('/items/:itemId', async (req, res) => {
       {
         $push: {
           'items.$.likes': {
-            'userId': req.body.userId
+            'userId': req.body.loggedInUserId
           }
         }
       },
@@ -220,9 +235,30 @@ app.post('/items/:itemId', async (req, res) => {
   }
 })
 
+// this is the endpoint to delete an item.
+app.delete('/items/:itemId/:itemCreatorId', authenticateUser)
+app.delete('/items/:itemId/:itemCreatorId', async (req, res) => {
+  try {
+    const { itemId, itemCreatorId } = req.params
+    const item = await Poll.findOneAndUpdate(
+      { 'items._id': itemId },
+      {
+        $pull: {
+          'items': {
+            'userId': itemCreatorId
+          }
+        }
+      },
+      { new: true }
+    )
+    res.status(201).json(item)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+
 // this is the endpoint to get all the items that user has liked. 
-// now it's returning the whole poll objects that includes an item that the user has liked.
-// app.get('/likes/:userId', authenticateUser)
+app.get('/likes/:userId', authenticateUser)
 app.get('/likes/:userId', async (req, res) => {
   try {
     const { userId } = req.params
@@ -275,6 +311,27 @@ app.delete('/:pollId/:itemId/likes/:userId', async (req, res) => {
       { new: true }
     )
     res.status(201).json(like)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+
+// this is the endpoint to update password
+app.post('/password/:userId', authenticateUser)
+app.post('/password/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params
+    const { oldPassword, newPassword } = req.body
+    // const user = await User.findOneAndUpdate({ _id: userId }, { password: bcrypt.hashSync(newPassword) }, { new: true })
+    const user = await User.findOne({ _id: userId })
+    console.log(user)
+    if (user && bcrypt.compareSync(oldPassword, user.password)) {
+      console.log('comparing the password...')
+      const newUser = await User.findAndModify({ _id: userId }, { password: bcrypt.hashSync(newPassword) }, { new: true })
+      res.json(newUser)
+    } else {
+      res.status(404).json({ notFound: true })
+    }
   } catch (err) {
     res.status(400).json({ errors: err.errors })
   }

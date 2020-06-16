@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ProfileDiv, Input, Form } from '../lib/form'
 import { ListContainer, Column } from '../lib/container'
 import { Button } from '../lib/button'
@@ -16,11 +16,12 @@ export const AddItem = () => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const { pollId } = useParams()
+  const userId = useSelector((store) => store.user.login.userId)
 
   const handleItemSubmit = (e) => {
     e.preventDefault()
     //dispatch thunk
-    dispatch(additem(name, description, fileInput, pollId))
+    dispatch(additem(name, description, fileInput, pollId, userId))
     setName('')
     setDescription('')
     history.push(`/polls/${pollId}`)
