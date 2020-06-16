@@ -17,8 +17,11 @@ code {
   background-color: #fafafa !important;
   position: fixed;
   top: 0;
-  width: 100%;
-  z-index: 10; 
+  width: 90%;
+  z-index: 10;
+  margin-bottom: 30px;
+  padding-left: 60px;
+  padding-right: 60px; 
 }
 
 #subnavbar {
@@ -46,6 +49,9 @@ svg:hover {
      width: 230px;
      height: 230px;
    }
+   #mainnavbar {
+    width: 100%;
+   }
 }
 
 @media (min-width: 1024px) {
@@ -53,4 +59,12 @@ svg:hover {
     width: 280px;
     height: 280px;
   }
+}
+
+p {
+  margin: 5px;
+}
+
+h4 {
+  margin: 5px;
 }

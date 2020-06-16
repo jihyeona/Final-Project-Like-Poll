@@ -20,6 +20,14 @@ export const Column = styled.div`
   display: flex;
   direction: column;
   justify-align: center;
+  min-height: -webkit-fill-available;
+  @media (min-width: 668px) { 
+    display: flex;
+    direction: row;
+    justify-content: center;
+    flex-flow: wrap;
+    min-height: auto;
+  }
 `
 export const OverlayDiv = styled.div`
 height: 270px;
@@ -71,16 +79,15 @@ text-decoration: none;
 color: #232b2b;
 flex: 1;
 overflow-wrap: break-word;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+margin-top: 4em;
 @media (min-width: 575px) { 
-  width: 80%; 
+  width: 100%; 
   display: flex; 
   justify-content: center; 
   font-size: 2em;
-  top: 20%;
-  left: 10%;
 }
 `
 export const PollText = styled.h1`
@@ -94,7 +101,7 @@ text-decoration: none;
 color: #232b2b;
 flex: 1;
 overflow-wrap: break-word;
-  text-overflow: ellipsis;
+text-overflow: ellipsis;
 @media (min-width: 575px) { 
   display: flex; 
   justify-content: center; 
@@ -120,11 +127,11 @@ margin-bottom: 60px;
 `
 
 export const ItemText = styled.div`
-margin: 8px;
+margin-left: 0.5em;
 overflow-wrap: break-word;
 display: flex;
 direction: row;
-align-items: baseline;
+align-items: center;
 justify-content: flex-start;
 flex-flow: wrap;
 @media (min-width: 575px) { 
@@ -132,10 +139,10 @@ flex-flow: wrap;
 } 
 `
 export const ItemDescription = styled.div`
-margin: 4px;
+margin-left: 0.5em;
 overflow-wrap: break-word;
 @media (min-width: 575px) { 
-  width: 90%; 
+  width: 90%;
 } 
 `
 export const ListContainer = styled.div`
@@ -146,9 +153,11 @@ export const ListContainer = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 6px 6px;
+  margin-top: 5em;
   @media (min-width: 575px) { 
-  justify-content: center;
-  align-items: stretch;
+   justify-content: center;
+   align-items: stretch;
+   margin-top: 3em;
   } 
 `
 export const LikeContainer = styled.div`

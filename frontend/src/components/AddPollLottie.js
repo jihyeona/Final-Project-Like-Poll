@@ -10,8 +10,8 @@ export const AddPollLottie = () => {
         options={{
           animationData: animation,
         }}
-        width='200px'
-        height='200px'
+        width='150px'
+        height='150px'
         autoPlay
       />
     </>

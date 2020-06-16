@@ -36,8 +36,9 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   border-radius: 6px 6px;
+  box-shadow: 0 1rem 1rem -0.75rem var(--border);
   @media (min-width: 668px) { 
-    width: 90%;
+    width: 50%;
     margin: 2em 1em; 
   }
 `
@@ -139,6 +140,10 @@ export const ThemesDiv = styled.div`
   justify-content: center;
   align-items: stretch;
   width: 100%;
+  @media (min-width: 668px) { 
+    margin-top: 10em;
+    margin-bottom: 8em;
+  }
 `
 export const ProfileImgForm = styled.form`
   display: flex;

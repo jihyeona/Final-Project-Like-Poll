@@ -54,6 +54,8 @@ export const InputButton = styled.input`
     color: white;
   } 
 `
+export const BinButton= styled.input`
+`
 export const Button = ({ title }) => {
   return (
     <ButtonInput>

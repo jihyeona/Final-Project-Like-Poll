@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { upvote, downvote } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
 import { ItemText, ItemDescription, ItemContainer } from 'lib/container'
-import { FiHeart } from 'react-icons/fi';
+import { FiHeart, FiTrash } from 'react-icons/fi'
 import { deleteitem } from 'reducers/user'
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, pollId }) => {
@@ -42,7 +42,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
       />
       <ItemText>
         <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
-        {loggedInUserId === itemCreatorId && <button onClick={(e) => handleDelete(e)}>delete the item</button>}
+        {loggedInUserId === itemCreatorId && <FiTrash onClick={(e) => handleDelete(e)}>delete the item</FiTrash>}
         <h4>{manyLikes} likes</h4>
         </ItemText>
         <ItemDescription>

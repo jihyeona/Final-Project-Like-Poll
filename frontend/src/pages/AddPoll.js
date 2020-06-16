@@ -34,9 +34,8 @@ export const AddPoll = () => {
           maxlength="20"
           required />
         <label>
-          Image*
+          Image*</label>
           <input type="file" ref={fileInput} />
-        </label>
         <Button type="submit" title='Submit'>
           Create
           </Button>

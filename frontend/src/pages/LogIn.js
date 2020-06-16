@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { user, login } from '../reducers/user'
 import { Headline, AnimationTitle } from '../lib/headline'
 import { Button } from '../lib/button'
+import { Column } from '../lib/container'
 import { Form, InfoDiv, Input, Register, ProfileMessage } from '../lib/form'
 import { useHistory, Link } from 'react-router-dom'
 
@@ -37,7 +38,7 @@ export const LogIn = () => {
   if (!accessToken) {
     // If user is logged out, show login form
     return (
-      <div>
+      <Column>
         <Form onSubmit={(event) => handleLogin(event)}>
           <Headline title='Log in' />
           <InfoDiv>
@@ -60,8 +61,7 @@ export const LogIn = () => {
             <Register>Not a member?<Link to="/"><h4>Sign up</h4></Link></Register>
           </InfoDiv>
         </Form>
-      </div>
-
+        </Column>
     )
   } else {
     return (null)
