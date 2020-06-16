@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Button } from '../lib/button'
-import { ProfileMessage, ProfileText, ProfileDiv, ProfileInfo, Form, Input } from '../lib/form'
+import { ProfileMessage, ProfileText, ProfileDiv, ProfileInfo, Form, Input, ProfileForm, SmallImgForm } from '../lib/form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import LikeList from '../components/LikeList'
-import { ListContainer, LikeContainer } from '../lib/container'
+import { ListContainer, LikeContainer, Row } from '../lib/container'
 import { changepassword } from 'reducers/user'
 
 export const MyPage = () => {
@@ -53,9 +53,9 @@ export const MyPage = () => {
           </Form>
         </ProfileDiv>
       </ListContainer>
-      <LikeContainer>
+      <SmallImgForm>
         <LikeList />
-      </LikeContainer>
+      </SmallImgForm>
       {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
       {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
     </>

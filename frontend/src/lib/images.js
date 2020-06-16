@@ -12,7 +12,6 @@ export const ProfilePic = styled.img`
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  margin-top: 20px;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }
@@ -60,10 +59,9 @@ ${ImgWrapper}:hover & {
 `
 
 export const SmallImage = styled.img`
-  width: 80px;
-  height: 80px; 
+  width: 5em;
+  height: 5em; 
   object-fit: cover;
-  background-color: orange;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }

@@ -21,7 +21,6 @@ export const Plus = styled.img`
 `
 
 export const ButtonInput = styled.button`
-  margin-top: 0;
   color: #4f4f4f;
   background: #adbce6;
   text-align: center;
@@ -29,7 +28,7 @@ export const ButtonInput = styled.button`
   font-size: 0.825rem;
   text-align: center;
   height: 2.5em;
-  margin-top: 1em;
+  margin: 1em;
   border-radius: 250px;
   border:none;
   cursor: pointer;

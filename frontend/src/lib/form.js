@@ -37,8 +37,8 @@ export const Form = styled.form`
   flex-direction: column;
   border-radius: 6px 6px;
   @media (min-width: 668px) { 
-    width: 60%;
-    margin: 1em auto; 
+    width: 90%;
+    margin: 2em 1em; 
   }
 `
 export const InfoDiv = styled.div`
@@ -105,12 +105,12 @@ export const ThemeInfo = styled.div`
 export const PollForm = styled.form`
   width: 75%;
   display: flex;
-  margin: 3em;
+  margin-bottom: 1em;
   flex-direction: column;
   border-radius: 6px 6px;
   justify-content: center;
   align-items: stretch;
-  background-color: #647D;
+  background-color: #c6c7d6;
   padding: 1em;
   box-shadow: 0 1rem 1rem -0.75rem var(--border);
   @media (min-width: 668px) { 
@@ -120,12 +120,15 @@ export const PollForm = styled.form`
 `
 
 export const ProfileDiv = styled.div`
+  padding: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media (min-width: 668px) {
-    margin: 2em;
+  background-color: #fafafa;
+  @media (min-width: 668px) { 
+    width: 50%;
+    align-items: flex-start;
   }
 `
 
@@ -141,3 +144,6 @@ export const ProfileImgForm = styled.form`
   display: flex;
   padding: 2rem; 
 `
+export const SmallImgForm = styled.form`
+  width: 100%;
+  `
