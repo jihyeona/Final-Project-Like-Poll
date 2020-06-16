@@ -36,10 +36,12 @@ export const AddItem = () => {
       <PollForm onSubmit={handleItemSubmit}>
         <PollText>Add your item.</PollText>
         <Input type="text" value={name} onChange={(e) => setName(e.target.value)}
-          placeholder='Name' />
+          placeholder='Name'
+          required />
         <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
           placeholder='Description'
-          maxlength="150" />
+          maxlength="150" 
+          required/>
 
         <label>
           <input type="file" ref={fileInput} />
