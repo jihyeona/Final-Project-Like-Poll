@@ -5,9 +5,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getlikeditems } from 'reducers/user'
-import { LikeThumbs } from 'lib/images'
-import { Form } from 'lib/form'
-
+import { LikeThumbs, SmallImage } from 'lib/images'
 export const LikeList = () => {
   const dispatch = useDispatch()
 
@@ -24,7 +22,7 @@ export const LikeList = () => {
 
   return (
     <div>
-      {likedItemsArr && likedItemsArr.map(item => <LikeThumbs src={item.items.imageUrl} />)}
+      {likedItemsArr && likedItemsArr.map(item => <SmallImage src={item.items.imageUrl} />)}
     </div>
   )
 }

@@ -13,8 +13,8 @@ export const ItemRow = styled.div`
 `
 export const Row = styled.div`
 direction: row;
-display: grid;
-flex-flow: wrap;
+display: flex;
+flex-flow: column;
 justify-items: center;
 `
 export const Column = styled.div`
@@ -171,6 +171,10 @@ export const ListContainer = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 6px 6px;
+  @media (min-width: 575px) { 
+  justify-content: center;
+  align-items: stretch;
+  } 
 `
 export const LikeContainer = styled.div`
   width: 100%;

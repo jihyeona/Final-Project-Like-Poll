@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Button } from '../lib/button'
-import { ProfileMessage, ProfileText, ProfileDiv, ProfileInfo, Form, Input } from '../lib/form'
+import { ProfileMessage, ProfileText, ProfileDiv, ProfileInfo, Form, Input, ProfileForm, SmallImgForm } from '../lib/form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import LikeList from '../components/LikeList'
-import { ListContainer, LikeContainer } from '../lib/container'
+import { ListContainer, LikeContainer, Row } from '../lib/container'
 
 export const MyPage = () => {
   const dispatch = useDispatch()
@@ -21,7 +21,7 @@ export const MyPage = () => {
 
 
   return (
-    <ListContainer>
+    <>
       <NavbarLight />
       <ProfileDiv>
         <ProfileMessage>Welcome {userName}!</ProfileMessage>
@@ -44,15 +44,15 @@ export const MyPage = () => {
           />
           <Button type='submit' title='Change password' />
         </Form>
-        <LikeContainer>
-          <LikeList />
-        </LikeContainer>
-
+        <SmallImgForm>
+          <LikeList/>
+        </SmallImgForm>
+        
 
         {/* {secretMessage && <ProfileMessage> {secretMessage} </ProfileMessage>} */}
         {/* <InputButton type='submit' onClick={() => dispatch(getSecretMessage())} value='Setting' /> */}
       </ProfileDiv>
-    </ListContainer>
+    </>
   )
 }
 
