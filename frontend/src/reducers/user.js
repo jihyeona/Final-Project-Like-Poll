@@ -153,7 +153,7 @@ export const logout = () => {
 
 export const UpdateProfilePic = (profileImage) => {
 
-  const PROFILE_URL = `https://heart-pick-final-project.herokuapp.com/users`
+  const PROFILE_URL = 'https://heart-pick-final-project.herokuapp.com/users'
 
   return (dispatch, getState) => {
     const userId = getState().user.login.userId
@@ -244,7 +244,7 @@ export const addpoll = (title, fileInput, userId) => {
 }
 
 export const deletepoll = (pollId, pollCreatorId) => {
-  const MYPOLL_URL = `https://heart-pick-final-project.herokuapp.com/${pollId}/${pollCreatorId}`
+  const MYPOLL_URL = `https://heart-pick-final-project.herokuapp.com/polls/${pollId}/${pollCreatorId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(MYPOLL_URL, {
@@ -302,7 +302,7 @@ export const additem = (name, description, fileInput, pollId, userId) => {
 }
 
 export const deleteitem = (itemId, itemCreatorId) => {
-  const MYITEM_URL = `https://heart-pick-final-project.herokuapp.com/${itemId}/${itemCreatorId}`
+  const MYITEM_URL = `https://heart-pick-final-project.herokuapp.com/items/${itemId}/${itemCreatorId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(MYITEM_URL, {
@@ -326,7 +326,7 @@ export const deleteitem = (itemId, itemCreatorId) => {
 }
 
 export const upvote = (loggedInUserId, itemId) => {
-  const ITEM_URL = `https://heart-pick-final-project.herokuapp.com/${itemId}`
+  const ITEM_URL = `https://heart-pick-final-project.herokuapp.com/items/${itemId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(ITEM_URL, {
