@@ -48,9 +48,13 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
       </ItemText>
       <ItemDescription>
         <h4>{name}</h4>
+<<<<<<< HEAD
         {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
         {open && <p>{description}</p>}
         {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}
+=======
+        <p>{description}</p>
+>>>>>>> wednesday townhall session, fixed flow for changing password, fixed sorting the itemcards, cleand up some error messages
       </ItemDescription>
     </ItemContainer>
   )
