@@ -1,10 +1,9 @@
 import React from 'react'
-import AddItem from './AddItem'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams, useHistory } from 'react-router-dom'
+import { deletepoll } from 'reducers/user'
 import { ItemCard } from '../components/ItemCard'
 import NavbarLight from '../components/NavBar'
-import { ItemDiv } from '../lib/container'
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
@@ -17,15 +16,17 @@ import { FiTrash2 } from 'react-icons/fi'
 
 
 export const ItemList = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const { pollId } = useParams()
   const polls = useSelector((store) => store.user.login.ongoingPolls)
   const loggedInUserId = useSelector((store) => store.user.login.userId)
   const poll = polls.filter(poll => poll._id === pollId)
-  const pollTitle = poll[0].title
-  const pollItems = poll[0].items
   const pollCreatorId = poll[0].userId
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const pollTitle = poll[0].title
+  const pollItems = poll[0].items.slice()
+  console.log(pollItems)
+  pollItems.sort((a, b) => b.likes.length - a.likes.length)
 
   const handleDelete = (e) => {
     e.preventDefault()
@@ -36,7 +37,6 @@ export const ItemList = () => {
   return (
     <ListContainer>
       <NavbarLight />
-      {/* <ItemDiv> */}
       <PollTitle>{pollTitle}</PollTitle>
       {loggedInUserId === pollCreatorId && <FiTrash2 onClick={(e) => handleDelete(e)}>delete the poll</FiTrash2>}
       {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you 💗</PollText></>}
@@ -49,7 +49,6 @@ export const ItemList = () => {
         }
       </ItemRow>
       <Fab pollId={pollId} />
-      {/* </ItemDiv> */}
     </ListContainer>
   )
 }

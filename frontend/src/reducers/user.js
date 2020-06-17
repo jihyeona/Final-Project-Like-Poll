@@ -71,7 +71,7 @@ export const signup = (name, email, password) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not creat account. Try a different username.'
+        throw new Error('Could not creat account. Try a different username.')
       })
       .then((json) => {
         console.log(json)
@@ -98,7 +98,7 @@ export const login = (name, password) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Unable to log in. Please check your username and password'
+        throw new Error('Unable to log in. Please check your username and password')
       })
       .then((json) => {
         console.log(json)
@@ -121,7 +121,7 @@ export const changepassword = (oldPassword, newPassword) => {
     const userId = getState().user.login.userId
     const accessToken = getState().user.login.accessToken
     fetch(`${PASSWORD_URL}/${userId}`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify({ oldPassword, newPassword }),
       headers: { Authorization: accessToken, 'Content-Type': 'application/json' },
     })
@@ -130,10 +130,9 @@ export const changepassword = (oldPassword, newPassword) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Unable to change password. Please check if current password is correct.'
+        throw new Error('Unable to change password. Please check if current password is correct.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(user.actions.setErrorMessage({ errorMessage: null }))
       })
       .catch((err) => {
@@ -173,7 +172,7 @@ export const UpdateProfilePic = (profileImage) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not update the profile image. Please try again.'
+        throw new Error('Could not update the profile image. Please try again.')
       })
       .then((json) => {
         console.log(json)
@@ -200,7 +199,7 @@ export const getpolls = () => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not fetch the existing polls.'
+        throw new Error('Could not fetch the existing polls.')
       })
       .then((json) => {
         console.log(json)
@@ -231,7 +230,7 @@ export const addpoll = (title, fileInput, userId) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not creat a poll. Try a different title.'
+        throw new Error('Could not creat a poll. Try a different title.')
       })
       .then((json) => {
         console.log(json)
@@ -256,7 +255,7 @@ export const deletepoll = (pollId, pollCreatorId) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-        } throw 'Could not delete the poll. Try again.'
+        } throw new Error('Could not delete the poll. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -289,7 +288,7 @@ export const additem = (name, description, fileInput, pollId, userId) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not add the item. Try again.'
+        throw new Error('Could not add the item. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -314,7 +313,7 @@ export const deleteitem = (itemId, itemCreatorId) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-        } throw 'Could not delete the item. Try again.'
+        } throw new Error('Could not delete the item. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -340,7 +339,7 @@ export const upvote = (loggedInUserId, itemId) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not upvote. Try again.'
+        throw new Error('Could not upvote. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -364,7 +363,7 @@ export const downvote = (pollId, itemId, loggedInUserId) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-        } throw 'Could not execute downvote. Try again.'
+        } throw new Error('Could not execute downvote. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -392,7 +391,7 @@ export const getlikeditems = () => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not fetch the liked items.'
+        throw new Error('Could not fetch the liked items.')
       })
       .then((json) => {
         console.log(json)
@@ -418,7 +417,7 @@ export const getSecretMessage = () => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not get information. Make sure you are logged in and try again.'
+        throw new Error('Could not get information. Make sure you are logged in and try again.')
       })
       // SUCCESS: Do something with the information we got back
       .then((json) => {

@@ -6,19 +6,10 @@ import { useState, useEffect } from 'react'
 import { ListContainer } from '../lib/container'
 import { useDispatch, useSelector } from 'react-redux'
 import { getpolls } from '../reducers/user'
+import { FabPoll } from 'components/FabPoll'
 
 export const PollList = () => {
   const dispatch = useDispatch()
-  // const POLL_URL = 'http://localhost:8080/polls'
-  // const [polls, setPolls] = useState([])
-  // useEffect(() => {
-  //   fetch(POLL_URL, { method: 'GET' })
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       setPolls(json)
-  //     })
-  //     .then(console.log(polls))
-  // }, [])
   useEffect(() => {
     dispatch(getpolls())
   }, [dispatch])
@@ -37,6 +28,7 @@ export const PollList = () => {
           }
         </section>
       </ThemesDiv>
+      <FabPoll />
     </ListContainer>
   )
 }

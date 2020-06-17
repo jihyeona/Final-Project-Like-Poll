@@ -48,6 +48,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
         {loggedInUserId === itemCreatorId && <FiTrash onClick={(e) => handleDelete(e)}>delete the item</FiTrash>}
         <h4>{manyLikes} likes</h4>
       </ItemText>
+<<<<<<< HEAD
 
   
           <ItemDescription>
@@ -60,6 +61,12 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
           </ItemDescription>
 
 
+=======
+      <ItemDescription>
+        <h4>{name}</h4>
+        <p>{description}</p>
+      </ItemDescription>
+>>>>>>> wednesday townhall session, fixed flow for changing password, fixed sorting the itemcards, cleand up some error messages
     </ItemContainer>
   )
 }
