@@ -7,17 +7,11 @@ import NavbarLight from '../components/NavBar'
 import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
-<<<<<<< HEAD
 import { useSelector, useDispatch } from 'react-redux'
-import { ListContainer, ItemRow, ThemeTitle, PollTitle, PollText } from '../lib/container'
+import { ListContainer, ItemRow, PollTitle, PollText } from '../lib/container'
 import { deletepoll } from 'reducers/user'
 import { useHistory } from 'react-router-dom'
 import { FiTrash2 } from 'react-icons/fi'
-
-
-=======
-import { ListContainer, ItemRow, PollTitle, PollText } from '../lib/container'
->>>>>>> 7596bb13f4d7e246bf0173f2a6bf6c08b7fd8225
 
 export const ItemList = () => {
   const dispatch = useDispatch()
@@ -42,13 +36,8 @@ export const ItemList = () => {
     <ListContainer>
       <NavbarLight />
       <PollTitle>{pollTitle}</PollTitle>
-<<<<<<< HEAD
       {loggedInUserId === pollCreatorId && <FiTrash2 onClick={(e) => handleDelete(e)}>delete the poll</FiTrash2>}
       {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you 💗</PollText></>}
-=======
-      {loggedInUserId === pollCreatorId && <button onClick={(e) => handleDelete(e)}>delete the poll</button>}
-      {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you  <span role='img' aria-label='heartemoji'> 💗</span></PollText></>}
->>>>>>> 7596bb13f4d7e246bf0173f2a6bf6c08b7fd8225
       {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the pink button on the right bottom.</PollText></>}
       <ItemRow>
         {
