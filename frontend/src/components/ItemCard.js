@@ -44,10 +44,10 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
         <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
         {loggedInUserId === itemCreatorId && <button onClick={(e) => handleDelete(e)}>delete the item</button>}
         <h4>{manyLikes} likes</h4>
-        </ItemText>
-        <ItemDescription>
-          <h4>{name}</h4>
-          <p>{description}</p>
+      </ItemText>
+      <ItemDescription>
+        <h4>{name}</h4>
+        <p>{description}</p>
       </ItemDescription>
     </ItemContainer>
   )
