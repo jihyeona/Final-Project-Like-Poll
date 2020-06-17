@@ -116,17 +116,14 @@ export const ItemDiv = styled.div`
   justify-content: center;
   align-items: center;
 `
-export const ItemContainer = styled.div`
-width: 30%;
-display: inline-flex;
-flex-direction:column;
-border-radius: 3px;
-margin-bottom: 60px;
+export const ItemContainer = styled.div` 
+width: 100%; 
+border-radius: 3px; 
+margin-bottom: 60px; 
 @media (min-width: 575px) { 
-  width: 266px;
-  border: 1px solid rgba(var(--b6a,219,219,219),1);
-}
-`
+  width: 266px; 
+  border: 1px solid rgba(var(--b6a,219,219,219),1); 
+} `
 
 export const ItemText = styled.div`
 margin-left: 0.5em;

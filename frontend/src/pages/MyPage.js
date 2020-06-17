@@ -33,7 +33,7 @@ export const MyPage = () => {
         <ProfileDiv>
           <ProfileMessage>Welcome {userName}!</ProfileMessage>
           <ProfileImage />
-          <Form onSubmit={(event) => handleChangePassword(event)}>
+          <ProfileForm onSubmit={(event) => handleChangePassword(event)}>
             <ProfileText>e-mail adress: {email}</ProfileText>
             <Input
               type='password'
@@ -50,9 +50,13 @@ export const MyPage = () => {
               onChange={(event) => setNewPassword(event.target.value)}
             />
             <Button type='submit' title='Change password' />
-          </Form>
+          </ProfileForm>
         </ProfileDiv>
-        <LikeList />
+
+        <ProfileForm>
+         <LikeList />
+        </ProfileForm>
+
       </ListContainer>
       {/* <SmallImgForm>
         

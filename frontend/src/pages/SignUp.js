@@ -4,6 +4,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { user, signup } from '../reducers/user'
 import { Headline } from '../lib/headline'
 import { Button } from '../lib/button'
+import { Column } from '../lib/container'
 import { Form, InfoDiv, Input, Register } from '../lib/form'
 
 
@@ -35,7 +36,7 @@ export const SignUp = () => {
   if (!accessToken) {
     // If user is logged out, show login form
     return (
-      <div>
+      <Column>
         <Form onSubmit={(event) => handleSignup(event)}>
           <Headline title='sign up' />
           <InfoDiv>
@@ -69,7 +70,7 @@ export const SignUp = () => {
             <Register>Already a member?<Link to='/login'><h4>Log in</h4></Link></Register>
           </InfoDiv>
         </Form>
-      </div>
+      </Column>
     )
   }
   else {

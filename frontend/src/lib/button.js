@@ -54,7 +54,16 @@ export const InputButton = styled.input`
     color: white;
   } 
 `
-export const BinButton= styled.input`
+export const BinButton = styled.input`
+`
+export const ReadButton = styled.button`
+height: 1.5em;
+width: 1.5em;
+border-radius: 100px;
+border: none;
+color: gray;
+flex-direction: row;
+display:flex;
 `
 export const Button = ({ title }) => {
   return (

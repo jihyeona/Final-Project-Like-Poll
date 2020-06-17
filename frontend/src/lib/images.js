@@ -3,24 +3,33 @@ import styled from 'styled-components/macro'
 
 export const ImgWrapper = styled.div`
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+  @media (min-width: 575px) { 
+    width: 170px;
+    height: 170px;
+  }
 `
 
 export const ProfilePic = styled.img`
-  width: 170px;
-  height: 170px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }
+  @media (min-width: 575px) { 
+    width: 170px;
+    height: 170px;
+  }
 `
 export const Thumbnail = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  max-height: 350px;
   object-fit: cover;
+  backgroundcolor: orange;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }
@@ -45,29 +54,43 @@ export const ThemeImage = styled.img`
 export const PicText = styled.button`
 position: absolute;
 display: none;
-top: 50%;
+top: 30%;
 z-index: 5;
 color: white;
 background: none;
 border: none;
 padding: 10px;
-font-size: 20px;
+font-size: 12px;
+overflow-wrap: break-word;
 cursor: pointer;
 ${ImgWrapper}:hover & {
   display: block;
 }
+@media (min-width: 575px) { 
+  position: absolute;
+  display: none;
+  top: 50%;
+  z-index: 5;
+  color: white;
+  background: none;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
 `
 
 export const SmallImage = styled.img`
-  width: 5em;
-  height: 5em; 
+  width: 33.3%;
+  height: -webkit-fill-available; 
   object-fit: cover;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }
-  @media (min-width: 575px) { 
-    width: 150px;
-    height: 150px; 
+  @media (min-width: 668px) {
+    width: 20%;
+    height: -webkit-fill-available;
+    min-height: 12em; 
   }
 `
 export const LinkText = styled.button`
@@ -90,7 +113,7 @@ ${ImgWrapper}:hover & {
 `
 export const ThumbWrapper = styled.div`
   position: relative;
-  width: 33.3%;
+  width: 100%;
   height: 8em;
 `
 

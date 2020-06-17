@@ -124,12 +124,12 @@ export const ProfileDiv = styled.div`
   padding: 2em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fafafa;
+  justify-content: flex-start;
+  align-items: flex-start;
   @media (min-width: 668px) { 
     width: 50%;
     align-items: flex-start;
+    margin-top: 3em;
   }
 `
 
@@ -149,6 +149,9 @@ export const ProfileImgForm = styled.form`
   display: flex;
   padding: 2rem; 
 `
+export const ProfileForm = styled.form`
+  width: 100%;
+  `
 export const SmallImgForm = styled.form`
   width: 100%;
   `
