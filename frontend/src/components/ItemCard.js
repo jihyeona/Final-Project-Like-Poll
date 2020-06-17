@@ -48,25 +48,12 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
         {loggedInUserId === itemCreatorId && <FiTrash onClick={(e) => handleDelete(e)}>delete the item</FiTrash>}
         <h4>{manyLikes} likes</h4>
       </ItemText>
-<<<<<<< HEAD
-
-  
-          <ItemDescription>
-          <h4>{name}</h4>
-          {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
-          {open &&  <p>{description}</p>}    
-          {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}      
-          
-
-          </ItemDescription>
-
-
-=======
       <ItemDescription>
         <h4>{name}</h4>
-        <p>{description}</p>
+        {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
+        {open && <p>{description}</p>}
+        {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}
       </ItemDescription>
->>>>>>> wednesday townhall session, fixed flow for changing password, fixed sorting the itemcards, cleand up some error messages
     </ItemContainer>
   )
 }
