@@ -1,19 +1,5 @@
 import styled from 'styled-components/macro'
 
-export const Register = styled.p`
-  color: #262626;
-  text-align: center;
-`
-export const ProfileMessage = styled.p`
-  color: #262626;
-  text-align: center;
-  font-size: 1.2em;
-`
-export const ProfileText = styled.p`
-  color: #4f4f4f;
-  font-size: 0.825rem;
-  margin-top: 2.5em;
-`
 export const Form = styled.form`
   width: 100%;
   --background: #fafafa;
@@ -41,12 +27,7 @@ export const Form = styled.form`
     margin: 2em 1em; 
   }
 `
-export const InfoDiv = styled.div`
-  margin: 2em auto;
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-`
+
 export const Input = styled.input`
   height: 2.5em;
   margin-top: 1em;
@@ -55,53 +36,7 @@ export const Input = styled.input`
   background-color: #fff;
   border-radius: 2px;
 `
-export const ProfileInfo = styled.div`
-  width: 60%;
-  margin: 1em auto;
-  --background: white;
-  --border: rgba(0, 0, 0, 0.125);
-  --borderDark: rgba(0, 0, 0, 0.25);
-  --borderDarker: rgba(0, 0, 0, 0.5);
-  --bgColorH: 0;
-  --bgColorS: 0%;
-  --bgColorL: 98%;
-  --fgColorH: 210;
-  --fgColorS: 50%;
-  --fgColorL: 38%;
-  --shadeDark: 0.3;
-  --shadeLight: 0.7;
-  --shadeNormal: 0.5;
-  --borderRadius: 0.125rem;
-  --highlight: #306090;
-  background: white;
-  box-shadow: 0 1rem 1rem -0.75rem var(--border);
-  display: flex;
-  flex-direction: column;
-  border-radius: 6px 6px;
-`
-export const ThemeInfo = styled.div`
-  width: 60%;
-  margin: 1em auto;
-  --border: rgba(0, 0, 0, 0.125);
-  --borderDark: rgba(0, 0, 0, 0.25);
-  --borderDarker: rgba(0, 0, 0, 0.5);
-  --bgColorH: 0;
-  --bgColorS: 0%;
-  --bgColorL: 98%;
-  --fgColorH: 210;
-  --fgColorS: 50%;
-  --fgColorL: 38%;
-  --shadeDark: 0.3;
-  --shadeLight: 0.7;
-  --shadeNormal: 0.5;
-  --borderRadius: 0.125rem;
-  --highlight: #306090;
-  background: white;
-  box-shadow: 0 1rem 1rem -0.75rem var(--border);
-  display: flex;
-  flex-direction: column;
-  border-radius: 6px 6px;
-`
+
 export const PollForm = styled.form`
   width: 75%;
   display: flex;
@@ -118,32 +53,6 @@ export const PollForm = styled.form`
     margin: 1em auto; 
   }
 `
-
-export const ProfileDiv = styled.div`
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  @media (min-width: 668px) { 
-    width: 50%;
-    align-items: flex-start;
-    margin-top: 3em;
-  }
-`
-
-export const ThemesDiv = styled.div`
-  display: flex;
-  background-color: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  @media (min-width: 668px) { 
-    margin-top: 10em;
-    margin-bottom: 8em;
-  }
-`
 export const ProfileImgForm = styled.form`
   display: flex;
   padding: 2rem; 
@@ -154,3 +63,20 @@ export const ProfileForm = styled.form`
 export const SmallImgForm = styled.form`
   width: 100%;
   `
+export const InputButton = styled.input`
+  margin-top: 0;
+  padding: 0.5em 1.5em;
+  color: #4f4f4f;
+  text-align: center;
+  font-size: 1.2em;
+  font-size: 0.825rem;
+  text-align: center;
+  height: 2.5em;
+  margin-top: 1em;
+  border-radius: 300px;
+  border: none;
+  &:hover {
+    background: #adbce6;
+    color: white;
+  } 
+`

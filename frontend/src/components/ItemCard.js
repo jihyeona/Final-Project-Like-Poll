@@ -1,12 +1,10 @@
-// stretch goal: user A also likes this. (like in Facebook post)
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { upvote, downvote } from '../reducers/user'
+import { upvote, downvote, deleteitem } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
 import { ReadButton } from 'lib/button'
 import { ItemText, ItemDescription, ItemContainer } from 'lib/container'
 import { FiHeart, FiTrash } from 'react-icons/fi'
-import { deleteitem } from 'reducers/user'
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, pollId }) => {
 

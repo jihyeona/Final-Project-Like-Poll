@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getlikeditems } from 'reducers/user'
-import { ThumbText, ThumbWrapper, SmallImage } from 'lib/images'
+import { SmallImage } from 'lib/images'
+import { ThumbWrapper } from 'lib/container'
+import { ThumbText } from 'lib/headline'
 import { Link } from 'react-router-dom'
 
 

@@ -4,7 +4,9 @@ import { user, login } from '../reducers/user'
 import { Headline } from '../lib/headline'
 import { Button } from '../lib/button'
 import { Column } from '../lib/container'
-import { Form, InfoDiv, Input, Register, ProfileMessage } from '../lib/form'
+import { Form, Input } from '../lib/form'
+import { InfoDiv } from '../lib/container'
+import { Register, ProfileMessage } from '../lib/headline'
 import { useHistory, Link } from 'react-router-dom'
 
 export const LogIn = () => {

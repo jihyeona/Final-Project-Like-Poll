@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import { user, signup } from '../reducers/user'
-import { Headline } from '../lib/headline'
+import { Headline, Register } from '../lib/headline'
 import { Button } from '../lib/button'
-import { Column } from '../lib/container'
-import { Form, InfoDiv, Input, Register } from '../lib/form'
+import { Column, InfoDiv } from '../lib/container'
+import { Form, Input } from '../lib/form'
 
 
 export const SignUp = () => {
@@ -26,15 +26,13 @@ export const SignUp = () => {
   useEffect(() => {
     dispatch(user.actions.setErrorMessage({ errorMessage: null }))
   })
-  // To sign up a user.
+
   const handleSignup = (event) => {
     event.preventDefault()
-    //dispatch thunk
     dispatch(signup(name, email, password))
   }
 
   if (!accessToken) {
-    // If user is logged out, show login form
     return (
       <Column>
         <Form onSubmit={(event) => handleSignup(event)}>

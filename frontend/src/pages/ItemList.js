@@ -7,10 +7,9 @@ import NavbarLight from '../components/NavBar'
 import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
-import { ListContainer, ItemRow, PollTitle, PollText } from '../lib/container'
+import { ListContainer, ItemRow } from '../lib/container'
+import { PollTitle, PollText } from '../lib/headline'
 import { FiTrash2 } from 'react-icons/fi'
-
-
 
 export const ItemList = () => {
   const dispatch = useDispatch()
@@ -37,7 +36,7 @@ export const ItemList = () => {
       <PollTitle>{pollTitle}</PollTitle>
       {loggedInUserId === pollCreatorId && <FiTrash2 onClick={(e) => handleDelete(e)}>delete the poll</FiTrash2>}
       {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you <span role='img' aria-label='heartemoji'>💗</span></PollText></>}
-      {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the pink button on the right bottom.</PollText></>}
+      {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the button on the right bottom.</PollText></>}
       <ItemRow>
         {
           pollItems.map(item => (

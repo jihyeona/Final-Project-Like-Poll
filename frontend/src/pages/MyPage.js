@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Button } from '../lib/button'
-import { ProfileMessage, ProfileText, ProfileDiv, Input, ProfileForm } from '../lib/form'
+import { Input, ProfileForm } from '../lib/form'
+import { ProfileMessage, ProfileText } from '../lib/headline'
+import { ProfileDiv, ProfileContainer } from '../lib/container'
 import { useDispatch, useSelector } from 'react-redux'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import LikeList from '../components/LikeList'
-import { ProfileContainer } from '../lib/container'
 import { changepassword } from 'reducers/user'
 
 export const MyPage = () => {

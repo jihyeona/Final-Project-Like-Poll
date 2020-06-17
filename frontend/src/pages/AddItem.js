@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Input, PollForm } from '../lib/form'
-import { ListContainer, PollText } from '../lib/container'
+import { AddPollContainer } from '../lib/container'
+import { PollText } from '../lib/headline'
 import { Button } from '../lib/button'
 import { additem } from 'reducers/user'
 import { useParams, useHistory } from 'react-router-dom'
@@ -19,7 +20,6 @@ export const AddItem = () => {
 
   const handleItemSubmit = (e) => {
     e.preventDefault()
-    //dispatch thunk
     dispatch(additem(name, description, fileInput, pollId, userId))
     setName('')
     setDescription('')
@@ -27,7 +27,7 @@ export const AddItem = () => {
   }
 
   return (
-    <ListContainer>
+    <AddPollContainer>
       <NavbarLight />
       <AddPollLottie />
       <PollForm onSubmit={handleItemSubmit}>
@@ -48,7 +48,7 @@ export const AddItem = () => {
           Add item
       </Button>
       </PollForm>
-    </ListContainer>
+    </AddPollContainer>
   )
 }
 

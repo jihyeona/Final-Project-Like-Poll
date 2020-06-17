@@ -37,25 +37,7 @@ export const ButtonInput = styled.button`
     color: white;
   }
 `
-export const InputButton = styled.input`
-  margin-top: 0;
-  padding: 0.5em 1.5em;
-  color: #4f4f4f;
-  text-align: center;
-  font-size: 1.2em;
-  font-size: 0.825rem;
-  text-align: center;
-  height: 2.5em;
-  margin-top: 1em;
-  border-radius: 300px;
-  border: none;
-  &:hover {
-    background: #adbce6;
-    color: white;
-  } 
-`
-export const BinButton = styled.input`
-`
+
 export const ReadButton = styled.button`
 height: 1.5em;
 width: 1.5em;
@@ -65,6 +47,52 @@ color: gray;
 flex-direction: row;
 display:flex;
 `
+export const ProfileImgButton = styled.button`
+position: absolute;
+display: none;
+top: 30%;
+z-index: 5;
+color: white;
+background: none;
+border: none;
+padding: 10px;
+font-size: 12px;
+overflow-wrap: break-word;
+cursor: pointer;
+${ImgWrapper}:hover & {
+  display: block;
+}
+@media (min-width: 668px) { 
+  position: absolute;
+  display: none;
+  top: 50%;
+  z-index: 5;
+  color: white;
+  background: none;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+`
+export const LinkText = styled.button`
+position: absolute;
+top: 20%;
+z-index: 5;
+color: white;
+background: none;
+border: none;
+font-size: 12px;
+cursor: pointer;
+${ImgWrapper}:hover & {
+  display: block;
+}
+@media (min-width: 668px) { 
+  top: 40%;
+  left: 20%; 
+}
+`
+
 export const Button = ({ title }) => {
   return (
     <ButtonInput>

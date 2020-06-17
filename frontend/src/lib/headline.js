@@ -1,6 +1,21 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components/macro'
 
+export const Register = styled.p`
+  color: #262626;
+  text-align: center;
+`
+export const ProfileMessage = styled.p`
+  color: #262626;
+  text-align: center;
+  font-size: 1.2em;
+`
+export const ProfileText = styled.p`
+  color: #4f4f4f;
+  font-size: 0.825rem;
+  margin-top: 2.5em;
+`
+
 export const ThemeTitle = styled.h1`
 font-family: "Roboto", sans-serif;
 color: #262626;
@@ -15,6 +30,89 @@ text-align: center;
 font-size: 1.2em;
 text-transform: uppercase;
 border-radius: 6px 6px 0 0;
+`
+export const ThemeTitle = styled.h1`
+display: flex;
+text-align: center;
+justify-self: center;
+text-transform: uppercase;
+font-size: 1.4em;
+font-weight: 400;
+text-decoration: none;
+top: 25%;
+left: 7%;
+position: absolute;
+color: #fafafa;
+flex: 1;
+overflow-wrap: break-word;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+@media (min-width: 668px) { 
+  width: 80%; 
+  display: flex; 
+  justify-content: center; 
+  font-size: 2em;
+  top: 20%;
+  left: 10%;
+}
+`
+export const PollTitle = styled.h1`
+display: flex;
+text-align: center;
+justify-self: center;
+text-transform: uppercase;
+font-size: 1.4em;
+font-weight: 400;
+text-decoration: none;
+color: #232b2b;
+flex: 1;
+overflow-wrap: break-word;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+margin-top: 1.5em;
+@media (min-width: 668px) { 
+  width: 100%; 
+  display: flex; 
+  justify-content: center; 
+  font-size: 2em;
+}
+`
+export const PollText = styled.h1`
+display: flex;
+text-align: center;
+justify-self: center;
+font-size: 1em;
+font-weight: 300;
+padding: 1em;
+text-decoration: none;
+color: #232b2b;
+flex: 1;
+overflow-wrap: break-word;
+text-overflow: ellipsis;
+@media (min-width: 668px) { 
+  display: flex; 
+  justify-content: center; 
+  font-size: 2em;
+  top: 20%;
+  left: 10%;
+}
+`
+export const ThumbText = styled.p`
+position: absolute;
+display: none;
+top: 30%;
+padding-left: 1em;
+color: white;
+background: none;
+border: none;
+font-size: 1.5em;
+font-weight: 400;
+cursor: pointer;
+${LikeThumbs}:hover & {
+  display: block;
+}
 `
 const MovingBackground = keyframes`
 0%{background-position:0% 50%}
@@ -34,7 +132,7 @@ font-size: 1.2em;
 text-transform: uppercase;
 border-radius: 6px 6px 0 0;
 `
-export const Headline = ({title}) => {
+export const Headline = ({ title }) => {
   return (
     <AnimationTitle>
       {title}
