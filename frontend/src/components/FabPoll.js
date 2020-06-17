@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FabButton, Plus } from 'lib/button'
-import styled from 'styled-components/macro'
 
 export const FabPoll = () => {
   return (

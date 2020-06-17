@@ -2,19 +2,15 @@ import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ImgWrapper, ProfilePic, PicText } from '../lib/images'
 import { UpdateProfilePic } from 'reducers/user'
-import { HiddenButton } from '../lib/button'
-
 
 export const ProfileImage = () => {
   const dispatch = useDispatch()
-  // const [profileImage, setProfileImage] = useState('')
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const image = useSelector((state) => state.user.login.profileImage)
   const fileInput = useRef()
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    //dispatch thunk for updating the profile image
     dispatch(UpdateProfilePic(fileInput.current.files[0]))
   }
 
@@ -28,7 +24,7 @@ export const ProfileImage = () => {
       {showUpdateForm &&
         <form onSubmit={handleFormSubmit}>
           <label>
-          <input type="file" ref={fileInput} />
+            <input type="file" ref={fileInput} />
           </label>
           <button type="submit">
             Change Profile Image

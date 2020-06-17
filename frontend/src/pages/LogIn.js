@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { user, login } from '../reducers/user'
-import { Headline, AnimationTitle } from '../lib/headline'
+import { Headline } from '../lib/headline'
 import { Button } from '../lib/button'
 import { Column } from '../lib/container'
 import { Form, InfoDiv, Input, Register, ProfileMessage } from '../lib/form'
@@ -15,28 +15,25 @@ export const LogIn = () => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
 
-  // If user is logged in, show profile
   useEffect(() => {
     if (accessToken) {
       history.push('/home')
       console.log('push successful')
     }
   })
-  // clean up the error message from previous page
+
   useEffect(() => {
     dispatch(user.actions.setErrorMessage({ errorMessage: null }))
   }, [dispatch])
-  // To log in a user.
+
   const handleLogin = (event) => {
     event.preventDefault()
-    //dispatch thunk
     dispatch(login(name, password))
     setName('')
     setPassword('')
   }
 
   if (!accessToken) {
-    // If user is logged out, show login form
     return (
       <Column>
         <Form onSubmit={(event) => handleLogin(event)}>
@@ -61,7 +58,7 @@ export const LogIn = () => {
             <Register>Not a member?<Link to="/"><h4>Sign up</h4></Link></Register>
           </InfoDiv>
         </Form>
-        </Column>
+      </Column>
     )
   } else {
     return (null)

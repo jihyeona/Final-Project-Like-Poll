@@ -1,13 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ProfileDiv, Input, PollForm } from '../lib/form'
-import { ListContainer, Column } from '../lib/container'
+import { Input, PollForm } from '../lib/form'
+import { ListContainer, PollText } from '../lib/container'
 import { Button } from '../lib/button'
 import { additem } from 'reducers/user'
 import { useParams, useHistory } from 'react-router-dom'
 import { AddPollLottie } from '../components/AddPollLottie'
 import NavbarLight from '../components/NavBar'
-import { PollText } from '../lib/container'
 
 export const AddItem = () => {
   const dispatch = useDispatch()
