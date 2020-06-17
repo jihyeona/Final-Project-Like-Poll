@@ -117,7 +117,9 @@ export const ItemDiv = styled.div`
   align-items: center;
 `
 export const ItemContainer = styled.div`
-width: 100%;
+width: 30%;
+display: inline-flex;
+flex-direction:column;
 border-radius: 3px;
 margin-bottom: 60px;
 @media (min-width: 575px) { 

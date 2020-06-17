@@ -12,6 +12,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ListContainer, ItemRow, ThemeTitle, PollTitle, PollText } from '../lib/container'
 import { deletepoll } from 'reducers/user'
 import { useHistory } from 'react-router-dom'
+import { FiTrash2 } from 'react-icons/fi'
+
 
 
 export const ItemList = () => {
@@ -36,7 +38,7 @@ export const ItemList = () => {
       <NavbarLight />
       {/* <ItemDiv> */}
       <PollTitle>{pollTitle}</PollTitle>
-      {loggedInUserId === pollCreatorId && <button onClick={(e) => handleDelete(e)}>delete the poll</button>}
+      {loggedInUserId === pollCreatorId && <FiTrash2 onClick={(e) => handleDelete(e)}>delete the poll</FiTrash2>}
       {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you 💗</PollText></>}
       {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the pink button on the right bottom.</PollText></>}
       <ItemRow>

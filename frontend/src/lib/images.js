@@ -18,10 +18,9 @@ export const ProfilePic = styled.img`
   }
 `
 export const Thumbnail = styled.img`
-  width: 100%;
-  max-height: 350px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  backgroundcolor: orange;
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
   }

@@ -34,8 +34,9 @@ svg {
   display: inline-flex;
 }
 svg:hover {
-  width: 2.5em; 
-  height: auto;
+  /* width: 2.5em; 
+  height: auto; */
+  transform: scale(1.5, 1.5);
 }
 
 @keyframes MovingBackground {
