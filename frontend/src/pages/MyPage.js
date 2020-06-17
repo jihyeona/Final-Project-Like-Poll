@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
 import LikeList from '../components/LikeList'
-import { ListContainer } from '../lib/container'
+import { ProfileContainer } from '../lib/container'
 import { changepassword } from 'reducers/user'
 
 export const MyPage = () => {
@@ -22,10 +22,9 @@ export const MyPage = () => {
     setNewPassword('')
   }
 
-
   return (
     <>
-      <ListContainer>
+      <ProfileContainer>
         <NavbarLight />
         <ProfileDiv>
           <ProfileMessage>Welcome {userName}!</ProfileMessage>
@@ -49,12 +48,10 @@ export const MyPage = () => {
             <Button type='submit' title='Change password' />
           </ProfileForm>
         </ProfileDiv>
-
         <ProfileForm>
           <LikeList />
         </ProfileForm>
-
-      </ListContainer>
+      </ProfileContainer>
     </>
 
 

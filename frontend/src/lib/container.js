@@ -157,6 +157,21 @@ export const ListContainer = styled.div`
    margin-top: 3em;
   } 
 `
+export const ProfileContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 6px 6px;
+  margin-top: 3em;
+  @media (min-width: 686px) { 
+   justify-content: center;
+   align-items: stretch;
+   margin-top: 3em;
+  } 
+`
 export const LikeContainer = styled.div`
   width: 100%;
   background: #fafafa;
