@@ -151,8 +151,7 @@ export const ListContainer = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 6px 6px;
-  margin-top: 5em;
-  @media (min-width: 575px) { 
+  @media (min-width: 686px) { 
    justify-content: center;
    align-items: stretch;
    margin-top: 3em;
