@@ -7,13 +7,9 @@ import NavbarLight from '../components/NavBar'
 import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
-<<<<<<< HEAD
 import { ListContainer, ItemRow } from '../lib/container'
 import { PollTitle, PollText } from '../lib/headline'
 import { FiTrash2 } from 'react-icons/fi'
-=======
-import { ListContainer, ItemRow, PollTitle, PollText } from '../lib/container'
->>>>>>> wednesday townhall session, fixed flow for changing password, fixed sorting the itemcards, cleand up some error messages
 
 export const ItemList = () => {
   const dispatch = useDispatch()
@@ -38,15 +34,9 @@ export const ItemList = () => {
     <ListContainer>
       <NavbarLight />
       <PollTitle>{pollTitle}</PollTitle>
-<<<<<<< HEAD
       {loggedInUserId === pollCreatorId && <FiTrash2 onClick={(e) => handleDelete(e)}>delete the poll</FiTrash2>}
       {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you <span role='img' aria-label='heartemoji'>💗</span></PollText></>}
       {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the button on the right bottom.</PollText></>}
-=======
-      {loggedInUserId === pollCreatorId && <button onClick={(e) => handleDelete(e)}>delete the poll</button>}
-      {pollItems.length !== 0 && <><VoteLottie id='votelottie' /><PollText>Pick the items that you  <span role='img' aria-label='heartemoji'> 💗</span></PollText></>}
-      {pollItems.length === 0 && <><AddItemLottie /><PollText>Add item with the pink button on the right bottom.</PollText></>}
->>>>>>> wednesday townhall session, fixed flow for changing password, fixed sorting the itemcards, cleand up some error messages
       <ItemRow>
         {
           pollItems.map(item => (
