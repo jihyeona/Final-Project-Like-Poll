@@ -270,7 +270,7 @@ export const deletepoll = (pollId, pollCreatorId) => {
 export const additem = (name, description, fileInput, pollId, userId) => {
   console.log(pollId)
   const pollParam = pollId
-  const ITEM_URL = `https://heart-pick-final-project.herokuapp.com/${pollParam}`
+  const ITEM_URL = `https://heart-pick-final-project.herokuapp.com/polls/${pollParam}`
   const formData = new FormData()
   formData.append('itemimage', fileInput.current.files[0])
   formData.append('name', name)

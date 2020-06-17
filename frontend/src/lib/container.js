@@ -151,10 +151,11 @@ export const ListContainer = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 6px 6px;
-  @media (min-width: 686px) { 
+  margin-top: 3.4em;
+  @media (min-width: 668px) { 
    justify-content: center;
    align-items: stretch;
-   margin-top: 3em;
+   margin-top: 1em;
   } 
 `
 export const ProfileContainer = styled.div`
