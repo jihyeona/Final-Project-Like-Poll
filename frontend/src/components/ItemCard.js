@@ -32,7 +32,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
 
   const handleDelete = (e) => {
     e.preventDefault()
-    dispatch(deleteitem(itemId, itemCreatorId))
+    dispatch(deleteitem(itemId))
   }
 
   return (
@@ -48,19 +48,9 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
       </ItemText>
       <ItemDescription>
         <h4>{name}</h4>
-<<<<<<< HEAD
-<<<<<<< HEAD
         {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
         {open && <p>{description}</p>}
         {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}
-=======
-        <p>{description}</p>
->>>>>>> wednesday townhall session, fixed flow for changing password, fixed sorting the itemcards, cleand up some error messages
-=======
-        {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
-        {open && <p>{description}</p>}
-        {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}
->>>>>>> 49c3350926962e58be6df1a6f6b6fd68797d1cc6
       </ItemDescription>
     </ItemContainer>
   )

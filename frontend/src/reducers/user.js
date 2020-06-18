@@ -301,8 +301,8 @@ export const additem = (name, description, fileInput, pollId, userId) => {
   }
 }
 
-export const deleteitem = (itemId, itemCreatorId) => {
-  const MYITEM_URL = `https://heart-pick-final-project.herokuapp.com/items/${itemId}/${itemCreatorId}`
+export const deleteitem = (itemId) => {
+  const MYITEM_URL = `https://heart-pick-final-project.herokuapp.com/items/${itemId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(MYITEM_URL, {

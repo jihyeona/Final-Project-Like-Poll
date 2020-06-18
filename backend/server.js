@@ -236,16 +236,16 @@ app.post('/items/:itemId', async (req, res) => {
 })
 
 // this is the endpoint to delete an item.
-app.delete('/items/:itemId/:itemCreatorId', authenticateUser)
-app.delete('/items/:itemId/:itemCreatorId', async (req, res) => {
+app.delete('/items/:itemId', authenticateUser)
+app.delete('/items/:itemId', async (req, res) => {
   try {
-    const { itemId, itemCreatorId } = req.params
+    const { itemId } = req.params
     const item = await Poll.findOneAndUpdate(
       { 'items._id': itemId },
       {
         $pull: {
           'items': {
-            'userId': itemCreatorId
+            '_id': itemId
           }
         }
       },
@@ -317,7 +317,7 @@ app.delete('/:pollId/:itemId/likes/:userId', async (req, res) => {
 })
 
 // this is the endpoint to update password
-app.post('/password/:userId', authenticateUser)
+app.put('/password/:userId', authenticateUser)
 app.put('/password/:userId', async (req, res) => {
   try {
     const { userId } = req.params
