@@ -7,8 +7,15 @@ import NavbarLight from '../components/NavBar'
 import { Fab } from 'components/Fab'
 import { AddItemLottie } from 'components/AddItemLottie'
 import { VoteLottie } from 'components/VoteLottie'
+<<<<<<< HEAD
 import { ListContainer, ItemRow } from '../lib/container'
 import { PollTitle, PollText } from '../lib/headline'
+=======
+import { useSelector, useDispatch } from 'react-redux'
+import { ListContainer, ItemRow, PollTitle, PollText } from '../lib/container'
+import { deletepoll } from 'reducers/user'
+import { useHistory } from 'react-router-dom'
+>>>>>>> 49c3350926962e58be6df1a6f6b6fd68797d1cc6
 import { FiTrash2 } from 'react-icons/fi'
 
 export const ItemList = () => {
