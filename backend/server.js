@@ -236,16 +236,16 @@ app.post('/items/:itemId', async (req, res) => {
 })
 
 // this is the endpoint to delete an item.
-app.delete('/items/:itemId/:itemCreatorId', authenticateUser)
-app.delete('/items/:itemId/:itemCreatorId', async (req, res) => {
+app.delete('/items/:itemId', authenticateUser)
+app.delete('/items/:itemId', async (req, res) => {
   try {
-    const { itemId, itemCreatorId } = req.params
+    const { itemId } = req.params
     const item = await Poll.findOneAndUpdate(
       { 'items._id': itemId },
       {
         $pull: {
           'items': {
-            'userId': itemCreatorId
+            '_id': itemId
           }
         }
       },
@@ -317,23 +317,22 @@ app.delete('/:pollId/:itemId/likes/:userId', async (req, res) => {
 })
 
 // this is the endpoint to update password
-app.post('/password/:userId', authenticateUser)
-app.post('/password/:userId', async (req, res) => {
+app.put('/password/:userId', authenticateUser)
+app.put('/password/:userId', async (req, res) => {
   try {
     const { userId } = req.params
     const { oldPassword, newPassword } = req.body
-    // const user = await User.findOneAndUpdate({ _id: userId }, { password: bcrypt.hashSync(newPassword) }, { new: true })
     const user = await User.findOne({ _id: userId })
     console.log(user)
     if (user && bcrypt.compareSync(oldPassword, user.password)) {
       console.log('comparing the password...')
-      const newUser = await User.findAndModify({ _id: userId }, { password: bcrypt.hashSync(newPassword) }, { new: true })
+      const newUser = await User.findOneAndUpdate({ _id: userId }, { password: bcrypt.hashSync(newPassword) }, { new: true })
       res.json(newUser)
     } else {
       res.status(404).json({ notFound: true })
     }
   } catch (err) {
-    res.status(400).json({ errors: err.errors })
+    res.status(400).json({ err: err })
   }
 })
 

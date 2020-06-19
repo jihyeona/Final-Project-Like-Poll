@@ -58,7 +58,7 @@ export const user = createSlice({
 
 //Thunks
 export const signup = (name, email, password) => {
-  const SIGNUP_URL = 'http://localhost:8080/users'
+  const SIGNUP_URL = 'https://heart-pick-final-project.herokuapp.com/users'
   return (dispatch) => {
     console.log('Trying to sign up ...')
     fetch(SIGNUP_URL, {
@@ -71,7 +71,7 @@ export const signup = (name, email, password) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not creat account. Try a different username.'
+        throw new Error('Could not creat account. Try a different username.')
       })
       .then((json) => {
         console.log(json)
@@ -86,7 +86,7 @@ export const signup = (name, email, password) => {
 }
 
 export const login = (name, password) => {
-  const LOGIN_URL = 'http://localhost:8080/sessions'
+  const LOGIN_URL = 'https://heart-pick-final-project.herokuapp.com/sessions'
   return (dispatch) => {
     fetch(LOGIN_URL, {
       method: 'POST',
@@ -98,7 +98,7 @@ export const login = (name, password) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Unable to log in. Please check your username and password'
+        throw new Error('Unable to log in. Please check your username and password')
       })
       .then((json) => {
         console.log(json)
@@ -116,12 +116,12 @@ export const login = (name, password) => {
 }
 
 export const changepassword = (oldPassword, newPassword) => {
-  const PASSWORD_URL = 'http://localhost:8080/password'
+  const PASSWORD_URL = 'https://heart-pick-final-project.herokuapp.com/password'
   return (dispatch, getState) => {
     const userId = getState().user.login.userId
     const accessToken = getState().user.login.accessToken
     fetch(`${PASSWORD_URL}/${userId}`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify({ oldPassword, newPassword }),
       headers: { Authorization: accessToken, 'Content-Type': 'application/json' },
     })
@@ -130,10 +130,9 @@ export const changepassword = (oldPassword, newPassword) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Unable to change password. Please check if current password is correct.'
+        throw new Error('Unable to change password. Please check if current password is correct.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(user.actions.setErrorMessage({ errorMessage: null }))
       })
       .catch((err) => {
@@ -154,7 +153,7 @@ export const logout = () => {
 
 export const UpdateProfilePic = (profileImage) => {
 
-  const PROFILE_URL = `http://localhost:8080/users`
+  const PROFILE_URL = 'https://heart-pick-final-project.herokuapp.com/users'
 
   return (dispatch, getState) => {
     const userId = getState().user.login.userId
@@ -173,7 +172,7 @@ export const UpdateProfilePic = (profileImage) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not update the profile image. Please try again.'
+        throw new Error('Could not update the profile image. Please try again.')
       })
       .then((json) => {
         console.log(json)
@@ -187,7 +186,7 @@ export const UpdateProfilePic = (profileImage) => {
 }
 
 export const getpolls = () => {
-  const POLL_URL = 'http://localhost:8080/polls'
+  const POLL_URL = 'https://heart-pick-final-project.herokuapp.com/polls'
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     console.log('Trying to fetch the polls ...')
@@ -200,7 +199,7 @@ export const getpolls = () => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not fetch the existing polls.'
+        throw new Error('Could not fetch the existing polls.')
       })
       .then((json) => {
         console.log(json)
@@ -213,7 +212,7 @@ export const getpolls = () => {
 }
 
 export const addpoll = (title, fileInput, userId) => {
-  const POLL_URL = 'http://localhost:8080/polls'
+  const POLL_URL = 'https://heart-pick-final-project.herokuapp.com/polls'
   const formData = new FormData()
   formData.append('pollimage', fileInput.current.files[0])
   formData.append('title', title)
@@ -231,7 +230,7 @@ export const addpoll = (title, fileInput, userId) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not creat a poll. Try a different title.'
+        throw new Error('Could not creat a poll. Try a different title.')
       })
       .then((json) => {
         console.log(json)
@@ -245,7 +244,7 @@ export const addpoll = (title, fileInput, userId) => {
 }
 
 export const deletepoll = (pollId, pollCreatorId) => {
-  const MYPOLL_URL = `http://localhost:8080/polls/${pollId}/${pollCreatorId}`
+  const MYPOLL_URL = `https://heart-pick-final-project.herokuapp.com/polls/${pollId}/${pollCreatorId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(MYPOLL_URL, {
@@ -256,7 +255,7 @@ export const deletepoll = (pollId, pollCreatorId) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-        } throw 'Could not delete the poll. Try again.'
+        } throw new Error('Could not delete the poll. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -271,7 +270,7 @@ export const deletepoll = (pollId, pollCreatorId) => {
 export const additem = (name, description, fileInput, pollId, userId) => {
   console.log(pollId)
   const pollParam = pollId
-  const ITEM_URL = `http://localhost:8080/polls/${pollParam}`
+  const ITEM_URL = `https://heart-pick-final-project.herokuapp.com/polls/${pollParam}`
   const formData = new FormData()
   formData.append('itemimage', fileInput.current.files[0])
   formData.append('name', name)
@@ -289,7 +288,7 @@ export const additem = (name, description, fileInput, pollId, userId) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not add the item. Try again.'
+        throw new Error('Could not add the item. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -302,8 +301,8 @@ export const additem = (name, description, fileInput, pollId, userId) => {
   }
 }
 
-export const deleteitem = (itemId, itemCreatorId) => {
-  const MYITEM_URL = `http://localhost:8080/items/${itemId}/${itemCreatorId}`
+export const deleteitem = (itemId) => {
+  const MYITEM_URL = `https://heart-pick-final-project.herokuapp.com/items/${itemId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(MYITEM_URL, {
@@ -314,7 +313,7 @@ export const deleteitem = (itemId, itemCreatorId) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-        } throw 'Could not delete the item. Try again.'
+        } throw new Error('Could not delete the item. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -327,7 +326,7 @@ export const deleteitem = (itemId, itemCreatorId) => {
 }
 
 export const upvote = (loggedInUserId, itemId) => {
-  const ITEM_URL = `http://localhost:8080/items/${itemId}`
+  const ITEM_URL = `https://heart-pick-final-project.herokuapp.com/items/${itemId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(ITEM_URL, {
@@ -340,7 +339,7 @@ export const upvote = (loggedInUserId, itemId) => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not upvote. Try again.'
+        throw new Error('Could not upvote. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -353,7 +352,7 @@ export const upvote = (loggedInUserId, itemId) => {
 }
 
 export const downvote = (pollId, itemId, loggedInUserId) => {
-  const LIKE_URL = `http://localhost:8080/${pollId}/${itemId}/likes/${loggedInUserId}`
+  const LIKE_URL = `https://heart-pick-final-project.herokuapp.com/${pollId}/${itemId}/likes/${loggedInUserId}`
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     fetch(LIKE_URL, {
@@ -364,7 +363,7 @@ export const downvote = (pollId, itemId, loggedInUserId) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-        } throw 'Could not execute downvote. Try again.'
+        } throw new Error('Could not execute downvote. Try again.')
       })
       .then((json) => {
         console.log(json)
@@ -378,7 +377,7 @@ export const downvote = (pollId, itemId, loggedInUserId) => {
 }
 
 export const getlikeditems = () => {
-  const LIKE_URL = 'http://localhost:8080/likes'
+  const LIKE_URL = 'https://heart-pick-final-project.herokuapp.com/likes'
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     const userId = getState().user.login.userId
@@ -392,7 +391,7 @@ export const getlikeditems = () => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not fetch the liked items.'
+        throw new Error('Could not fetch the liked items.')
       })
       .then((json) => {
         console.log(json)
@@ -405,7 +404,7 @@ export const getlikeditems = () => {
 }
 
 export const getSecretMessage = () => {
-  const USERS_URL = 'http://localhost:8080/users'
+  const USERS_URL = 'https://heart-pick-final-project.herokuapp.com/users'
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     const userId = getState().user.login.userId
@@ -418,7 +417,7 @@ export const getSecretMessage = () => {
         if (res.ok) {
           return res.json()
         }
-        throw 'Could not get information. Make sure you are logged in and try again.'
+        throw new Error('Could not get information. Make sure you are logged in and try again.')
       })
       // SUCCESS: Do something with the information we got back
       .then((json) => {

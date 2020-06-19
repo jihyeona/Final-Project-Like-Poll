@@ -54,6 +54,7 @@ export const SmallImage = styled.img`
 `
 
 
+<<<<<<< HEAD
 export const LikeThumbs = styled.div`
   background-image: url(${props => props.img});
   background-size: cover;
@@ -64,3 +65,20 @@ export const LikeThumbs = styled.div`
     filter: brightness(80%);
   }
 `
+=======
+
+
+// export const LikeThumbs = styled.div`
+//   background-image: url(${props => props.img});
+//   background-size: cover;
+//   width: 100%;
+//   height: 100%;
+//   display: block;
+//   &:hover {
+//     filter: brightness(80%);
+//   }
+// `
+
+
+
+>>>>>>> 98a52cc970cea9608cd23b5e244bfe6649c0b226
