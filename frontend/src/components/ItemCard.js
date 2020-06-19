@@ -1,12 +1,10 @@
-// stretch goal: user A also likes this. (like in Facebook post)
-import React, { useState } from 'react'
+ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { upvote, downvote } from '../reducers/user'
+import { upvote, downvote, deleteitem } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
 import { ReadButton } from 'lib/button'
 import { ItemText, ItemDescription, ItemContainer } from 'lib/container'
 import { FiHeart, FiTrash } from 'react-icons/fi'
-import { deleteitem } from 'reducers/user'
 
 export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, pollId }) => {
 
@@ -34,7 +32,7 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
 
   const handleDelete = (e) => {
     e.preventDefault()
-    dispatch(deleteitem(itemId, itemCreatorId))
+    dispatch(deleteitem(itemId))
   }
 
   return (
@@ -45,22 +43,16 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
       />
       <ItemText>
         <FiHeart onClick={(event) => handleUpvote(event)} style={{ fill: upvoted ? 'red' : 'none' }}></FiHeart>
-        {loggedInUserId === itemCreatorId && <FiTrash onClick={(e) => handleDelete(e)}>delete the item</FiTrash>}
         <h4>{manyLikes} likes</h4>
+        {loggedInUserId === itemCreatorId && <FiTrash onClick={(e) => handleDelete(e)}>delete the item</FiTrash>}
       </ItemText>
-
-  
-          <ItemDescription>
-          <h4>{name}</h4>
-          {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
-          {open &&  <p>{description}</p>}    
-          {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}      
-          
-
-          </ItemDescription>
-
-
+      <ItemDescription>
+        <h4>{name}</h4>
+        {!open && <p>{description.length >= maxLength ? description.slice(0, 100) + '...' : `${description}`}</p>}
+        {open && <p>{description}</p>}
+        {!open && description.length >= maxLength && <ReadButton onClick={() => setOpen(prev => !prev)}>more</ReadButton>}
+      </ItemDescription>
     </ItemContainer>
   )
 }
-export default ItemCard   
+export default ItemCard 

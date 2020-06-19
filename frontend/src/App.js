@@ -6,7 +6,7 @@ import ItemList from './pages/ItemList'
 import MyPage from './pages/MyPage'
 import AddPoll from './pages/AddPoll'
 import AddItem from './pages/AddItem'
-import { Provider } from "react-redux"
+import { Provider } from 'react-redux'
 import { user } from './reducers/user'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { combineReducers } from '@reduxjs/toolkit'

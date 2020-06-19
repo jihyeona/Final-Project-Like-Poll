@@ -1,8 +1,7 @@
-import React from 'react'
 import styled from 'styled-components/macro'
 
 export const ItemRow = styled.div`
-@media (min-width: 575px) { 
+@media (min-width: 668px) { 
   display: flex;
   direction: row;
   justify-content: flex-start;
@@ -37,79 +36,12 @@ export const ThemeContainer = styled.div`
 width: 100%;
 text-decoration: none;
 position: relative;
-@media (min-width: 575px) { 
+@media (min-width: 668px) { 
   display: flex; 
   justify-content: center; 
 }
 `
-export const ThemeTitle = styled.h1`
-display: flex;
-text-align: center;
-justify-self: center;
-text-transform: uppercase;
-font-size: 1.4em;
-font-weight: 400;
-text-decoration: none;
-top: 25%;
-left: 7%;
-position: absolute;
-color: #fafafa;
-flex: 1;
-overflow-wrap: break-word;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-@media (min-width: 575px) { 
-  width: 80%; 
-  display: flex; 
-  justify-content: center; 
-  font-size: 2em;
-  top: 20%;
-  left: 10%;
-}
-`
-export const PollTitle = styled.h1`
-display: flex;
-text-align: center;
-justify-self: center;
-text-transform: uppercase;
-font-size: 1.4em;
-font-weight: 400;
-text-decoration: none;
-color: #232b2b;
-flex: 1;
-overflow-wrap: break-word;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-margin-top: 4em;
-@media (min-width: 575px) { 
-  width: 100%; 
-  display: flex; 
-  justify-content: center; 
-  font-size: 2em;
-}
-`
-export const PollText = styled.h1`
-display: flex;
-text-align: center;
-justify-self: center;
-font-size: 1em;
-font-weight: 300;
-padding: 1em;
-text-decoration: none;
-color: #232b2b;
-flex: 1;
-overflow-wrap: break-word;
-text-overflow: ellipsis;
-@media (min-width: 575px) { 
-  display: flex; 
-  justify-content: center; 
-  font-size: 2em;
-  top: 20%;
-  left: 10%;
-}
-`
+
 export const ItemDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -120,7 +52,7 @@ export const ItemContainer = styled.div`
 width: 100%; 
 border-radius: 3px; 
 margin-bottom: 60px; 
-@media (min-width: 575px) { 
+@media (min-width: 668px) { 
   width: 266px; 
   border: 1px solid rgba(var(--b6a,219,219,219),1); 
 } `
@@ -133,14 +65,14 @@ direction: row;
 align-items: center;
 justify-content: flex-start;
 flex-flow: wrap;
-@media (min-width: 575px) { 
+@media (min-width: 668px) { 
   width: 90%;
 } 
 `
 export const ItemDescription = styled.div`
 margin-left: 0.5em;
 overflow-wrap: break-word;
-@media (min-width: 575px) { 
+@media (min-width: 668px) { 
   width: 90%;
 } 
 `
@@ -152,8 +84,34 @@ export const ListContainer = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 6px 6px;
-  margin-top: 5em;
-  @media (min-width: 575px) { 
+  margin-top: 3.4em;
+  @media (min-width: 668px) { 
+   margin-top: 2.4em;
+  } 
+`
+export const AddPollContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 6px 6px;
+  margin-top: 3.4em;
+  @media (min-width: 668px) {
+   margin-top: 8em;
+  } 
+`
+export const ProfileContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 6px 6px;
+  margin-top: 3em;
+  @media (min-width: 668px) { 
    justify-content: center;
    align-items: stretch;
    margin-top: 3em;
@@ -167,38 +125,97 @@ export const LikeContainer = styled.div`
   flex-wrap: row wrap;
   border-radius: 6px 6px;
 `
-// --background: white;
-//   --border: rgba(0, 0, 0, 0.125);
-//   --borderDark: rgba(0, 0, 0, 0.25);
-//   --borderDarker: rgba(0, 0, 0, 0.5);
-//   --bgColorH: 0;
-//   --bgColorS: 0%;
-//   --bgColorL: 98%;
-//   --fgColorH: 210;
-//   --fgColorS: 50%;
-//   --fgColorL: 38%;
-//   --shadeDark: 0.3;
-//   --shadeLight: 0.7;
-//   --shadeNormal: 0.5;
-//   --borderRadius: 0.125rem;
-//   --highlight: #306090;
+export const ProfileDiv = styled.div`
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  @media (min-width: 668px) { 
+    width: 50%;
+    align-items: flex-start;
+    margin-top: 3em;
+  }
+`
 
-//From ListContainer
-//   background: #fafafa;
-//   box-shadow: 0 1rem 1rem -0.75rem var(--border);
-// --background: white;
-//   --background: #fafafa;
-//   --border: rgba(0, 0, 0, 0.125);
-//   --borderDark: rgba(0, 0, 0, 0.25);
-//   --borderDarker: rgba(0, 0, 0, 0.5);
-//   --bgColorH: 0;
-//   --bgColorS: 0%;
-//   --bgColorL: 98%;
-//   --fgColorH: 210;
-//   --fgColorS: 50%;
-//   --fgColorL: 38%;
-//   --shadeDark: 0.3;
-//   --shadeLight: 0.7;
-//   --shadeNormal: 0.5;
-//   --borderRadius: 0.125rem;
-//   --highlight: #306090;
+export const ThemesDiv = styled.div`
+  display: flex;
+  background-color: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  @media (min-width: 668px) { 
+    margin-top: 10em;
+    margin-bottom: 8em;
+  }
+`
+export const ProfileInfo = styled.div`
+  width: 60%;
+  margin: 1em auto;
+  --background: white;
+  --border: rgba(0, 0, 0, 0.125);
+  --borderDark: rgba(0, 0, 0, 0.25);
+  --borderDarker: rgba(0, 0, 0, 0.5);
+  --bgColorH: 0;
+  --bgColorS: 0%;
+  --bgColorL: 98%;
+  --fgColorH: 210;
+  --fgColorS: 50%;
+  --fgColorL: 38%;
+  --shadeDark: 0.3;
+  --shadeLight: 0.7;
+  --shadeNormal: 0.5;
+  --borderRadius: 0.125rem;
+  --highlight: #306090;
+  background: white;
+  box-shadow: 0 1rem 1rem -0.75rem var(--border);
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px 6px;
+`
+export const ThemeInfo = styled.div`
+  width: 60%;
+  margin: 1em auto;
+  --border: rgba(0, 0, 0, 0.125);
+  --borderDark: rgba(0, 0, 0, 0.25);
+  --borderDarker: rgba(0, 0, 0, 0.5);
+  --bgColorH: 0;
+  --bgColorS: 0%;
+  --bgColorL: 98%;
+  --fgColorH: 210;
+  --fgColorS: 50%;
+  --fgColorL: 38%;
+  --shadeDark: 0.3;
+  --shadeLight: 0.7;
+  --shadeNormal: 0.5;
+  --borderRadius: 0.125rem;
+  --highlight: #306090;
+  background: white;
+  box-shadow: 0 1rem 1rem -0.75rem var(--border);
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px 6px;
+`
+
+export const InfoDiv = styled.div`
+  margin: 2em auto;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+`
+export const ImgWrapper = styled.div`
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  @media (min-width: 668px) { 
+    width: 170px;
+    height: 170px;
+  }
+`
+export const ThumbWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 8em;
+`

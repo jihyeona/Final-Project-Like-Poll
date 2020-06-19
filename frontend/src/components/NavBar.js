@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { Container } from 'styled-container-component';
-import { Button } from 'styled-button-component';
-import { Navbar, NavbarLink } from 'styled-navbar-component';
-import { Nav } from 'styled-nav-component';
+import { Button } from 'styled-button-component'
+import { Navbar, NavbarLink } from 'styled-navbar-component'
+import { Nav } from 'styled-nav-component'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../reducers/user'
-import { InputButton } from '../lib/button'
 
 export const NavbarLight = () => {
   const [hidden, setHidden] = useState(true)
