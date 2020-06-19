@@ -15,15 +15,6 @@ export const ProfileText = styled.p`
   color: #4f4f4f;
   font-size: 0.825rem;
   margin-top: 2.5em;
-<<<<<<< HEAD
-=======
-`
-
-export const ThemeTitle = styled.h1`
-font-family: "Roboto", sans-serif;
-color: #262626;
-text-transform: uppercase;
->>>>>>> 98a52cc970cea9608cd23b5e244bfe6649c0b226
 `
 export const Title = styled.h1`
 background-color: blue; 
@@ -36,12 +27,9 @@ text-transform: uppercase;
 border-radius: 6px 6px 0 0;
 `
 export const ThemeTitle = styled.h1`
-<<<<<<< HEAD
 font-family: "Roboto", sans-serif;
 color: #262626;
 text-transform: uppercase;
-=======
->>>>>>> 98a52cc970cea9608cd23b5e244bfe6649c0b226
 display: flex;
 text-align: center;
 justify-self: center;

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button } from '../lib/button'
 import { Input, ProfileForm } from '../lib/form'
 import { ProfileMessage, ProfileText } from '../lib/headline'
-import { ProfileDiv, ProfileContainer } from '../lib/container'
+import { InfoSection, ToggleDiv, ProfileDiv, ProfileContainer } from '../lib/container'
 import { useDispatch, useSelector } from 'react-redux'
 import ProfileImage from '../components/ProfileImage'
 import NavbarLight from '../components/NavBar'
@@ -15,7 +15,7 @@ export const MyPage = () => {
   const email = useSelector((store) => store.user.login.email)
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
-
+  const [open, setOpen] = useState('true')
   const handleChangePassword = (event) => {
     event.preventDefault()
     dispatch(changepassword(oldPassword, newPassword))
@@ -28,10 +28,11 @@ export const MyPage = () => {
       <ProfileContainer>
         <NavbarLight />
         <ProfileDiv>
+        <ProfileImage />
+        <InfoSection>
           <ProfileMessage>Welcome {userName}!</ProfileMessage>
-          <ProfileImage />
-          <ProfileForm onSubmit={(event) => handleChangePassword(event)}>
-            <ProfileText>e-mail adress: {email}</ProfileText>
+          <ProfileText>e-mail: {email}</ProfileText>      
+  {!open ? <ToggleDiv onSubmit={(event) => handleChangePassword(event)}>
             <Input
               type='password'
               placeholder='current password'
@@ -47,15 +48,15 @@ export const MyPage = () => {
               onChange={(event) => setNewPassword(event.target.value)}
             />
             <Button type='submit' title='Change password' />
-          </ProfileForm>
+  </ToggleDiv> : <button onClick={()=> setOpen(prev => !prev)} title='Edit password'></button>}
+        
+        </InfoSection>
         </ProfileDiv>
         <ProfileForm>
           <LikeList />
         </ProfileForm>
       </ProfileContainer>
     </>
-
-
   )
 }
 

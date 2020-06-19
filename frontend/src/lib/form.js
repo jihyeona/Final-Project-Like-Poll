@@ -27,6 +27,17 @@ export const Form = styled.form`
     margin: 2em 1em; 
   }
 `
+export const TopForm = styled.form`
+  z-index: 20;
+  position: absolute;
+  font-size: 20px;
+  top: 4em;
+  left: 1em;
+  width: 20%;
+  height: auto;
+  border-radius: 20px;
+  align-self: center;
+`
 
 export const Input = styled.input`
   height: 2.5em;

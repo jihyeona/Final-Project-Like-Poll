@@ -98,13 +98,7 @@ export const AddPollContainer = styled.div`
   flex-direction: column;
   border-radius: 6px 6px;
   margin-top: 3.4em;
-<<<<<<< HEAD
   @media (min-width: 668px) {
-=======
-  @media (min-width: 668px) { 
-   justify-content: center;
-   align-items: stretch;
->>>>>>> 98a52cc970cea9608cd23b5e244bfe6649c0b226
    margin-top: 8em;
   } 
 `
@@ -134,16 +128,41 @@ export const LikeContainer = styled.div`
 export const ProfileDiv = styled.div`
   padding: 2em;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  @media (min-width: 668px) { 
-    width: 50%;
-    align-items: flex-start;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  width: 90%;
+  @media (min-width: 557px) { 
+    justify-content: center;
     margin-top: 3em;
+    width: 70%;
   }
 `
-<<<<<<< HEAD
+
+export const InfoSection = styled.div`
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 668px) { 
+    justify-content: space-between;
+    width: 100%;
+  }
+`
+export const ToggleDiv = styled.div`
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 668px) { 
+    justify-content: space-between;
+    width: 100%;
+  }
+`
 
 export const ThemesDiv = styled.div`
   display: flex;
@@ -205,69 +224,6 @@ export const ThemeInfo = styled.div`
   border-radius: 6px 6px;
 `
 
-=======
-
-export const ThemesDiv = styled.div`
-  display: flex;
-  background-color: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  @media (min-width: 668px) { 
-    margin-top: 10em;
-    margin-bottom: 8em;
-  }
-`
-export const ProfileInfo = styled.div`
-  width: 60%;
-  margin: 1em auto;
-  --background: white;
-  --border: rgba(0, 0, 0, 0.125);
-  --borderDark: rgba(0, 0, 0, 0.25);
-  --borderDarker: rgba(0, 0, 0, 0.5);
-  --bgColorH: 0;
-  --bgColorS: 0%;
-  --bgColorL: 98%;
-  --fgColorH: 210;
-  --fgColorS: 50%;
-  --fgColorL: 38%;
-  --shadeDark: 0.3;
-  --shadeLight: 0.7;
-  --shadeNormal: 0.5;
-  --borderRadius: 0.125rem;
-  --highlight: #306090;
-  background: white;
-  box-shadow: 0 1rem 1rem -0.75rem var(--border);
-  display: flex;
-  flex-direction: column;
-  border-radius: 6px 6px;
-`
-export const ThemeInfo = styled.div`
-  width: 60%;
-  margin: 1em auto;
-  --border: rgba(0, 0, 0, 0.125);
-  --borderDark: rgba(0, 0, 0, 0.25);
-  --borderDarker: rgba(0, 0, 0, 0.5);
-  --bgColorH: 0;
-  --bgColorS: 0%;
-  --bgColorL: 98%;
-  --fgColorH: 210;
-  --fgColorS: 50%;
-  --fgColorL: 38%;
-  --shadeDark: 0.3;
-  --shadeLight: 0.7;
-  --shadeNormal: 0.5;
-  --borderRadius: 0.125rem;
-  --highlight: #306090;
-  background: white;
-  box-shadow: 0 1rem 1rem -0.75rem var(--border);
-  display: flex;
-  flex-direction: column;
-  border-radius: 6px 6px;
-`
-
->>>>>>> 98a52cc970cea9608cd23b5e244bfe6649c0b226
 export const InfoDiv = styled.div`
   margin: 2em auto;
   display: flex;
@@ -279,6 +235,7 @@ export const ImgWrapper = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  margin-top: 1.5em;
   @media (min-width: 668px) { 
     width: 170px;
     height: 170px;
