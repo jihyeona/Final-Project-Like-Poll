@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '../lib/button'
+import { Button, ToggleButton } from '../lib/button'
 import { Input, ProfileForm } from '../lib/form'
 import { ProfileMessage, ProfileText } from '../lib/headline'
 import { InfoSection, ToggleDiv, ProfileDiv, ProfileContainer } from '../lib/container'
@@ -45,11 +45,10 @@ export const MyPage = () => {
               placeholder='new password'
               required
               value={newPassword}
-              onChange={(event) => setNewPassword(event.target.value)}
+              onChange={(event) => setNewPassword(event.target.value) && setOpen(prev => !prev)}
             />
             <Button type='submit' title='Change password' />
-  </ToggleDiv> : <button onClick={()=> setOpen(prev => !prev)} title='Edit password'></button>}
-        
+  </ToggleDiv> : <ToggleButton onClick={()=> setOpen(prev => !prev)} title='Edit password'>Edit Password</ToggleButton>}
         </InfoSection>
         </ProfileDiv>
         <ProfileForm>

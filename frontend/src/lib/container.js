@@ -131,12 +131,12 @@ export const ProfileDiv = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 1em;
   width: 90%;
   @media (min-width: 557px) { 
     justify-content: center;
-    margin-top: 3em;
+    margin-top: 4em;
     width: 70%;
   }
 `

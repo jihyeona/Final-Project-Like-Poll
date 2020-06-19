@@ -98,7 +98,23 @@ ${ImgWrapper}:hover & {
   left: 20%; 
 }
 `
-
+export const ToggleButton = styled.button`
+background: #adbce6;
+bottom: 15px;
+right: 15px;
+color: gray;
+margin: 10px;
+padding: 5px;
+border-radius: 50px;
+display: flex;
+justify-content: center;
+border: none;
+cursor:pointer;
+&:hover {
+  background: #adbce6;
+  color: white;
+}
+`
 export const Button = ({ title }) => {
   return (
     <ButtonInput>
