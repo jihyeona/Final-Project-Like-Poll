@@ -97,7 +97,7 @@ text-overflow: ellipsis;
   left: 10%;
 }
 `
-export const AboutText = styled.h1`
+export const AboutText = styled.p`
 display: flex;
 text-align: left;
 justify-self: center;
