@@ -97,6 +97,26 @@ text-overflow: ellipsis;
   left: 10%;
 }
 `
+export const AboutText = styled.h1`
+display: flex;
+text-align: left;
+justify-self: center;
+font-size: 0.98em;
+font-weight: 300;
+padding: 1em 3em;
+line-height: 1.4;
+text-decoration: none;
+color: #232b2b;
+flex: 1;
+overflow-wrap: break-word;
+text-overflow: ellipsis;
+@media (min-width: 668px) { 
+  display: flex; 
+  justify-content: center; 
+  font-size: 1.5em;
+  line-height: 1.6;
+}
+`
 export const ThumbText = styled.p`
 position: absolute;
 display: none;
