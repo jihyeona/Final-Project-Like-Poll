@@ -38,7 +38,17 @@ export const TopForm = styled.form`
   border-radius: 20px;
   align-self: center;
 `
-
+export const TogglePasswordForm = styled.form`
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 668px) { 
+    justify-content: space-between;
+    width: 100%;
+  }
+`
 export const Input = styled.input`
   height: 2.5em;
   margin-top: 1em;
@@ -70,18 +80,9 @@ export const ProfileImgForm = styled.form`
 `
 export const ProfileForm = styled.form`
   width: 100%;
+  margin-bottom: 1em;
   `
-export const TogglePasswordForm = styled.form`
-  margin-left: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  @media (min-width: 668px) { 
-    justify-content: space-between;
-    width: 100%;
-  }
-`
+
 export const SmallImgForm = styled.form`
   width: 100%;
   `

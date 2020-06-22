@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ProfilePic } from '../lib/images'
 import { ImgWrapper } from '../lib/container'
 import { ProfileImgButton, Button } from '../lib/button'
-import { TopForm } from '../lib/form'
+import { TopForm, TogglePasswordForm } from '../lib/form'
 import { UpdateProfilePic } from 'reducers/user'
 
 export const ProfileImage = () => {
@@ -25,14 +25,12 @@ export const ProfileImage = () => {
         {image && <ProfilePic src={image} alt="profile picture"></ProfilePic>}
       </ImgWrapper>
       {showUpdateForm &&
-        <TopForm onSubmit={handleFormSubmit}>
+        <TogglePasswordForm onSubmit={handleFormSubmit}>
           <label>
             <input type="file" ref={fileInput} />
           </label>
-          <Button type="submit" title='Save'>
-            Save
-          </Button>
-        </TopForm>
+          <Button type="submit" title='Update Profile Image' />
+        </TogglePasswordForm>
       }
     </>
   )

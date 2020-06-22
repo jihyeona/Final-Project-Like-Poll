@@ -12,6 +12,8 @@ export const ProfilePic = styled.img`
   @media (min-width: 668px) { 
     width: 170px;
     height: 170px;
+    margin-left: 3em;
+    margin-top: -2.3em;
   }
 `
 export const Thumbnail = styled.img`

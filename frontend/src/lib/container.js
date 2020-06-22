@@ -85,6 +85,7 @@ export const ListContainer = styled.div`
   flex-direction: column;
   border-radius: 6px 6px;
   margin-top: 3.4em;
+  margin-bottom: 1em;
   @media (min-width: 668px) { 
    margin-top: 2.4em;
   } 
@@ -126,7 +127,6 @@ export const LikeContainer = styled.div`
   border-radius: 6px 6px;
 `
 export const ProfileDiv = styled.div`
-  padding: 2em;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -142,7 +142,7 @@ export const ProfileDiv = styled.div`
 `
 
 export const InfoSection = styled.div`
-  margin-left: 2em;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,10 +150,11 @@ export const InfoSection = styled.div`
   @media (min-width: 668px) { 
     justify-content: space-between;
     width: 100%;
+    margin-left: 2em;
   }
 `
 export const ToggleDiv = styled.div`
-  margin-left: 2em;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -161,6 +162,7 @@ export const ToggleDiv = styled.div`
   @media (min-width: 668px) { 
     justify-content: space-between;
     width: 100%;
+    margin-left: 2em;
   }
 `
 

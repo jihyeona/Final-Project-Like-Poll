@@ -71,7 +71,8 @@ ${ImgWrapper}:hover & {
 @media (min-width: 668px) { 
   position: absolute;
   display: none;
-  top: 50%;
+  top: 15%;
+  margin-left: 2.4em;
   z-index: 5;
   color: white;
   background: none;
