@@ -11,7 +11,7 @@ position: fixed;
 border-radius: 500px;
 bottom: 15px;
 right: 15px;
-margin: 10px;
+margin: 20vw 1vw;
 height: 50px;
 width: 50px;
 padding: 10px;
@@ -23,6 +23,17 @@ cursor:pointer;
 &:hover {
   transform: scale(1.5, 1.5);
 }
+@media (min-width: 668px) and (max-width: 1023px) {
+  height: 80px;
+  width: 80px;
+  margin: 2em;
+  bottom: 27em;
+} 
+@media (min-width: 1024px) {
+  height: 80px;
+  width: 80px;
+  margin: 2em;
+} 
 `
 export const Plus = styled.img`
   align-self: center;

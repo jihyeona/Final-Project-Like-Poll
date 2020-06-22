@@ -15,7 +15,7 @@ export const MyPage = () => {
   const email = useSelector((store) => store.user.login.email)
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const handleChangePassword = (event) => {
     event.preventDefault()
     dispatch(changepassword(oldPassword, newPassword))
@@ -24,15 +24,15 @@ export const MyPage = () => {
   }
 
   return (
-    <>
-      <ProfileContainer>
-        <NavbarLight />
-        <ProfileDiv>
-          <ProfileImage />
-          <InfoSection>
-            <ProfileMessage>Welcome {userName}!</ProfileMessage>
-            <ProfileText>e-mail: {email}</ProfileText>
-            {!open ? <TogglePasswordForm onSubmit={(event) => handleChangePassword(event)}>
+    <ProfileContainer>
+      <NavbarLight />
+      <ProfileDiv>
+        <ProfileImage />
+        <InfoSection>
+          <ProfileMessage>Welcome {userName}!</ProfileMessage>
+          <ProfileText>e-mail: {email}</ProfileText>
+          {open ?
+            <TogglePasswordForm onSubmit={(event) => handleChangePassword(event)}>
               <Input
                 type='password'
                 placeholder='current password'
@@ -45,17 +45,16 @@ export const MyPage = () => {
                 placeholder='new password'
                 required
                 value={newPassword}
-                onChange={(event) => setNewPassword(event.target.value) && setOpen(prev => !prev)}
+                onChange={(event) => setNewPassword(event.target.value)}
               />
-              <Button type='submit' title='Change password' />
-            </TogglePasswordForm> : <ToggleButton onClick={() => setOpen(prev => !prev)} title='Edit password'>Edit Password</ToggleButton>}
-          </InfoSection>
-        </ProfileDiv>
-        <ProfileForm>
-          <LikeList />
-        </ProfileForm>
-      </ProfileContainer>
-    </>
+              <Button type='submit' title='Update password' onClick={() => setOpen(!open)} />
+            </TogglePasswordForm> : <ToggleButton onClick={() => setOpen(!open)}>Change Password</ToggleButton>}
+        </InfoSection>
+      </ProfileDiv>
+      <ProfileForm>
+        <LikeList />
+      </ProfileForm>
+    </ProfileContainer>
   )
 }
 

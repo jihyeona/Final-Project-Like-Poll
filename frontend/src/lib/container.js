@@ -86,8 +86,11 @@ export const ListContainer = styled.div`
   border-radius: 6px 6px;
   margin-top: 3.4em;
   margin-bottom: 1em;
+  padding-bottom: 6em;
   @media (min-width: 668px) { 
-   margin-top: 2.4em;
+   margin-top: 4em;
+   margin-bottom: 15em;
+   padding-bottom: 10em;
   } 
 `
 export const AddPollContainer = styled.div`
@@ -142,7 +145,18 @@ export const ProfileDiv = styled.div`
 `
 
 export const InfoSection = styled.div`
-  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 668px) { 
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 2em;
+  }
+`
+export const ProfilePicSection = styled.div`
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
