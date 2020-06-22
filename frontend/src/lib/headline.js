@@ -103,7 +103,7 @@ text-align: left;
 justify-self: center;
 font-size: 0.98em;
 font-weight: 300;
-padding: 1em 3em;
+padding: 0.2em 3em;
 line-height: 1.4;
 text-decoration: none;
 color: #232b2b;

@@ -18,6 +18,8 @@ export const HowToUse = () => {
       <AboutText>
         A user can pick each option only once with the heart button, but can pick several options.
         The option that has got the most hearts will be presented on the top of the list automatically.
+        </AboutText>
+      <AboutText>
         You can create a poll with its title and a background image. Then you and others can add options with name, an image and further description.
         Start creating your own polls and invite friends to join!
         </AboutText>
