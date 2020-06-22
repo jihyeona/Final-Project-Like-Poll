@@ -87,11 +87,15 @@ export const ListContainer = styled.div`
   margin-top: 3.4em;
   margin-bottom: 1em;
   padding-bottom: 6em;
-  @media (min-width: 668px) { 
+  @media (min-width: 668px) and (max-width: 1023px) { 
    margin-top: 4em;
    margin-bottom: 15em;
    padding-bottom: 10em;
   } 
+  @media (min-width: 1024px) {
+
+  }
+  
 `
 export const AddPollContainer = styled.div`
   width: 100%;
