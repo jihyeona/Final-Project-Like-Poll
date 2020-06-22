@@ -38,6 +38,9 @@ export const NavbarLight = () => {
         <Link to='/mypage'>
           <NavbarLink light active>My Page</NavbarLink>
         </Link>
+        <Link to='/about'>
+          <NavbarLink light active>About</NavbarLink>
+        </Link>
         <Link to='/login'>
           <NavbarLink light active onClick={() => dispatch(logout())}>Log Out</NavbarLink>
         </Link>

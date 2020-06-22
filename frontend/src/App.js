@@ -13,6 +13,7 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { applyMiddleware, compose } from '@reduxjs/toolkit'
+import HowToUse from 'pages/HowToUse'
 
 const saveToLocalStorage = (state) => {
   try {
@@ -54,6 +55,7 @@ export const App = () => {
         <Switch>
           <Route path='/' exact ><SignUp /></Route>
           <Route path='/login' exact ><LogIn /></Route>
+          <Route path='/about' exact ><HowToUse /></Route>
           <Route path='/home' exact ><PollList /></Route>
           <Route path='/polls/:pollId' exact ><ItemList /></Route>
           <Route path='/mypage' exact ><MyPage /></Route>
