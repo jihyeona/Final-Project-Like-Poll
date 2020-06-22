@@ -115,6 +115,7 @@ text-overflow: ellipsis;
   justify-content: center; 
   font-size: 1.5em;
   line-height: 1.6;
+  padding: 0.9em 7em;
 }
 `
 export const ThumbText = styled.p`
