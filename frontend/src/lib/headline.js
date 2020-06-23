@@ -73,7 +73,7 @@ overflow-wrap: break-word;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
-margin-top: 1.5em;
+margin: 1.5em 0em;
 @media (min-width: 668px) { 
   width: 100%; 
   display: flex; 
