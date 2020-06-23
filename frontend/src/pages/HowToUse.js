@@ -8,7 +8,7 @@ export const HowToUse = () => {
   return (
     <AddPollContainer>
       <NavbarLight />
-      <PollTitle>Welcome to Heart Picks!</PollTitle>
+      <PollTitle>Welcome to Heart Pix!</PollTitle>
       <VoteLottie />
       <AboutText>
         Create polls where you and others can add options to pick from.

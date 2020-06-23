@@ -14,7 +14,7 @@ export const NavbarLight = () => {
     <Navbar expandLg light id='mainnavbar'>
       <Nav start>
         <Link to='/home'>
-          <NavbarLink light brand>HEART PICKS.</NavbarLink>
+          <NavbarLink light brand>HEART PIX.</NavbarLink>
         </Link>
         <Nav end>
           <Button
