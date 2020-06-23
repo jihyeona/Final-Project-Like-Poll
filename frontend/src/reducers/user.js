@@ -20,24 +20,20 @@ export const user = createSlice({
   reducers: {
     setLoginResponse: (state, action) => {
       const { accessToken, userId, email } = action.payload
-      console.log(`Access Token: ${accessToken}, User Id: ${userId}`)
       state.login.accessToken = accessToken
       state.login.userId = userId
       state.login.email = email
     },
     setOngoingPolls: (state, action) => {
       const { ongoingPolls } = action.payload;
-      console.log(`Ongoing polls: ${ongoingPolls}`);
       state.login.ongoingPolls = ongoingPolls;
     },
     setErrorMessage: (state, action) => {
       const { errorMessage } = action.payload;
-      console.log(`Error Message: ${errorMessage}`);
       state.login.errorMessage = errorMessage;
     },
     setUserName: (state, action) => {
       const { userName } = action.payload;
-      console.log(`User name: ${userName}`);
       state.login.userName = userName;
     },
     setProfileImage: (state, action) => {
@@ -50,7 +46,6 @@ export const user = createSlice({
     },
     setSecretMessage: (state, action) => {
       const { secretMessage } = action.payload;
-      console.log(`Secret Message: ${secretMessage}`);
       state.login.secretMessage = secretMessage;
     },
   },
@@ -101,8 +96,6 @@ export const login = (name, password) => {
         throw new Error('Unable to log in. Please check your username and password')
       })
       .then((json) => {
-        console.log(json)
-        // Save the login info 
         dispatch(user.actions.setLoginResponse({ accessToken: json.accessToken, userId: json.userId, email: json.email }))
         dispatch(user.actions.setProfileImage({ profileImage: json.profileImage }))
         dispatch(user.actions.setUserName({ userName: json.name }))
@@ -189,7 +182,6 @@ export const getpolls = () => {
   const POLL_URL = 'https://heart-pick-final-project.herokuapp.com/polls'
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
-    console.log('Trying to fetch the polls ...')
     fetch(POLL_URL, {
       method: 'GET',
       headers: { Authorization: accessToken }
@@ -202,7 +194,6 @@ export const getpolls = () => {
         throw new Error('Could not fetch the existing polls.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(user.actions.setOngoingPolls({ ongoingPolls: json }))
       })
       .catch((err) => {
@@ -219,7 +210,6 @@ export const addpoll = (title, fileInput, userId) => {
   formData.append('userId', userId)
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
-    console.log('Trying to create a poll ...')
     fetch(POLL_URL, {
       method: 'POST',
       body: formData,
@@ -233,8 +223,6 @@ export const addpoll = (title, fileInput, userId) => {
         throw new Error('Could not creat a poll. Try a different title.')
       })
       .then((json) => {
-        console.log(json)
-        // do something with the created poll info. probably add it to the state of poll?
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -258,7 +246,6 @@ export const deletepoll = (pollId, pollCreatorId) => {
         } throw new Error('Could not delete the poll. Try again.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -291,8 +278,6 @@ export const additem = (name, description, fileInput, pollId, userId) => {
         throw new Error('Could not add the item. Try again.')
       })
       .then((json) => {
-        console.log(json)
-        // do something with the created item.
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -316,7 +301,6 @@ export const deleteitem = (itemId) => {
         } throw new Error('Could not delete the item. Try again.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -342,7 +326,6 @@ export const upvote = (loggedInUserId, itemId) => {
         throw new Error('Could not upvote. Try again.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -366,8 +349,6 @@ export const downvote = (pollId, itemId, loggedInUserId) => {
         } throw new Error('Could not execute downvote. Try again.')
       })
       .then((json) => {
-        console.log(json)
-        // replace the old poll with the new poll so that it updates the backend with the new info(that the user has unliked the item.)
         dispatch(getpolls())
       })
       .catch((err) => {
@@ -381,7 +362,6 @@ export const getlikeditems = () => {
   return (dispatch, getState) => {
     const accessToken = getState().user.login.accessToken
     const userId = getState().user.login.userId
-    console.log('Trying to fetch the items you have liked ...')
     fetch(`${LIKE_URL}/${userId}`, {
       method: 'GET',
       headers: { Authorization: accessToken }
@@ -394,7 +374,6 @@ export const getlikeditems = () => {
         throw new Error('Could not fetch the liked items.')
       })
       .then((json) => {
-        console.log(json)
         dispatch(user.actions.setLikedItems({ likedItems: json }))
       })
       .catch((err) => {

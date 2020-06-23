@@ -1,4 +1,4 @@
- import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { upvote, downvote, deleteitem } from '../reducers/user'
 import { Thumbnail } from 'lib/images'
@@ -14,7 +14,6 @@ export const ItemCard = ({ name, description, imageUrl, _id, likes, userId, poll
   const itemId = _id
   const manyLikes = likes.length
   const upvoted = likes.some(like => like.userId === loggedInUserId)
-  console.log(upvoted)
   const [isUpvoted, setIsUpvoted] = useState(upvoted)
   const [open, setOpen] = useState(false)
   const maxLength = 100

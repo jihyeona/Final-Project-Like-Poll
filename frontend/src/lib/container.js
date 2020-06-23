@@ -87,6 +87,7 @@ export const ListContainer = styled.div`
   margin-top: 3.4em;
   margin-bottom: 1em;
   padding-bottom: 6em;
+  height: calc(100vh - 30px)
   @media (min-width: 668px) and (max-width: 1023px) { 
    margin-top: 4em;
    margin-bottom: 15em;
@@ -141,10 +142,10 @@ export const ProfileDiv = styled.div`
   margin-top: 1em;
   margin-bottom: 1em;
   width: 90%;
-  @media (min-width: 557px) { 
+  @media (min-width: 668px) { 
     justify-content: center;
     margin-top: 4em;
-    width: 70%;
+    width: 100%;
   }
 `
 
@@ -153,10 +154,12 @@ export const InfoSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media (min-width: 668px) { 
-    justify-content: space-between;
-    width: 100%;
-    margin-left: 2em;
+  @media (min-width: 668px) and (max-width: 1023px) { 
+    margin: 2em 8em 2em 1em;
+  }
+  @media (min-width: 1024px) {
+    width: 50%;
+    padding-right: 20vw;
   }
 `
 export const ProfilePicSection = styled.div`
@@ -165,10 +168,11 @@ export const ProfilePicSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media (min-width: 668px) { 
-    justify-content: space-between;
-    width: 100%;
-    margin-left: 2em;
+  @media (min-width: 668px) and (max-width: 1023px) { 
+    margin: 3em 0em 2em 2em;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 0.8em;
   }
 `
 export const ToggleDiv = styled.div`
@@ -255,7 +259,7 @@ export const ImgWrapper = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-top: 1.5em;
+  margin-top: 2em;
   @media (min-width: 668px) { 
     width: 170px;
     height: 170px;

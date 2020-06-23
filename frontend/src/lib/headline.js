@@ -10,11 +10,15 @@ export const ProfileMessage = styled.p`
   color: #262626;
   text-align: center;
   font-size: 1.2em;
+  margin-top: 2em;
 `
 export const ProfileText = styled.p`
   color: #4f4f4f;
   font-size: 0.825rem;
-  margin-top: 2.5em;
+  margin-top: 1em;
+  @media (min-width: 668px) {
+    margin-top: 2em;
+  }  
 `
 export const Title = styled.h1`
 background-color: blue; 

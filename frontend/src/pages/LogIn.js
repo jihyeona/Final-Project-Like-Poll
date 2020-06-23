@@ -20,7 +20,6 @@ export const LogIn = () => {
   useEffect(() => {
     if (accessToken) {
       history.push('/home')
-      console.log('push successful')
     }
   })
 

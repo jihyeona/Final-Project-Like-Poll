@@ -21,7 +21,7 @@ export const LikeList = ({ img }) => {
     <ThumbWrapper>
       {likedItemsArr &&
         likedItemsArr.map(item => (
-          <Link to={`/polls/${item._id}`}>
+          <Link to={`/polls/${item._id}`} key={item._id}>
             <SmallImage src={item.items.imageUrl} />
             <ThumbText>{item.items.name}</ThumbText>
           </Link>

@@ -13,7 +13,6 @@ export const PollList = () => {
     dispatch(getpolls())
   }, [dispatch])
   const polls = useSelector((store) => store.user.login.ongoingPolls)
-  console.log(polls)
 
   return (
     <ListContainer>

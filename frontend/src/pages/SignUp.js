@@ -20,7 +20,6 @@ export const SignUp = () => {
   useEffect(() => {
     if (accessToken) {
       history.push('/mypage')
-      console.log('push successful')
     }
   })
   useEffect(() => {
@@ -42,7 +41,7 @@ export const SignUp = () => {
             <Input
               placeholder='name'
               required
-              maxlength="150"
+              maxlength='150'
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
@@ -52,7 +51,6 @@ export const SignUp = () => {
               required
               pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
               maxlength='100'
-              title='Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters'
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -60,7 +58,7 @@ export const SignUp = () => {
               type='password'
               placeholder='password'
               required
-              maxlength="100"
+              maxlength='100'
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />

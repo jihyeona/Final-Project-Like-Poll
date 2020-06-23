@@ -46,7 +46,7 @@ export const TogglePasswordForm = styled.form`
   align-items: center;
   @media (min-width: 668px) { 
     justify-content: space-between;
-    width: 100%;
+    margin-top: 1.4em;
   }
 `
 export const Input = styled.input`
@@ -102,4 +102,11 @@ export const InputButton = styled.input`
     background: #adbce6;
     color: white;
   } 
+`
+export const ProfilePicInput = styled.input`
+  margin-top: 5.5em;
+  margin-left: 15vw;
+  @media (min-width: 668px) { 
+    margin-top: 0;
+  }
 `

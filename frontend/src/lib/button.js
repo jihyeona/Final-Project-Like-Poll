@@ -38,24 +38,6 @@ cursor:pointer;
 export const Plus = styled.img`
   align-self: center;
 `
-
-export const ButtonInput = styled.button`
-  color: #4f4f4f;
-  background: #adbce6;
-  text-align: center;
-  font-size: 1.2em;
-  font-size: 0.825rem;
-  text-align: center;
-  height: 2.5em;
-  margin: 1em;
-  border-radius: 250px;
-  border:none;
-  cursor: pointer;
-  &:hover {
-    background: #adbce6;
-    color: white;
-  }
-`
 export const ReadButton = styled.button`
 height: 1.5em;
 width: 1.5em;
@@ -110,27 +92,72 @@ ${ImgWrapper}:hover & {
   left: 20%; 
 }
 `
+export const ButtonInput = styled.button`
+  color: #4f4f4f;
+  background: #adbce6;
+  text-align: center;
+  font-size: 0.825rem;
+  height: 2.5em;
+  margin: 1em;
+  border-radius: 250px;
+  border:none;
+  cursor: pointer;
+  &:hover {
+    background: #adbce6;
+    color: white;
+  }
+`
+export const ProfileImageButton = styled.button`
+  color: #4f4f4f;
+  background: #adbce6;
+  text-align: center;
+  font-size: 0.825rem;
+  height: 2.5em;
+  margin: 1em;
+  border-radius: 250px;
+  border:none;
+  cursor: pointer;
+  &:hover {
+    background: #adbce6;
+    color: white;
+  }
+  @media (min-width: 668px) and (max-width: 1023px) {
+    margin: 1.2em 0em 0em 4em;
+  }
+  @media (min-width: 1024px) {
+    margin: 1.5em 0em 0em 5em;
+  }
+`
 export const ToggleButton = styled.button`
-background: #adbce6;
-bottom: 15px;
-right: 15px;
-color: gray;
-margin: 10px;
-padding: 5px;
-border-radius: 50px;
-display: flex;
-justify-content: center;
-border: none;
-cursor:pointer;
-&:hover {
+ color: #4f4f4f;
+ background: #adbce6;
+ text-align: center;
+ font-size: 0.825rem;
+ height: 2.5em;
+ margin: 1em;
+ border-radius: 250px;
+ border:none;
+ bottom: 15px;
+ right: 15px;
+ cursor: pointer;
+ &:hover {
   background: #adbce6;
   color: white;
-}
+  }
 `
+// update profile picture button, in the desktop: margin-left: 5em; margin-top: 1.6em;
+
 export const Button = ({ title }) => {
   return (
     <ButtonInput>
       {title}
     </ButtonInput>
+  )
+}
+export const ImageButton = ({ title }) => {
+  return (
+    <ProfileImageButton>
+      {title}
+    </ProfileImageButton>
   )
 }

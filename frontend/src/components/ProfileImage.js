@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProfilePic } from '../lib/images'
 import { ImgWrapper, ProfilePicSection } from '../lib/container'
-import { ProfileImgButton, Button } from '../lib/button'
-import { TopForm, TogglePasswordForm } from '../lib/form'
+import { ProfileImgButton, ImageButton } from '../lib/button'
+import { ProfilePicInput, TogglePasswordForm } from '../lib/form'
 import { UpdateProfilePic } from 'reducers/user'
 
 export const ProfileImage = () => {
@@ -28,9 +28,9 @@ export const ProfileImage = () => {
       {showUpdateForm &&
         <TogglePasswordForm onSubmit={handleFormSubmit}>
           <label>
-            <input type="file" ref={fileInput} />
+            <ProfilePicInput type="file" ref={fileInput} />
           </label>
-          <Button type="submit" title='Update Profile Image' />
+          <ImageButton type="submit" title='Update Profile Image' />
         </TogglePasswordForm>
       }
     </ProfilePicSection>
